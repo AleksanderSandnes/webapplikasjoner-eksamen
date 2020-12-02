@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box } from '@chakra-ui/core';
 import styled from 'styled-components';
 import Nav from '../components/Nav';
 
@@ -10,16 +9,22 @@ const StyledHeader = styled.header`
   width: 100%;
 `;
 
+const Wrapper = styled.section`
+  padding: 0 20px 0 0;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const Wrapper2 = styled.section``;
+
 // eslint-disable-next-line react/prop-types
 const MainLayout = ({ children }) => (
-  <Box>
+  <Wrapper2>
     <StyledHeader>
       <Nav />
     </StyledHeader>
-    <Box w="100%" padding="0 20px" margin="0 auto">
-      {children}
-    </Box>
-  </Box>
+    <Wrapper>{children}</Wrapper>
+  </Wrapper2>
 );
 
 export default MainLayout;

@@ -1,16 +1,17 @@
 import React from 'react';
-import { CSSReset, ThemeProvider } from '@chakra-ui/core';
-import customTheme from './src/styles/theme';
+import { CSSReset } from '@chakra-ui/core';
 import Routes from './src/routes/Routes';
 import AuthProvider from './src/context/AuthProvider';
 
+import Theme from './src/styles/Theme';
+
 const App = () => (
-  <ThemeProvider theme={customTheme}>
+  <Theme>
     <CSSReset />
     <AuthProvider>
       <Routes />
     </AuthProvider>
-  </ThemeProvider>
+  </Theme>
 );
 
 export default App;

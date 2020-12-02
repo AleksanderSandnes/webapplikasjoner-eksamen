@@ -1,10 +1,11 @@
 import React from 'react';
-import { Heading } from '@chakra-ui/core';
+import styled from 'styled-components';
 
-const NoMatch = () => (
-  <Heading as="h2" size="lg">
-    404
-  </Heading>
-);
+const Title = styled.h2`
+  font-size: 50px;
+  margin-left: 50px;
+`;
+
+const NoMatch = () => <Title>404</Title>;
 
 export default NoMatch;
