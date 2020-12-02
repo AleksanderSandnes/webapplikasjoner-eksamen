@@ -1,7 +1,6 @@
 import http from './http';
 
 const API_UPLOAD_URL = '/upload';
-const API_DOWNLOAD_URL = '/download';
 
 export const upload = async (image) => {
   try {
@@ -14,17 +13,6 @@ export const upload = async (image) => {
     });
   } catch (err) {
     console.log(err);
-    return err.response;
-  }
-};
-
-export const download = async (id) => {
-  try {
-    return await http.get(`${API_DOWNLOAD_URL}/${id}`, {
-      responseType: 'blob',
-    });
-    // return await http.get(`${API_DOWNLOAD_URL}/${id}`);
-  } catch (err) {
     return err.response;
   }
 };

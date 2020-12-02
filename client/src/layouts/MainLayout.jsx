@@ -10,6 +10,7 @@ const StyledHeader = styled.header`
   width: 100%;
 `;
 
+// eslint-disable-next-line react/prop-types
 const MainLayout = ({ children }) => (
   <Box>
     <StyledHeader>

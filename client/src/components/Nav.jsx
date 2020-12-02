@@ -2,8 +2,6 @@ import { Button } from '@chakra-ui/core';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuthContext } from '../context/AuthProvider';
-import { logout } from '../utils/authService';
 
 const StyledNav = styled.nav`
   width: 100%;
@@ -41,44 +39,34 @@ const NavMenuItem = styled.li`
   }
 `;
 
-const Nav = () => {
-  const { isLoggedIn, isAdmin, setUser } = useAuthContext();
-  const handleLogout = async () => {
-    await logout();
-    setUser(null);
-  };
-  return (
-    <StyledNav>
-      <NavMenu>
-        <NavMenuItem>
-          <NavLink exact to="/" activeClassName="active">
-            Events
-          </NavLink>
-        </NavMenuItem>
-        {isLoggedIn && isAdmin && (
-          <NavMenuItem>
-            <NavLink exact to="/dashboard" activeClassName="active">
-              Dashboard
-            </NavLink>
-          </NavMenuItem>
-        )}
-        {!isLoggedIn && (
-          <NavMenuItem style={{ marginLeft: 'auto' }}>
-            <NavLink exact to="/login" activeClassName="active">
-              Login
-            </NavLink>
-          </NavMenuItem>
-        )}
-        {isLoggedIn && (
-          <NavMenuItem style={{ marginLeft: 'auto' }}>
-            <Button type="button" onClick={handleLogout}>
-              Logout
-            </Button>
-          </NavMenuItem>
-        )}
-      </NavMenu>
-    </StyledNav>
-  );
-};
+const Nav = () => (
+  <StyledNav>
+    <NavMenu>
+      <NavMenuItem>
+        <NavLink exact to="/" activeClassName="active">
+          Hjem
+        </NavLink>
+      </NavMenuItem>
+      <NavMenuItem>
+        <NavLink exact to="/offices" activeClassName="active">
+          Kontorer
+        </NavLink>
+      </NavMenuItem>
+      <NavMenuItem>
+        <NavLink exact to="/articles" activeClassName="active">
+          Fagartikler
+        </NavLink>
+      </NavMenuItem>
+      <NavMenuItem>
+        <NavLink exact to="/kontakt" activeClassName="active">
+          Kontakt
+        </NavLink>
+      </NavMenuItem>
+      <NavMenuItem>
+        <Button type="button">Logg inn</Button>
+      </NavMenuItem>
+    </NavMenu>
+  </StyledNav>
+);
 
 export default Nav;

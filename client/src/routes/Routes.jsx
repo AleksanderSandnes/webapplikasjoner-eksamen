@@ -1,4 +1,5 @@
-import React, { lazy, Suspense } from 'react';
+/* eslint-disable react/prop-types */
+import React, { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,20 +8,21 @@ import {
 } from 'react-router-dom';
 import NoMatch from '../components/NoMatch';
 import { useAuthContext } from '../context/AuthProvider';
-
 import MainLayout from '../layouts/MainLayout';
-import CreateEvent from '../pages/CreateEvent';
-import EditEvent from '../pages/EditEvent';
-import Events from '../pages/Events';
 import Login from '../pages/Login';
+import Offices from '../pages/Offices';
+import Home from '../pages/Home';
+import Contact from '../pages/Contact';
+import Articles from '../pages/Articles';
 
-const Dashboard = lazy(() => import('../pages/Dashboard'));
-
+// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line no-unused-vars
 const AuthenticatedRoutes = ({ children, ...rest }) => {
   const { isLoggedIn, isLoading } = useAuthContext();
 
   return (
     <Route
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       render={({ location }) =>
         isLoggedIn && !isLoading ? (
@@ -38,11 +40,15 @@ const AuthenticatedRoutes = ({ children, ...rest }) => {
   );
 };
 
+// eslint-disable-next-line react/prop-types
+
+// eslint-disable-next-line no-unused-vars
 const AdminRoutes = ({ children, ...rest }) => {
   const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
 
   return (
     <Route
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       render={() => isLoggedIn && isAdmin && !isLoading && children}
     />
@@ -54,18 +60,18 @@ const Routes = () => (
     <MainLayout>
       <Suspense fallback={<div>Loading ...</div>}>
         <Switch>
-          <Route exact path="/">
-            <Events />
+          <Route exact path="/Home">
+            <Home />
           </Route>
-          <AdminRoutes path="/dashboard">
-            <Dashboard />
-          </AdminRoutes>
-          <AuthenticatedRoutes path="/events/create">
-            <CreateEvent />
-          </AuthenticatedRoutes>
-          <AuthenticatedRoutes path="/events/:id">
-            <EditEvent />
-          </AuthenticatedRoutes>
+          <Route exact path="/Offices">
+            <Offices />
+          </Route>
+          <Route exact path="/Articles">
+            <Articles />
+          </Route>
+          <Route exact path="/Contact">
+            <Contact />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>

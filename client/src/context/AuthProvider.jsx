@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 const { Provider } = AuthContext;
 
+// eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -30,6 +31,7 @@ const AuthProvider = ({ children }) => {
       value={{
         isLoading: loading,
         isAdmin: user?.role === 'admin',
+        isSuperAdmin: user?.role === 'super',
         isLoggedIn: !!user,
         user,
         setUser,
