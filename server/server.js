@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import xssClean from 'xss-clean';
-import csrf from 'csurf';
+/* import csrf from 'csurf'; */
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 
@@ -14,8 +14,9 @@ import 'dotenv/config.js';
 import errorMiddleware from './middleware/errors.js';
 
 import connectDatabase from './config/db.js';
-import event from './routes/event.js';
+import category from './routes/category.js';
 import user from './routes/user.js';
+import article from './routes/article.js';
 import auth from './routes/auth.js';
 import image from './routes/image.js';
 
@@ -55,6 +56,8 @@ app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
 });
 
 app.use(`${process.env.BASEURL}/users`, user);
+app.use(`${process.env.BASEURL}/articles`, article);
+app.use(`${process.env.BASEURL}/categories`, category);
 app.use(`${process.env.BASEURL}/`, auth);
 app.use(`${process.env.BASEURL}/`, image);
 

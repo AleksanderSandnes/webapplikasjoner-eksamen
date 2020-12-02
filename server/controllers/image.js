@@ -1,4 +1,3 @@
-import path from 'path';
 import { imageService } from '../services/index.js';
 import catchAsyncErrors from '../middleware/catchAsync.js';
 import ErrorHandler from '../utils/errorHandler.js';
