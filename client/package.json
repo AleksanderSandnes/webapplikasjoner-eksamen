@@ -46,12 +46,15 @@
     "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/react-fontawesome": "^0.1.13",
     "emotion-theming": "^10.0.27",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-hook-form": "^6.11.0",
     "react-router-dom": "^5.2.0",
+    "react-transition-group": "^4.4.1",
     "styled-components": "^5.2.0",
     "styled-normalize": "^8.0.7"
   }

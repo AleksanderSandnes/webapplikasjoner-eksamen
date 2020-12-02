@@ -105,6 +105,7 @@
       "error",
       {
         "trailingComma": "es5",
+        "endOfLine": "auto",
         "singleQuote": true,
         "printWidth": 80
       }

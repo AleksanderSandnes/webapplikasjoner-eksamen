@@ -1,14 +1,18 @@
-import { Button } from '@chakra-ui/core';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledNav = styled.nav`
   width: 100%;
+  box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.2);
 `;
 
 const NavMenu = styled.ul`
   display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: right;
+  align-self: right;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -26,17 +30,24 @@ const NavMenuItem = styled.li`
   & > a {
     color: #333;
     display: block;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 3.456;
     padding: 5px 0;
     text-decoration: none;
 
     &.active {
-      color: #007b5f;
-      border-bottom: 4px solid #007b5f;
+      color: #33c1ff;
     }
   }
+`;
+
+const Button = styled.button`
+  background-color: #33c1ff;
+  border-radius: 3px;
+  padding: 15px 32px;
+  color: white;
+  margin: 0.5em 1em;
 `;
 
 const Nav = () => (
@@ -63,7 +74,7 @@ const Nav = () => (
         </NavLink>
       </NavMenuItem>
       <NavMenuItem>
-        <Button type="button">Logg inn</Button>
+        <Button type="button">LOGG INN</Button>
       </NavMenuItem>
     </NavMenu>
   </StyledNav>
