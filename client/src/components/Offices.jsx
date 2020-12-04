@@ -1,5 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { list } from '../utils/eventService';
+
+const Offices = () => {
+  const [offices, setOffices] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const { data } = await list();
+      if (!data.success) {
+        setError(error);
+      } else {
+        setOffices(data.data);
+        setError(null);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <HeaderTitle>
+        <Title>Våre kontorer</Title>
+      </HeaderTitle>
+      {error && <p>{error}</p>}
+      <SideWrapper>
+        <div>
+          <TitleOffice>Fredrikstad (8 kontorer)</TitleOffice>
+        </div>
+        <FlexContainer>
+          <FlexItem>
+            {loading && <div>Loading...</div>}
+            {offices && offices.map((office) => <TitleCards key={office.id} />)}
+            <OfficeText>
+              <ul>
+                {offices.map((office) => (
+                  <li key={office.id}>
+                    <p>{office.name}</p>
+                    <p>{office.address}</p>
+                    <p>{office.number}</p>
+                    <p>{office.email}</p>
+                  </li>
+                ))}
+              </ul>
+            </OfficeText>
+          </FlexItem>
+        </FlexContainer>
+      </SideWrapper>
+    </div>
+  );
+};
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -53,42 +107,4 @@ const SideWrapper = styled.div`
   margin: 80px;
 `;
 
-const OfficePage = () => (
-  <div>
-    <HeaderTitle>
-      <Title>Våre kontorer</Title>
-    </HeaderTitle>
-    <SideWrapper>
-      <div>
-        <TitleOffice>Fredrikstad (8 kontorer)</TitleOffice>
-      </div>
-      <FlexContainer>
-        <FlexItem>
-          {Offices.map((data) => (
-            <TitleCards key={data.id}>{data.OfficeHeadline}</TitleCards>
-          ))}
-          <OfficeText>
-            <ul>
-              {Offices.map((data) => (
-                <li key={data.id}>
-                  <p>{data.OfficeAddress}</p>
-                  <p>{data.OfficePhoneNumber}</p>
-                  <p>{data.OfficeEmail}</p>
-                </li>
-              ))}
-            </ul>
-          </OfficeText>
-        </FlexItem>
-        <FlexItem>Test</FlexItem>
-        <FlexItem>Test</FlexItem>
-        <FlexItem>Test</FlexItem>
-        <FlexItem>Test</FlexItem>
-        <FlexItem>Test</FlexItem>
-        <FlexItem>Test</FlexItem>
-        <FlexItem>Test</FlexItem>
-      </FlexContainer>
-    </SideWrapper>
-  </div>
-);
-
-export default OfficePage;
+export default Offices;
