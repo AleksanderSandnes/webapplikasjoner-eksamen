@@ -8,14 +8,17 @@ const userValues = {
   }),
   password: Joi.string().min(4).required().messages({
     'any.required': 'Passord må fylles ut',
-    'string.min': 'Må bestå av minst 4 tall/bokaster',
+    'string.min': 'Må bestå av minst 4 tall/bokstaver',
     'string.empty': 'Fyll ut passord',
   }),
 };
 
 export const registerSchema = Joi.object()
   .keys({
-    name: Joi.string(),
+    name: Joi.string().min(2).required().messages({
+      'any.required': 'Navn må fylles ut',
+      'string.empty': 'Fyll ut navn',
+    }),
     ...userValues,
   })
   .options({ abortEarly: false });
