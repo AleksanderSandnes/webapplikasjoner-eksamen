@@ -8,19 +8,19 @@ const Title = styled.h1`
   font-weight: bold;
 `;
 
-const SideWrapper = styled.section``;
+const PageWrapper = styled.section``;
 
-const VelkommenBox = styled.section`
+const WelcomeBox = styled.section`
   padding: 10em;
   background: lightgray;
   margin-left: 20px;
 `;
 
-const KontorerOgKontaktWrapper = styled.section`
+const OfficeAndContactWrapper = styled.section`
   margin-top: 40px;
 `;
 
-const Kontorer = styled.section`
+const Offices = styled.section`
   padding: 150px 50px 50px 50px;
   background: lightgray;
   width: 20%;
@@ -30,7 +30,7 @@ const Kontorer = styled.section`
   height: 350px;
 `;
 
-const Kontakt = styled.section`
+const Contact = styled.section`
   padding: 10em;
   background: lightgray;
   float: right;
@@ -39,7 +39,7 @@ const Kontakt = styled.section`
   height: 350px;
 `;
 
-const Fagartikler = styled.section`
+const Articles = styled.section`
   padding: 10em;
   background: lightgray;
   margin-top: 425px;
@@ -48,22 +48,22 @@ const Fagartikler = styled.section`
 `;
 
 const HomePage = () => (
-  <SideWrapper>
-    <VelkommenBox>
+  <PageWrapper>
+    <WelcomeBox>
       <Title>Velkommen til FG Rørleggerservice AS</Title>
-    </VelkommenBox>
-    <KontorerOgKontaktWrapper>
-      <Kontorer>
+    </WelcomeBox>
+    <OfficeAndContactWrapper>
+      <Offices>
         <Title>Kontorer</Title>
-      </Kontorer>
-      <Kontakt>
+      </Offices>
+      <Contact>
         <Title>Kontakt</Title>
-      </Kontakt>
-    </KontorerOgKontaktWrapper>
-    <Fagartikler>
+      </Contact>
+    </OfficeAndContactWrapper>
+    <Articles>
       <Title>Se våre fagartikler om oppussing av bad</Title>
-    </Fagartikler>
-  </SideWrapper>
+    </Articles>
+  </PageWrapper>
 );
 
 export default HomePage;
