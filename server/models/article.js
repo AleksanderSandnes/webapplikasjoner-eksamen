@@ -26,15 +26,19 @@ const ArticleSchema = new Schema(
       ref: 'User',
       required: true,
     },
+    image: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Image',
+    },
     author: {
       type: String,
       enum: {
         values: ['Lars Larsen', 'Gunn Gundersen', 'Simen Simensen'],
         message: 'Forfatter ikke fylt ut',
+        required: true,
       },
     },
   },
-
   { timestamps: true }
 );
 

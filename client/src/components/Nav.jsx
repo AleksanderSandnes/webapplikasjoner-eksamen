@@ -13,19 +13,15 @@ const NavMenu = styled.ul`
   justify-content: flex-end;
   align-items: right;
   align-self: right;
-  margin: 0;
-  padding: 0;
+  //margin: 0;
+  //padding: 0;
   list-style: none;
-  padding: 0 20px;
+  //padding: 0 20px;
   align-items: center;
 `;
 
 const NavMenuItem = styled.li`
-  padding: 0 20px;
-
-  &:first-child {
-    padding-left: 0;
-  }
+  padding: 0 0 0 20px;
 
   & > a {
     color: #333;
@@ -33,7 +29,6 @@ const NavMenuItem = styled.li`
     font-size: 20px;
     font-weight: 700;
     line-height: 3.456;
-    padding: 5px 0;
     text-decoration: none;
 
     &.active {
@@ -42,12 +37,13 @@ const NavMenuItem = styled.li`
   }
 `;
 
-const Button = styled.button`
-  background-color: #33c1ff;
-  border-radius: 3px;
-  padding: 15px 32px;
+const StyledButton = styled.button`
+  background-color: #2c91bd;
+  //border-radius: 3px;
+  font-size: 15px;
+  font-weight: 750;
+  padding: 8px 38px;
   color: white;
-  margin: 0.5em 1em;
 `;
 
 const Nav = () => (
@@ -74,7 +70,9 @@ const Nav = () => (
         </NavLink>
       </NavMenuItem>
       <NavMenuItem>
-        <Button type="button">LOGG INN</Button>
+        <NavLink exact to="/login" activeClassName="active">
+          <StyledButton>LOGG INN</StyledButton>
+        </NavLink>
       </NavMenuItem>
     </NavMenu>
   </StyledNav>

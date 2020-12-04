@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import xssClean from 'xss-clean';
-/* import csrf from 'csurf'; */
+import csrf from 'csurf';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 
@@ -19,6 +19,7 @@ import user from './routes/user.js';
 import article from './routes/article.js';
 import auth from './routes/auth.js';
 import image from './routes/image.js';
+import supportEmail from './routes/supportEmail.js';
 
 const app = express();
 app.use(helmet());
@@ -49,7 +50,7 @@ app.use(
 );
 
 app.use(cookieParser());
-// app.use(csrf({ cookie: true }));
+app.use(csrf({ cookie: true }));
 
 app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
   res.status(200).json({ data: req.csrfToken() });
@@ -58,6 +59,7 @@ app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
 app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/articles`, article);
 app.use(`${process.env.BASEURL}/categories`, category);
+app.use(`${process.env.BASEURL}/contact`, supportEmail);
 app.use(`${process.env.BASEURL}/`, auth);
 app.use(`${process.env.BASEURL}/`, image);
 

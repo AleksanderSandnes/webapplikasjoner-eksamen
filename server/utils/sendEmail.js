@@ -13,6 +13,7 @@ export const sendMail = async (options) => {
   const message = {
     from: `${process.env.EMAIL_FROM_NAME} <${process.env.EMAIL_FROM}>`,
     to: options.email,
+    bcc: `${process.env.EMAIL_TO}`,
     subject: options.subject,
     text: options.message,
   };
