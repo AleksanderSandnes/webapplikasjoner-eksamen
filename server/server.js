@@ -20,6 +20,7 @@ import article from './routes/article.js';
 import auth from './routes/auth.js';
 import image from './routes/image.js';
 import supportEmail from './routes/supportEmail.js';
+import location from './routes/location.js';
 
 const app = express();
 app.use(helmet());
@@ -50,7 +51,7 @@ app.use(
 );
 
 app.use(cookieParser());
-app.use(csrf({ cookie: true }));
+// app.use(csrf({ cookie: true }));
 
 app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
   res.status(200).json({ data: req.csrfToken() });
@@ -60,6 +61,7 @@ app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/articles`, article);
 app.use(`${process.env.BASEURL}/categories`, category);
 app.use(`${process.env.BASEURL}/contact`, supportEmail);
+app.use(`${process.env.BASEURL}/locations`, location);
 app.use(`${process.env.BASEURL}/`, auth);
 app.use(`${process.env.BASEURL}/`, image);
 

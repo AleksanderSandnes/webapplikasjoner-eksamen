@@ -28,7 +28,7 @@ const NavMenuItem = styled.li`
     display: block;
     font-size: 20px;
     font-weight: 700;
-    line-height: 3.456;
+    /* line-height: 3.456; */
     text-decoration: none;
 
     &.active {
@@ -41,8 +41,8 @@ const StyledButton = styled.button`
   background-color: #2c91bd;
   //border-radius: 3px;
   font-size: 15px;
-  font-weight: 750;
-  padding: 8px 38px;
+  font-weight: 730;
+  padding: 20px 38px;
   color: white;
 `;
 
@@ -50,22 +50,22 @@ const Nav = () => (
   <StyledNav>
     <NavMenu>
       <NavMenuItem>
-        <NavLink exact to="/HomePage" activeClassName="active">
+        <NavLink exact to="/homePage" activeClassName="active">
           Hjem
         </NavLink>
       </NavMenuItem>
       <NavMenuItem>
-        <NavLink exact to="/Offices" activeClassName="active">
+        <NavLink exact to="/offices" activeClassName="active">
           Kontorer
         </NavLink>
       </NavMenuItem>
       <NavMenuItem>
-        <NavLink exact to="/Articles" activeClassName="active">
+        <NavLink exact to="/articles" activeClassName="active">
           Fagartikler
         </NavLink>
       </NavMenuItem>
       <NavMenuItem>
-        <NavLink exact to="/Contact" activeClassName="active">
+        <NavLink exact to="/contact" activeClassName="active">
           Kontakt
         </NavLink>
       </NavMenuItem>
