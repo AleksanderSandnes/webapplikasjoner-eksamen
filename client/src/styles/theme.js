@@ -1,7 +1,7 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { theme } from '@chakra-ui/core';
 
-const theme = {
+export default {
+  ...theme,
   breakpoints: ['30em', '48em', '62em', '80em'],
   fonts: {
     heading: '"Avenir Next", sans-serif',
@@ -22,10 +22,3 @@ const theme = {
     '6xl': '4rem',
   },
 };
-
-// eslint-disable-next-line react/prop-types
-const Theme = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
-
-export default Theme;

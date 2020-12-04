@@ -11,7 +11,7 @@ import { useAuthContext } from '../context/AuthProvider';
 import MainLayout from '../layouts/MainLayout';
 import Login from '../pages/Login';
 import Offices from '../pages/Offices';
-import Home from '../pages/Home';
+import HomePage from '../pages/HomePage';
 import Contact from '../pages/Contact';
 import Articles from '../pages/Articles';
 
@@ -61,7 +61,7 @@ const Routes = () => (
       <Suspense fallback={<div>Loading ...</div>}>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <HomePage />
           </Route>
           <Route exact path="/Offices">
             <Offices />

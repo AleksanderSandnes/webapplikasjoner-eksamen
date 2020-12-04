@@ -54,22 +54,22 @@ const Nav = () => (
   <StyledNav>
     <NavMenu>
       <NavMenuItem>
-        <NavLink exact to="/" activeClassName="active">
+        <NavLink exact to="/HomePage" activeClassName="active">
           Hjem
         </NavLink>
       </NavMenuItem>
       <NavMenuItem>
-        <NavLink exact to="/offices" activeClassName="active">
+        <NavLink exact to="/Offices" activeClassName="active">
           Kontorer
         </NavLink>
       </NavMenuItem>
       <NavMenuItem>
-        <NavLink exact to="/articles" activeClassName="active">
+        <NavLink exact to="/Articles" activeClassName="active">
           Fagartikler
         </NavLink>
       </NavMenuItem>
       <NavMenuItem>
-        <NavLink exact to="/kontakt" activeClassName="active">
+        <NavLink exact to="/Contact" activeClassName="active">
           Kontakt
         </NavLink>
       </NavMenuItem>
