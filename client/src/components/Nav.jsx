@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledNav = styled.nav`
   width: 100%;
   box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 `;
 
 const NavMenu = styled.ul`
@@ -18,6 +19,9 @@ const NavMenu = styled.ul`
   list-style: none;
   //padding: 0 20px;
   align-items: center;
+
+  @media only screen and (max-width: 800px) {
+  }
 `;
 
 const NavMenuItem = styled.li`
@@ -44,6 +48,9 @@ const StyledButton = styled.button`
   font-weight: 730;
   padding: 20px 38px;
   color: white;
+
+  @media only screen and (max-width: 500px) {
+  }
 `;
 
 const Nav = () => (
