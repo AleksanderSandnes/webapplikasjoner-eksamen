@@ -1,3 +1,4 @@
+import { number } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { list } from '../utils/eventService';
@@ -20,6 +21,7 @@ const Offices = () => {
       setLoading(false);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -29,9 +31,6 @@ const Offices = () => {
       </HeaderTitle>
       {error && <p>{error}</p>}
       <SideWrapper>
-        <div>
-          <TitleOffice>Fredrikstad (8 kontorer)</TitleOffice>
-        </div>
         <FlexContainer>
           <FlexItem>
             {loading && <div>Loading...</div>}
@@ -42,7 +41,9 @@ const Offices = () => {
                   <li key={office.id}>
                     <p>{office.name}</p>
                     <p>{office.address}</p>
-                    <p>{office.number}</p>
+                    {number.map((TheNumber) => (
+                      <p>{TheNumber.number}</p>
+                    ))}
                     <p>{office.email}</p>
                   </li>
                 ))}
@@ -50,10 +51,28 @@ const Offices = () => {
             </OfficeText>
           </FlexItem>
         </FlexContainer>
+        <Footer>
+          <FooterText>OrgnNr: 007 007 007</FooterText>
+          <FooterText>Ig@Igror.no</FooterText>
+          <FooterText>99 00 00 00</FooterText>
+        </Footer>
       </SideWrapper>
     </div>
   );
 };
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  margin-left: 200px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+`;
+
+const FooterText = styled.p`
+  font-size: 18px;
+`;
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -69,6 +88,7 @@ const TitleCards = styled.h2`
   color: black;
 `;
 
+// eslint-disable-next-line no-unused-vars
 const TitleOffice = styled.h1`
   font-size: 2rem;
   text-align: left;

@@ -15,6 +15,8 @@ import HomePage from '../pages/HomePage';
 import Contact from '../pages/Contact';
 import Articles from '../pages/Articles';
 
+import ArticleDetails from '../pages/ArticleDetails';
+
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
 const AuthenticatedRoutes = ({ children, ...rest }) => {
@@ -71,6 +73,9 @@ const Routes = () => (
           </Route>
           <Route exact path="/contact">
             <Contact />
+          </Route>
+          <Route exact path="/articleDetails">
+            <ArticleDetails />
           </Route>
           <Route exact path="/">
             <HomePage />
