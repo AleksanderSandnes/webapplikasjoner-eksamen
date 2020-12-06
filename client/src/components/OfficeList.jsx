@@ -15,7 +15,7 @@ const Span = styled.span`
   margin-right: 50px;
 `;
 
-const OfficeList = ({ office, location, setOffice }) => {
+const OfficeList = ({ office, location, setOffice, index }) => {
   const history = useHistory();
   const redirectToDetailView = () => {
     setOffice(office);
@@ -23,6 +23,7 @@ const OfficeList = ({ office, location, setOffice }) => {
   };
   return (
     <FlexItem key={office.name} onClick={() => redirectToDetailView()}>
+      <Span>{index + 1}</Span>
       <Span>{office.name}</Span>
       <Span>{office.address}</Span>
       <Span>{location.number}</Span>
@@ -35,6 +36,7 @@ OfficeList.propTypes = {
   office: PropTypes.object,
   location: PropTypes.object,
   setOffice: PropTypes.func,
+  index: PropTypes.number,
 };
 
 export default OfficeList;

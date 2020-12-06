@@ -1,13 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Button } from '@chakra-ui/core';
 import { list } from '../utils/officeService.js';
 import OfficeGrid from './OfficeGrid';
-<<<<<<< HEAD
 import OfficeList from './OfficeList.jsx';
-=======
->>>>>>> ac80255031ff974a17b818afe7c65bb3bac1a6f2
 import ThreeLines from '../assets/images/ThreeLines.png';
 import Squares from '../assets/images/Squares.png';
 
@@ -16,6 +12,7 @@ const Locations = ({ setOffice }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isGrid, setisGrid] = useState(true);
+  const [number, setNumber] = useState(1);
 
   const handleClick = (e) => {
     if (e.target.name === 'Squares') setisGrid(true);
@@ -47,11 +44,11 @@ const Locations = ({ setOffice }) => {
         {loading && <div>Loading...</div>}
         <FilterButton>Filter</FilterButton>
         <ButtonPlacement>
-          <ImageButton>
-            <img src={ThreeLines} alt="Lines" />
+          <ImageButton type="button" onClick={handleClick}>
+            <img name="Lines" src={ThreeLines} alt="Lines" />
           </ImageButton>
-          <ImageButton>
-            <img src={Squares} alt="Squares" />
+          <ImageButton type="button" onClick={handleClick}>
+            <img name="Squares" src={Squares} alt="Squares" />
           </ImageButton>
         </ButtonPlacement>
         {locations &&
@@ -62,7 +59,7 @@ const Locations = ({ setOffice }) => {
               </TitleCards>
               <FlexContainer>
                 {location.offices.map(
-                  (office) =>
+                  (office, index) =>
                     (isGrid && (
                       <OfficeGrid
                         location={location}
@@ -77,6 +74,8 @@ const Locations = ({ setOffice }) => {
                         office={office}
                         key={office._id}
                         setOffice={setOffice}
+                        number={number}
+                        index={index}
                       />
                     ))
                 )}
