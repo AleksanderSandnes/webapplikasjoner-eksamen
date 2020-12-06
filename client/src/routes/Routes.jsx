@@ -74,13 +74,13 @@ const Routes = () => {
             <Route exact path="/offices/:name">
               <OfficeDetailPage office={office} />
             </Route>
-            <Route exact path="/articles">
-              <Articles />
-            </Route>
             <Route exact path="/contact">
               <Contact />
             </Route>
-            <Route exact path="/articleDetails">
+            <Route exact path="/articles">
+              <Articles />
+            </Route>
+            <Route exact path="/articles/:id">
               <ArticleDetails />
             </Route>
             <Route exact path="/">

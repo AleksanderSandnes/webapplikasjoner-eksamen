@@ -12,7 +12,6 @@ const Locations = ({ setOffice }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isGrid, setisGrid] = useState(true);
-  const [number, setNumber] = useState(1);
 
   const handleClick = (e) => {
     if (e.target.name === 'Squares') setisGrid(true);
@@ -74,7 +73,6 @@ const Locations = ({ setOffice }) => {
                         office={office}
                         key={office._id}
                         setOffice={setOffice}
-                        number={number}
                         index={index}
                       />
                     ))
