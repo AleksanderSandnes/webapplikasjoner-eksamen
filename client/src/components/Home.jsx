@@ -14,7 +14,7 @@ const PageWrapper = styled.section``;
 const WelcomeBox = styled.section`
   padding: 10em;
   background: lightgray;
-  margin-top: -60px;
+  margin-top: -59px;
 `;
 
 const OfficeAndContactWrapper = styled.section`

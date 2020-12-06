@@ -12,7 +12,7 @@ const Title = styled.h1`
 const HeaderTitle = styled.section`
   padding: 10em;
   background: lightgray;
-  margin-left: 20px;
+  margin-top: -59px;
 `;
 
 const NewArticleButton = styled.button`

@@ -35,6 +35,7 @@ const SideWrapper = styled.div`
 const Headerh1 = styled.h1`
   font-size: 30px;
   font-weight: bold;
+  margin-bottom: 10px;
 `;
 
 const Text = styled.p`
@@ -46,6 +47,43 @@ const EmployeeWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+`;
+
+const OneEmployee = styled.div`
+  margin-right: 20px;
+`;
+
+const Image = styled.div`
+  background-color: lightgray;
+  width: 200px;
+  height: 200px;
+`;
+
+const MarginTop = styled.p`
+  margin-top: 10px;
+`;
+
+const MarginBottom = styled.p`
+  margin-bottom: 10px;
+`;
+
+const FooterTitle = styled.div`
+  padding: 10em;
+  background: lightgray;
+`;
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 380px;
+  margin: auto;
+  padding: 50px 0 50px 0;
+  flex-direction: row;
+`;
+
+const FooterText = styled.p`
+  font-size: 15px;
+  font-weight: 600;
 `;
 
 const OfficeDetail = () => (
@@ -69,10 +107,20 @@ const OfficeDetail = () => (
       </Text>
       <Headerh1>Våre ansatte</Headerh1>
       <EmployeeWrapper>
-        <Image></Image>
-        <EmployeeName>Ansatt Ansattnavn</EmployeeName>
-        <Position>Stilling</Position>
+        <OneEmployee>
+          <Image>Test</Image>
+          <MarginTop>Ansatt Ansattnavn</MarginTop>
+          <MarginBottom>Stilling</MarginBottom>
+        </OneEmployee>
       </EmployeeWrapper>
+      <FooterTitle>
+        <Title>Kontakt oss på 69 99 00 00</Title>
+      </FooterTitle>
+      <Footer>
+        <FooterText>OrgnNr: 007 007 007</FooterText>
+        <FooterText>Ig@Igror.no</FooterText>
+        <FooterText>99 00 00 00</FooterText>
+      </Footer>
     </SideWrapper>
   </div>
 );
