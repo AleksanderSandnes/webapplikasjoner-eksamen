@@ -97,15 +97,10 @@ const OfficeDetail = ({ office }) => (
       </Text>
       <Headerh1>Våre ansatte</Headerh1>
       <EmployeeWrapper>
-        <OneEmployee>
-          <img name="ProfilePicture" src={pic} alt="ProfilePicture" />
-          <MarginTop>Ansatt Ansattnavn</MarginTop>
-          <MarginBottom>Stilling</MarginBottom>
-        </OneEmployee>
         {office &&
           office.employees.map((employee) => (
             <OneEmployee>
-              <Image>Test</Image>
+              <img name="ProfilePicture" src={pic} alt="ProfilePicture" />
               <MarginTop>{employee.name}</MarginTop>
               <MarginBottom>{employee.position}</MarginBottom>
             </OneEmployee>
