@@ -1,18 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-/* const OfficeDetail = ({ office }) => {
-console.log(office);
-
-return <>{office && <p>{office.name}</p>}</>;
-};
-
-OfficeDetail.propTypes = {
-  office: PropTypes.object,
-};
-
-*/
+import pic from '../assets/images/pic.png';
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -108,7 +96,7 @@ const OfficeDetail = () => (
       <Headerh1>Våre ansatte</Headerh1>
       <EmployeeWrapper>
         <OneEmployee>
-          <Image>Test</Image>
+          <img name="ProfilePicture" src={pic} alt="ProfilePicture" />
           <MarginTop>Ansatt Ansattnavn</MarginTop>
           <MarginBottom>Stilling</MarginBottom>
         </OneEmployee>

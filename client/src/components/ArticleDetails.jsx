@@ -11,13 +11,29 @@ const Title = styled.h1`
 const HeaderTitle = styled.section`
   padding: 10em;
   background: lightgray;
-  margin-left: 20px;
+  margin-top: -59px;
+`;
+
+const SideWrapper = styled.div`
+  margin-left: 80px;
+  margin-right: 80px;
+`;
+
+const H3Text = styled.h3`
+  font-size: 15px;
+  font-weight: bold;
 `;
 
 const ArticleDetails = () => (
-  <HeaderTitle>
-    <Title>Tittel</Title>
-  </HeaderTitle>
+  <div>
+    <HeaderTitle>
+      <Title>Tittel</Title>
+    </HeaderTitle>
+    <SideWrapper>
+      <H3Text>Av Forfatternavn</H3Text>
+      <H3Text />
+    </SideWrapper>
+  </div>
 );
 
 export default ArticleDetails;
