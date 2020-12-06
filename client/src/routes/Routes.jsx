@@ -15,6 +15,7 @@ import HomePage from '../pages/HomePage';
 import Contact from '../pages/Contact';
 import Articles from '../pages/Articles';
 import OfficeDetailPage from '../pages/OfficeDetailPage';
+import LocationsListView from '../pages/OfficeListView';
 
 import ArticleDetails from '../pages/ArticleDetails';
 
@@ -74,6 +75,9 @@ const Routes = () => {
             </Route>
             <Route exact path="/offices/:name">
               <OfficeDetailPage office={office} />
+            </Route>
+            <Route exact path="/officeListView">
+              <LocationsListView />
             </Route>
             <Route exact path="/articles">
               <Articles />
