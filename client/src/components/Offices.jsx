@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import { Button } from '@chakra-ui/core';
 import { list } from '../utils/officeService.js';
 import OfficeGrid from './OfficeGrid';
+<<<<<<< HEAD
 import OfficeList from './OfficeList.jsx';
+=======
+>>>>>>> ac80255031ff974a17b818afe7c65bb3bac1a6f2
 import ThreeLines from '../assets/images/ThreeLines.png';
 import Squares from '../assets/images/Squares.png';
 
@@ -43,16 +46,14 @@ const Locations = ({ setOffice }) => {
       <SideWrapper>
         {loading && <div>Loading...</div>}
         <FilterButton>Filter</FilterButton>
-        <div>
-          <Button type="button" name="Squares" onClick={handleClick}>
-            <img name="Squares" src={Squares} alt="Squares" />
-          </Button>
-        </div>
-        <div>
-          <Button type="button" name="Lines" onClick={handleClick}>
-            <img name="Lines" src={ThreeLines} alt="Lines" />
-          </Button>
-        </div>
+        <ButtonPlacement>
+          <ImageButton>
+            <img src={ThreeLines} alt="Lines" />
+          </ImageButton>
+          <ImageButton>
+            <img src={Squares} alt="Squares" />
+          </ImageButton>
+        </ButtonPlacement>
         {locations &&
           locations.map((location) => (
             <div key={location._id}>
@@ -95,6 +96,17 @@ const Locations = ({ setOffice }) => {
 Locations.propTypes = {
   setOffice: PropTypes.func,
 };
+
+const ImageButton = styled.button`
+  width: 35px;
+  margin-left: 15px;
+`;
+
+const ButtonPlacement = styled.div`
+  position: relative;
+  top: 8rem;
+  left: 91rem;
+`;
 
 const Footer = styled.div`
   display: flex;
@@ -158,7 +170,8 @@ const FlexContainer = styled.div`
 `;
 
 const SideWrapper = styled.div`
-  margin: 80px;
+  margin-left: 80px;
+  margin-right: 80px;
 `;
 
 export default Locations;
