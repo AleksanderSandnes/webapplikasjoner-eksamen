@@ -1,10 +1,10 @@
-import { number } from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { list } from '../utils/officeService.js';
 import OfficeGrid from './OfficeGrid';
 
-const Locations = () => {
+const Locations = ({ setOffice }) => {
   const [locations, setLocations] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -33,16 +33,17 @@ const Locations = () => {
         {loading && <div>Loading...</div>}
         {locations &&
           locations.map((location) => (
-            <div key={`${location._id}${location.name}`}>
-              <TitleCards key={location.name}>
+            <div key={location._id}>
+              <TitleCards>
                 {location.name} ({location.offices.length} kontorer)
               </TitleCards>
-              <FlexContainer key={location._id}>
+              <FlexContainer>
                 {location.offices.map((office) => (
                   <OfficeGrid
                     location={location}
                     office={office}
                     key={office._id}
+                    setOffice={setOffice}
                   />
                 ))}
               </FlexContainer>
@@ -56,6 +57,10 @@ const Locations = () => {
       </SideWrapper>
     </div>
   );
+};
+
+Locations.propTypes = {
+  setOffice: PropTypes.func,
 };
 
 const Footer = styled.div`

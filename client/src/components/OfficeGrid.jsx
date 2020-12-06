@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 const FlexItem = styled.div`
   background-color: #f1f1f1;
@@ -12,18 +13,26 @@ const FlexItem = styled.div`
   width: 350px;
 `;
 
-const OfficeGrid = ({ office, location }) => (
-  <FlexItem key={office.name}>
-    <p>{office.name}</p>
-    <p>{office.address}</p>
-    <p>{location.number}</p>
-    <p>{office.email}</p>
-  </FlexItem>
-);
+const OfficeGrid = ({ office, location, setOffice }) => {
+  const history = useHistory();
+  const redirectToDetailView = () => {
+    setOffice(office);
+    history.push(`/offices/${office.name}`);
+  };
+  return (
+    <FlexItem key={office.name} onClick={() => redirectToDetailView()}>
+      <p>{office.name}</p>
+      <p>{office.address}</p>
+      <p>{location.number}</p>
+      <p>{office.email}</p>
+    </FlexItem>
+  );
+};
 
 OfficeGrid.propTypes = {
   office: PropTypes.object,
   location: PropTypes.object,
+  setOffice: PropTypes.func,
 };
 
 export default OfficeGrid;
