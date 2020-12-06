@@ -103,7 +103,7 @@ const ImageButton = styled.button`
 
 const ButtonPlacement = styled.div`
   position: relative;
-  top: 8rem;
+  top: 10.5rem;
   left: 91rem;
 `;
 
@@ -129,7 +129,7 @@ const FilterButton = styled.button`
   font-weight: bold;
   text-align: center;
   position: relative;
-  top: 12rem;
+  top: 14.5rem;
   left: 78rem;
 `;
 
