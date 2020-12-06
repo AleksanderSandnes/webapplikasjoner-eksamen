@@ -108,7 +108,7 @@ const ButtonPlacement = styled.div`
 const Footer = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 380px;
+  max-width: 500px;
   margin: auto;
   padding: 50px 0 50px 0;
   flex-direction: row;
