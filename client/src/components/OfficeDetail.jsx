@@ -1,6 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 /* const OfficeDetail = ({ office }) => {
 console.log(office);
@@ -24,8 +25,9 @@ const Title = styled.h1`
 const HeaderTitle = styled.section`
   padding: 10em;
   background: lightgray;
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 20px;
+  margin-right: 20px; */
+  margin-top: -59px;
 `;
 
 const SideWrapper = styled.div`
@@ -86,13 +88,13 @@ const FooterText = styled.p`
   font-weight: 600;
 `;
 
-const OfficeDetail = () => (
+const OfficeDetail = ({ office }) => (
   <div>
     <HeaderTitle>
-      <Title>Kontor</Title>
+      <Title>{office.name}</Title>
     </HeaderTitle>
     <SideWrapper>
-      <Headerh1>Velkommen til </Headerh1>
+      <Headerh1>Velkommen til {office.name}</Headerh1>
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus
         neque in volutpat molestie. Etiam a risus id ante hendrerit suscipit
@@ -107,11 +109,14 @@ const OfficeDetail = () => (
       </Text>
       <Headerh1>Våre ansatte</Headerh1>
       <EmployeeWrapper>
-        <OneEmployee>
-          <Image>Test</Image>
-          <MarginTop>Ansatt Ansattnavn</MarginTop>
-          <MarginBottom>Stilling</MarginBottom>
-        </OneEmployee>
+        {office &&
+          office.employees.map((employee) => (
+            <OneEmployee>
+              <Image>Test</Image>
+              <MarginTop>{employee.name}</MarginTop>
+              <MarginBottom>{employee.position}</MarginBottom>
+            </OneEmployee>
+          ))}
       </EmployeeWrapper>
       <FooterTitle>
         <Title>Kontakt oss på 69 99 00 00</Title>
@@ -124,5 +129,9 @@ const OfficeDetail = () => (
     </SideWrapper>
   </div>
 );
+
+OfficeDetail.propTypes = {
+  office: PropTypes.object,
+};
 
 export default OfficeDetail;
