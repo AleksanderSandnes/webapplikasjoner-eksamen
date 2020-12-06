@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import { list } from '../utils/officeService.js';
 import OfficeList from './OfficeList.jsx';
 
+const ImageLines = require('../assets/images/ThreeLines.png');
+const ImageSquare = require('../assets/images/Squares.png');
+
+const Images = [ImageLines, ImageSquare];
+
 // eslint-disable-next-line react/prop-types
 const LocationsListView = ({ setOffice }) => {
   const [locations, setLocations] = useState(null);
@@ -32,6 +37,12 @@ const LocationsListView = ({ setOffice }) => {
       <SideWrapper>
         {loading && <div>Loading...</div>}
         <FilterButton>Filter</FilterButton>
+        <div>
+          <img src={Images[1]} alt="Lines" />
+        </div>
+        <div>
+          <img src={Image[2]} alt="Squares" />
+        </div>
         {locations &&
           locations.map((location) => (
             <div key={location._id}>
