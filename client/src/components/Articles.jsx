@@ -1,6 +1,82 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useAuthContext } from '../context/AuthProvider';
+import { list } from '../utils/articleService.js';
+
+const ArticlePage = () => {
+  const { isAdmin, isSuperAdmin } = useAuthContext();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [articles, setArticles] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const { data } = await list();
+      if (!data.success) {
+        setError(error);
+      } else {
+        setArticles(data.data);
+        setError(null);
+      }
+      setLoading(false);
+    };
+    fetchData();
+    
+  }, []);
+
+  return (
+    <div>
+      <HeaderTitle>
+        <Title>Fagartikler</Title>
+      </HeaderTitle>
+      {error && <p>{error}</p>}
+      <SideWrapper>
+        {loading && <div>Loading...</div>}
+        <FlexBoxButtons>
+          {isAdmin && (
+            <ButtonLeft>
+              <NewArticleButton>Ny Artikkel</NewArticleButton>
+            </ButtonLeft>
+          )}
+          {isSuperAdmin && (
+            <ButtonLeft>
+              <NewArticleButton>Ny Artikkel</NewArticleButton>
+            </ButtonLeft>
+          )}
+          <ButtonRight>
+            <SearchButton>Søk</SearchButton>
+            <FilterButton>Filter</FilterButton>
+          </ButtonRight>
+        </FlexBoxButtons>
+        <ArticlesWrapper>
+          {console.log(articles)};
+          {articles &&
+            articles.map((article) => (
+              <Article key={article._id}>
+                <ArticleFlexRow>
+                  <ArticleLeft>
+                    <ArticleHeader>{article.title}</ArticleHeader>
+                  </ArticleLeft>
+                  <ArticleRight>
+                    <CategoryName>{article.categoryId.name}</CategoryName>
+                  </ArticleRight>
+                </ArticleFlexRow>
+                <ArticleText>{article.content}</ArticleText>
+              </Article>
+            ))}
+        </ArticlesWrapper>
+        <Footer>
+          <FooterText>OrgnNr: 007 007 007</FooterText>
+          <FooterText>Ig@Igror.no</FooterText>
+          <FooterText>99 00 00 00</FooterText>
+        </Footer>
+      </SideWrapper>
+    </div>
+  );
+};
+
+export default ArticlePage;
 import pic from '../assets/images/pic.png';
 
 const Title = styled.h1`
@@ -119,6 +195,8 @@ const Image = styled.div`
   float: left;
   width: 190px;
 `;
+<<<<<<< HEAD
+=======
 
 const ArticlePage = () => {
   const { isAdmin, isSuperAdmin } = useAuthContext();
@@ -176,3 +254,4 @@ const ArticlePage = () => {
 };
 
 export default ArticlePage;
+>>>>>>> 96e38cdbe0780fe1ce93b6940a95304becabf00e
