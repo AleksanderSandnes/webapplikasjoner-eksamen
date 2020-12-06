@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { list } from '../utils/officeService.js';
 import OfficeGrid from './OfficeGrid';
+import OfficeList from './OfficeList.jsx';
 import ThreeLines from '../assets/images/ThreeLines.png';
 import Squares from '../assets/images/Squares.png';
 
@@ -10,6 +11,13 @@ const Locations = ({ setOffice }) => {
   const [locations, setLocations] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isGrid, setisGrid] = useState(true);
+  const [number, setNumber] = useState(1);
+
+  const handleClick = (e) => {
+    if (e.target.name === 'Squares') setisGrid(true);
+    if (e.target.name === 'Lines') setisGrid(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +33,7 @@ const Locations = ({ setOffice }) => {
     };
     fetchData();
   }, []);
+
   return (
     <div>
       <HeaderTitle>
@@ -35,11 +44,11 @@ const Locations = ({ setOffice }) => {
         {loading && <div>Loading...</div>}
         <FilterButton>Filter</FilterButton>
         <ButtonPlacement>
-          <ImageButton>
-            <img src={ThreeLines} alt="Lines" />
+          <ImageButton type="button" onClick={handleClick}>
+            <img name="Lines" src={ThreeLines} alt="Lines" />
           </ImageButton>
-          <ImageButton>
-            <img src={Squares} alt="Squares" />
+          <ImageButton type="button" onClick={handleClick}>
+            <img name="Squares" src={Squares} alt="Squares" />
           </ImageButton>
         </ButtonPlacement>
         {locations &&
@@ -49,14 +58,27 @@ const Locations = ({ setOffice }) => {
                 {location.name} ({location.offices.length} kontorer)
               </TitleCards>
               <FlexContainer>
-                {location.offices.map((office) => (
-                  <OfficeGrid
-                    location={location}
-                    office={office}
-                    key={office._id}
-                    setOffice={setOffice}
-                  />
-                ))}
+                {location.offices.map(
+                  (office, index) =>
+                    (isGrid && (
+                      <OfficeGrid
+                        location={location}
+                        office={office}
+                        key={office._id}
+                        setOffice={setOffice}
+                      />
+                    )) ||
+                    (!isGrid && (
+                      <OfficeList
+                        location={location}
+                        office={office}
+                        key={office._id}
+                        setOffice={setOffice}
+                        number={number}
+                        index={index}
+                      />
+                    ))
+                )}
               </FlexContainer>
             </div>
           ))}
