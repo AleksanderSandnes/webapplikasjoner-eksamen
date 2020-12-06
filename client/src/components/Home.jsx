@@ -66,14 +66,15 @@ const Articles = styled.section`
 const Footer = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 500px;
-  margin-left: 750px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  max-width: 380px;
+  margin: auto;
+  padding: 50px 0 50px 0;
+  flex-direction: row;
 `;
 
 const FooterText = styled.p`
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: 600;
 `;
 
 const Home = () => {

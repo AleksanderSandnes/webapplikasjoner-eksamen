@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import pic from '../assets/images/pic.png';
 import PropTypes from 'prop-types';
+import pic from '../assets/images/pic.png';
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -41,12 +41,6 @@ const EmployeeWrapper = styled.div`
 
 const OneEmployee = styled.div`
   margin-right: 20px;
-`;
-
-const Image = styled.div`
-  background-color: lightgray;
-  width: 200px;
-  height: 200px;
 `;
 
 const MarginTop = styled.p`

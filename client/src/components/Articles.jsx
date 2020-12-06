@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAuthContext } from '../context/AuthProvider';
+import pic from '../assets/images/pic.png';
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -55,10 +56,6 @@ const SideWrapper = styled.div`
   margin-right: 500px;
 `;
 
-const ArticlesWrapper = styled.div``;
-
-const Article = styled.div``;
-
 const ArticleHeader = styled.h1`
   font-size: 35px;
   font-weight: bold;
@@ -79,10 +76,12 @@ const ArticleText = styled.div`
   font-size: 15px;
 `;
 
-const ArticleRight = styled.div``;
+const ArticleRight = styled.div`
+  justify-content: flex-end;
+`;
 
 const ArticleLeft = styled.div`
-  flex: 0 0 50%;
+  flex: 0 0 83%;
   display: flex;
   justify-content: flex-start;
 `;
@@ -102,14 +101,27 @@ const ButtonLeft = styled.div`
 const Footer = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 500px;
-  margin-left: 200px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  max-width: 380px;
+  margin: auto;
+  padding: 50px 0 50px 0;
+  flex-direction: row;
 `;
 
 const FooterText = styled.p`
-  font-size: 18px;
+  font-size: 15px;
+  font-weight: 600;
+`;
+
+const MarginTop = styled.div`
+  margin-top: 50px;
+`;
+
+const Image = styled.div`
+  margin-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  float: left;
+  width: 190px;
 `;
 
 const ArticlePage = () => {
@@ -137,31 +149,26 @@ const ArticlePage = () => {
             <FilterButton>Filter</FilterButton>
           </ButtonRight>
         </FlexBoxButtons>
-        <ArticlesWrapper>
-          <Article>
-            <ArticleFlexRow>
-              <ArticleLeft>
-                <ArticleHeader>ArtikkelTittel</ArticleHeader>
-              </ArticleLeft>
-              <ArticleRight>
-                <CategoryName>Kategorinavn</CategoryName>
-              </ArticleRight>
-            </ArticleFlexRow>
-            <ArticleText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-              tempor orci nec felis egestas porttitor. Aliquam ornare mauris ac
-              commodo feugiat. Quisque auctor sagittis posuere. Nunc hendrerit
-              mattis ligula, vitae viverra elit auctor id. Mauris ut pulvinar
-              erat. Proin malesuada velit at felis sodales, vitae sodales nisl
-              consequat. Cras vel dictum nisi. In sagittis turpis nec urna
-              aliquam, sed ultricies odio ultrices. Nullam sodales nec metus in
-              molestie. Pellentesque est ex, imperdiet vitae elementum eu,
-              commodo in arcu. Suspendisse finibus volutpat ligula, ut vulputate
-              augue mattis non. Nulla facilisi. Cras quis massa id tellus
-              consectetur tempus eget sit amet libero.
-            </ArticleText>
-          </Article>
-        </ArticlesWrapper>
+        <MarginTop>
+          <Image>
+            <img name="midlertidig" src={pic} alt="midlertidig" />
+          </Image>
+          <ArticleFlexRow>
+            <ArticleLeft>
+              <ArticleHeader>ArtikkelTittel</ArticleHeader>
+            </ArticleLeft>
+            <ArticleRight>
+              <CategoryName>Kategorinavn</CategoryName>
+            </ArticleRight>
+          </ArticleFlexRow>
+          <ArticleText>
+            Vi pusser opp små og mellomstore bad for privatkunder og
+            entreprenører. Vi er opptatt av god kvalitet og bruker kun de beste
+            rørleggerne i alt vi foretar oss. Vi hjelper deg med å planlegge
+            drømmebadet ditt fra A til Å! Med hjertet for faget yter vi kvalitet
+            i alle ledd for at du skal være i trygge hender.
+          </ArticleText>
+        </MarginTop>
         <Footer>
           <FooterText>OrgnNr: 007 007 007</FooterText>
           <FooterText>Ig@Igror.no</FooterText>
