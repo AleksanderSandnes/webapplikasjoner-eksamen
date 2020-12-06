@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { list } from '../utils/officeService.js';
 import OfficeGrid from './OfficeGrid';
+import ThreeLines from '../assets/images/ThreeLines.png';
+import Squares from '../assets/images/Squares.png';
 
 const Locations = ({ setOffice }) => {
   const [locations, setLocations] = useState(null);
@@ -32,6 +34,14 @@ const Locations = ({ setOffice }) => {
       <SideWrapper>
         {loading && <div>Loading...</div>}
         <FilterButton>Filter</FilterButton>
+        <ButtonPlacement>
+          <ImageButton>
+            <img src={ThreeLines} alt="Lines" />
+          </ImageButton>
+          <ImageButton>
+            <img src={Squares} alt="Squares" />
+          </ImageButton>
+        </ButtonPlacement>
         {locations &&
           locations.map((location) => (
             <div key={location._id}>
@@ -63,6 +73,17 @@ const Locations = ({ setOffice }) => {
 Locations.propTypes = {
   setOffice: PropTypes.func,
 };
+
+const ImageButton = styled.button`
+  width: 35px;
+  margin-left: 15px;
+`;
+
+const ButtonPlacement = styled.div`
+  position: relative;
+  top: 8rem;
+  left: 91rem;
+`;
 
 const Footer = styled.div`
   display: flex;
@@ -126,7 +147,8 @@ const FlexContainer = styled.div`
 `;
 
 const SideWrapper = styled.div`
-  margin: 80px;
+  margin-left: 80px;
+  margin-right: 80px;
 `;
 
 export default Locations;
