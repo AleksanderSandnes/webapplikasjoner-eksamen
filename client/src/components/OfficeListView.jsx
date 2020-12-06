@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { list } from '../utils/officeService.js';
+import Squares from '../assets/images/Squares.png';
 import OfficeList from './OfficeList.jsx';
-
-const ImageLines = require('../assets/images/ThreeLines.png');
-const ImageSquare = require('../assets/images/Squares.png');
-
-const Images = [ImageLines, ImageSquare];
+import ThreeLines from '../assets/images/ThreeLines.png';
 
 // eslint-disable-next-line react/prop-types
 const LocationsListView = ({ setOffice }) => {
@@ -38,10 +35,10 @@ const LocationsListView = ({ setOffice }) => {
         {loading && <div>Loading...</div>}
         <FilterButton>Filter</FilterButton>
         <div>
-          <img src={Images[1]} alt="Lines" />
+          <img src={Squares} alt="Lines" />
         </div>
         <div>
-          <img src={Image[2]} alt="Squares" />
+          <img src={ThreeLines} alt="Squares" />
         </div>
         {locations &&
           locations.map((location) => (

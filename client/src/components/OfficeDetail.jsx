@@ -42,6 +42,12 @@ const Text = styled.p`
   width: 1200px;
 `;
 
+const EmployeeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
 const OfficeDetail = () => (
   <div>
     <HeaderTitle>
@@ -62,6 +68,11 @@ const OfficeDetail = () => (
         urna erat, vehicula sed est eget, viverra pharetra ex.
       </Text>
       <Headerh1>Våre ansatte</Headerh1>
+      <EmployeeWrapper>
+        <Image></Image>
+        <EmployeeName>Ansatt Ansattnavn</EmployeeName>
+        <Position>Stilling</Position>
+      </EmployeeWrapper>
     </SideWrapper>
   </div>
 );
