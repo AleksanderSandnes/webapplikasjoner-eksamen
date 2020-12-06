@@ -10,7 +10,7 @@ import NoMatch from '../components/NoMatch';
 import { useAuthContext } from '../context/AuthProvider';
 import MainLayout from '../layouts/MainLayout';
 import Login from '../pages/Login';
-import Offices from '../pages/Offices';
+import OfficePage from '../pages/OfficePage';
 import HomePage from '../pages/HomePage';
 import Contact from '../pages/Contact';
 import Articles from '../pages/Articles';
@@ -66,7 +66,7 @@ const Routes = () => (
             <HomePage />
           </Route>
           <Route exact path="/offices">
-            <Offices />
+            <OfficePage />
           </Route>
           <Route exact path="/articles">
             <Articles />
