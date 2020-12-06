@@ -14,7 +14,7 @@ const PageWrapper = styled.section``;
 const WelcomeBox = styled.section`
   padding: 10em;
   background: lightgray;
-  //margin-left: 20px;
+  margin-top: -60px;
 `;
 
 const OfficeAndContactWrapper = styled.section`
@@ -29,6 +29,11 @@ const Offices = styled.section`
   margin-right: 40px;
   margin-left: 70px;
   height: 350px;
+
+  &:hover {
+    border-color: #2c91bd;
+    background: #2c91bd;
+  }
 `;
 
 const Contact = styled.section`
@@ -38,6 +43,11 @@ const Contact = styled.section`
   width: 70%;
   margin-right: 70px;
   height: 350px;
+
+  &:hover {
+    border-color: #2c91bd;
+    background: #2c91bd;
+  }
 `;
 
 const Articles = styled.section`
@@ -46,6 +56,11 @@ const Articles = styled.section`
   margin-top: 425px;
   margin-left: 70px;
   margin-right: 70px;
+
+  &:hover {
+    border-color: #2c91bd;
+    background: #2c91bd;
+  }
 `;
 
 const Footer = styled.div`

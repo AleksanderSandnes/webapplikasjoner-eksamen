@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useAuthContext } from '../context/AuthProvider';
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -111,53 +112,64 @@ const FooterText = styled.p`
   font-size: 18px;
 `;
 
-const ArticlePage = () => (
-  <div>
-    <HeaderTitle>
-      <Title>Fagartikler</Title>
-    </HeaderTitle>
-    <SideWrapper>
-      <FlexBoxButtons>
-        <ButtonLeft>
-          <NewArticleButton>Ny Artikkel</NewArticleButton>
-        </ButtonLeft>
-        <ButtonRight>
-          <SearchButton>Søk</SearchButton>
-          <FilterButton>Filter</FilterButton>
-        </ButtonRight>
-      </FlexBoxButtons>
-      <ArticlesWrapper>
-        <Article>
-          <ArticleFlexRow>
-            <ArticleLeft>
-              <ArticleHeader>ArtikkelTittel</ArticleHeader>
-            </ArticleLeft>
-            <ArticleRight>
-              <CategoryName>Kategorinavn</CategoryName>
-            </ArticleRight>
-          </ArticleFlexRow>
-          <ArticleText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            tempor orci nec felis egestas porttitor. Aliquam ornare mauris ac
-            commodo feugiat. Quisque auctor sagittis posuere. Nunc hendrerit
-            mattis ligula, vitae viverra elit auctor id. Mauris ut pulvinar
-            erat. Proin malesuada velit at felis sodales, vitae sodales nisl
-            consequat. Cras vel dictum nisi. In sagittis turpis nec urna
-            aliquam, sed ultricies odio ultrices. Nullam sodales nec metus in
-            molestie. Pellentesque est ex, imperdiet vitae elementum eu, commodo
-            in arcu. Suspendisse finibus volutpat ligula, ut vulputate augue
-            mattis non. Nulla facilisi. Cras quis massa id tellus consectetur
-            tempus eget sit amet libero.
-          </ArticleText>
-        </Article>
-      </ArticlesWrapper>
-      <Footer>
-        <FooterText>OrgnNr: 007 007 007</FooterText>
-        <FooterText>Ig@Igror.no</FooterText>
-        <FooterText>99 00 00 00</FooterText>
-      </Footer>
-    </SideWrapper>
-  </div>
-);
+const ArticlePage = () => {
+  const { isAdmin, isSuperAdmin } = useAuthContext();
+
+  return (
+    <div>
+      <HeaderTitle>
+        <Title>Fagartikler</Title>
+      </HeaderTitle>
+      <SideWrapper>
+        <FlexBoxButtons>
+          {isAdmin && (
+            <ButtonLeft>
+              <NewArticleButton>Ny Artikkel</NewArticleButton>
+            </ButtonLeft>
+          )}
+          {isSuperAdmin && (
+            <ButtonLeft>
+              <NewArticleButton>Ny Artikkel</NewArticleButton>
+            </ButtonLeft>
+          )}
+          <ButtonRight>
+            <SearchButton>Søk</SearchButton>
+            <FilterButton>Filter</FilterButton>
+          </ButtonRight>
+        </FlexBoxButtons>
+        <ArticlesWrapper>
+          <Article>
+            <ArticleFlexRow>
+              <ArticleLeft>
+                <ArticleHeader>ArtikkelTittel</ArticleHeader>
+              </ArticleLeft>
+              <ArticleRight>
+                <CategoryName>Kategorinavn</CategoryName>
+              </ArticleRight>
+            </ArticleFlexRow>
+            <ArticleText>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              tempor orci nec felis egestas porttitor. Aliquam ornare mauris ac
+              commodo feugiat. Quisque auctor sagittis posuere. Nunc hendrerit
+              mattis ligula, vitae viverra elit auctor id. Mauris ut pulvinar
+              erat. Proin malesuada velit at felis sodales, vitae sodales nisl
+              consequat. Cras vel dictum nisi. In sagittis turpis nec urna
+              aliquam, sed ultricies odio ultrices. Nullam sodales nec metus in
+              molestie. Pellentesque est ex, imperdiet vitae elementum eu,
+              commodo in arcu. Suspendisse finibus volutpat ligula, ut vulputate
+              augue mattis non. Nulla facilisi. Cras quis massa id tellus
+              consectetur tempus eget sit amet libero.
+            </ArticleText>
+          </Article>
+        </ArticlesWrapper>
+        <Footer>
+          <FooterText>OrgnNr: 007 007 007</FooterText>
+          <FooterText>Ig@Igror.no</FooterText>
+          <FooterText>99 00 00 00</FooterText>
+        </Footer>
+      </SideWrapper>
+    </div>
+  );
+};
 
 export default ArticlePage;
