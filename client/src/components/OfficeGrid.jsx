@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const FlexItem = styled.div`
   background-color: #f1f1f1;
@@ -19,5 +20,10 @@ const OfficeGrid = ({ office, location }) => (
     <p>{office.email}</p>
   </FlexItem>
 );
+
+OfficeGrid.propTypes = {
+  office: PropTypes.object,
+  location: PropTypes.object,
+};
 
 export default OfficeGrid;

@@ -10,10 +10,10 @@ const FlexLocation = styled.div`
   border: 1px solid black;
   width: 300px;
 `;
-const OfficeGrid = ({ location }) => (
+const LocationGrid = ({ location }) => (
   <FlexItem>
     <p>{location.name}</p>
   </FlexItem>
 );
 
-export default OfficeGrid;
+export default LocationGrid;

@@ -28,12 +28,12 @@ app.use(mongoSanitize());
 app.use(xssClean());
 app.use(hpp());
 
-/* const limiter = rateLimit({
+const limiter = rateLimit({
   windowMs: 10 * 60 * 1000,
   max: 100,
 });
 
-app.use(limiter); */
+app.use(limiter);
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
