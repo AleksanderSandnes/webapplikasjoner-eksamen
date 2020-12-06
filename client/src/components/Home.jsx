@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link, useHistory } from 'react-router-dom';
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -13,7 +14,7 @@ const PageWrapper = styled.section``;
 const WelcomeBox = styled.section`
   padding: 10em;
   background: lightgray;
-  margin-left: 20px;
+  //margin-left: 20px;
 `;
 
 const OfficeAndContactWrapper = styled.section`
@@ -60,28 +61,35 @@ const FooterText = styled.p`
   font-size: 20px;
 `;
 
-const Home = () => (
-  <PageWrapper>
-    <WelcomeBox>
-      <Title>Velkommen til FG Rørleggerservice AS</Title>
-    </WelcomeBox>
-    <OfficeAndContactWrapper>
-      <Offices>
-        <Title>Kontorer</Title>
-      </Offices>
-      <Contact>
-        <Title>Kontakt</Title>
-      </Contact>
-    </OfficeAndContactWrapper>
-    <Articles>
-      <Title>Se våre fagartikler om oppussing av bad</Title>
-    </Articles>
-    <Footer>
-      <FooterText>OrgnNr: 007 007 007</FooterText>
-      <FooterText>Ig@Igror.no</FooterText>
-      <FooterText>99 00 00 00</FooterText>
-    </Footer>
-  </PageWrapper>
-);
+const Home = () => {
+  const history = useHistory();
+  const onHandleClick = async (path) => {
+    history.push(path);
+  };
+
+  return (
+    <PageWrapper>
+      <WelcomeBox>
+        <Title>Velkommen til FG Rørleggerservice AS</Title>
+      </WelcomeBox>
+      <OfficeAndContactWrapper>
+        <Offices onClick={() => onHandleClick('/offices')}>
+          <Title>Kontorer</Title>
+        </Offices>
+        <Contact onClick={() => onHandleClick('/contact')}>
+          <Title>Kontakt</Title>
+        </Contact>
+      </OfficeAndContactWrapper>
+      <Articles onClick={() => onHandleClick('/articles')}>
+        <Title>Se våre fagartikler om oppussing av bad</Title>
+      </Articles>
+      <Footer>
+        <FooterText>OrgnNr: 007 007 007</FooterText>
+        <FooterText>Ig@Igror.no</FooterText>
+        <FooterText>99 00 00 00</FooterText>
+      </Footer>
+    </PageWrapper>
+  );
+};
 
 export default Home;
