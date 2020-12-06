@@ -31,6 +31,7 @@ const Locations = ({ setOffice }) => {
       {error && <p>{error}</p>}
       <SideWrapper>
         {loading && <div>Loading...</div>}
+        <FilterButton>Filter</FilterButton>
         {locations &&
           locations.map((location) => (
             <div key={location._id}>
@@ -75,6 +76,18 @@ const Footer = styled.div`
 const FooterText = styled.p`
   font-size: 15px;
   font-weight: 600;
+`;
+
+const FilterButton = styled.button`
+  color: black;
+  background-color: lightgray;
+  padding: 2rem 4.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: 12rem;
+  left: 78rem;
 `;
 
 const Title = styled.h1`
