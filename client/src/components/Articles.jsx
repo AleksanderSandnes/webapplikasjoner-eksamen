@@ -76,10 +76,6 @@ const ArticleText = styled.div`
   font-size: 15px;
 `;
 
-const ArticleRight = styled.div`
-  justify-content: flex-end;
-`;
-
 const ArticleLeft = styled.div`
   flex: 0 0 83%;
   display: flex;
@@ -157,9 +153,9 @@ const ArticlePage = () => {
             <ArticleLeft>
               <ArticleHeader>ArtikkelTittel</ArticleHeader>
             </ArticleLeft>
-            <ArticleRight>
+            <div>
               <CategoryName>Kategorinavn</CategoryName>
-            </ArticleRight>
+            </div>
           </ArticleFlexRow>
           <ArticleText>
             Vi pusser opp små og mellomstore bad for privatkunder og
