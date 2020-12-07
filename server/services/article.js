@@ -4,8 +4,13 @@ import Article from '../models/article.js';
 export const createArticle = async (data) => Article.create(data);
 
 export const getArticleById = async (id) => Article.findById(id);
-
+/* 
 export const listArticles = async () => Article.find();
+ */
+export const listArticles = async () => {
+  const articles = await Article.find().populate('categoryId image');
+  return articles;
+};
 
 /* export const listArticles = async (queryStr) => {
   const { limit, page } = queryStr;

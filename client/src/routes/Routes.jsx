@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,11 +10,11 @@ import NoMatch from '../components/NoMatch';
 import { useAuthContext } from '../context/AuthProvider';
 import MainLayout from '../layouts/MainLayout';
 import Login from '../pages/Login';
-import Offices from '../pages/Offices';
+import OfficePage from '../pages/OfficePage';
 import HomePage from '../pages/HomePage';
 import Contact from '../pages/Contact';
 import Articles from '../pages/Articles';
-
+import OfficeDetailPage from '../pages/OfficeDetailPage';
 import ArticleDetails from '../pages/ArticleDetails';
 
 // eslint-disable-next-line react/prop-types
@@ -57,39 +57,49 @@ const AdminRoutes = ({ children, ...rest }) => {
   );
 };
 
-const Routes = () => (
-  <Router>
-    <MainLayout>
-      <Suspense fallback={<div>Loading ...</div>}>
-        <Switch>
-          <Route exact path="/homepage">
-            <HomePage />
-          </Route>
-          <Route exact path="/offices">
-            <Offices />
-          </Route>
-          <Route exact path="/articles">
-            <Articles />
-          </Route>
-          <Route exact path="/contact">
-            <Contact />
-          </Route>
-          <Route exact path="/articleDetails">
-            <ArticleDetails />
-          </Route>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="*">
-            <NoMatch />
-          </Route>
-        </Switch>
-      </Suspense>
-    </MainLayout>
-  </Router>
-);
+const Routes = () => {
+  const [office, setOffice] = useState(null);
+
+  return (
+    <Router>
+      <MainLayout>
+        <Suspense fallback={<div>Loading ...</div>}>
+          <Switch>
+            <Route exact path="/homepage">
+              <HomePage />
+            </Route>
+            <Route exact path="/offices">
+              <OfficePage setOffice={setOffice} />
+            </Route>
+            <Route exact path="/offices/:name">
+              <OfficeDetailPage office={office} />
+            </Route>
+            <Route exact path="/contact">
+              <Contact />
+            </Route>
+            <Route exact path="/articles">
+              <Articles />
+            </Route>
+            <Route exact path="/articles/:id">
+              <ArticleDetails />
+            </Route>
+            <Route exact path="/articleDetails">
+              <ArticleDetails />
+            </Route>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="*">
+              <NoMatch />
+            </Route>
+          </Switch>
+        </Suspense>
+      </MainLayout>
+    </Router>
+  );
+};
 
 export default Routes;

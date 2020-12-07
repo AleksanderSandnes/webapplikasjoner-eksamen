@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
 `;
 
 const Wrapper = styled.section`
-  padding: 0 20px 0 0;
+  //padding: 0 20px 0 0;
   margin: 0 auto;
   width: 100%;
 `;

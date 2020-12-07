@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -13,7 +14,7 @@ const PageWrapper = styled.section``;
 const WelcomeBox = styled.section`
   padding: 10em;
   background: lightgray;
-  margin-left: 20px;
+  margin-top: -59px;
 `;
 
 const OfficeAndContactWrapper = styled.section`
@@ -28,6 +29,11 @@ const Offices = styled.section`
   margin-right: 40px;
   margin-left: 70px;
   height: 350px;
+
+  &:hover {
+    border-color: #2c91bd;
+    background: #2c91bd;
+  }
 `;
 
 const Contact = styled.section`
@@ -37,6 +43,11 @@ const Contact = styled.section`
   width: 70%;
   margin-right: 70px;
   height: 350px;
+
+  &:hover {
+    border-color: #2c91bd;
+    background: #2c91bd;
+  }
 `;
 
 const Articles = styled.section`
@@ -45,43 +56,56 @@ const Articles = styled.section`
   margin-top: 425px;
   margin-left: 70px;
   margin-right: 70px;
+
+  &:hover {
+    border-color: #2c91bd;
+    background: #2c91bd;
+  }
 `;
 
 const Footer = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 500px;
-  margin-left: 750px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  max-width: 380px;
+  margin: auto;
+  padding: 50px 0 50px 0;
+  flex-direction: row;
 `;
 
 const FooterText = styled.p`
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: 600;
 `;
 
-const Home = () => (
-  <PageWrapper>
-    <WelcomeBox>
-      <Title>Velkommen til FG Rørleggerservice AS</Title>
-    </WelcomeBox>
-    <OfficeAndContactWrapper>
-      <Offices>
-        <Title>Kontorer</Title>
-      </Offices>
-      <Contact>
-        <Title>Kontakt</Title>
-      </Contact>
-    </OfficeAndContactWrapper>
-    <Articles>
-      <Title>Se våre fagartikler om oppussing av bad</Title>
-    </Articles>
-    <Footer>
-      <FooterText>OrgnNr: 007 007 007</FooterText>
-      <FooterText>Ig@Igror.no</FooterText>
-      <FooterText>99 00 00 00</FooterText>
-    </Footer>
-  </PageWrapper>
-);
+const Home = () => {
+  const history = useHistory();
+  const onHandleClick = async (path) => {
+    history.push(path);
+  };
+
+  return (
+    <PageWrapper>
+      <WelcomeBox>
+        <Title>Velkommen til FG Rørleggerservice AS</Title>
+      </WelcomeBox>
+      <OfficeAndContactWrapper>
+        <Offices onClick={() => onHandleClick('/offices')}>
+          <Title>Kontorer</Title>
+        </Offices>
+        <Contact onClick={() => onHandleClick('/contact')}>
+          <Title>Kontakt</Title>
+        </Contact>
+      </OfficeAndContactWrapper>
+      <Articles onClick={() => onHandleClick('/articles')}>
+        <Title>Se våre fagartikler om oppussing av bad</Title>
+      </Articles>
+      <Footer>
+        <FooterText>OrgnNr: 007 007 007</FooterText>
+        <FooterText>Ig@Igror.no</FooterText>
+        <FooterText>99 00 00 00</FooterText>
+      </Footer>
+    </PageWrapper>
+  );
+};
 
 export default Home;

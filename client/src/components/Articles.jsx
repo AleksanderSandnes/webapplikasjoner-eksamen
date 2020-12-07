@@ -1,5 +1,101 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useAuthContext } from '../context/AuthProvider';
+import { list } from '../utils/articleService.js';
+import pic from '../assets/images/pic.png';
+
+const ArticlePage = () => {
+  const { isAdmin, isSuperAdmin } = useAuthContext();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [articles, setArticles] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const { data } = await list();
+      if (!data.success) {
+        setError(error);
+      } else {
+        setArticles(data.data);
+        setError(null);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, [error]);
+
+  return (
+    <div>
+      <HeaderTitle>
+        <Title>Fagartikler</Title>
+      </HeaderTitle>
+      {error && <p>{error}</p>}
+      <SideWrapper>
+        {loading && <div>Loading...</div>}
+        <FlexBoxButtons>
+          {isAdmin && (
+            <ButtonLeft>
+              <NewArticleButton>Ny Artikkel</NewArticleButton>
+            </ButtonLeft>
+          )}
+          {isSuperAdmin && (
+            <ButtonLeft>
+              <NewArticleButton>Ny Artikkel</NewArticleButton>
+            </ButtonLeft>
+          )}
+          <ButtonRight>
+            <SearchButton>Søk</SearchButton>
+            <FilterButton>Filter</FilterButton>
+          </ButtonRight>
+        </FlexBoxButtons>
+        {articles &&
+          articles.map((article) => (
+            <MarginTop key={article._id}>
+              <Flexrow>
+                <Image>
+                  <Img name="midlertidig" src={pic} alt="midlertidig" />
+                </Image>
+                <RightSide>
+                  <ArticleFlexRow>
+                    <ArticleLeft>
+                      <ArticleHeader>{article.title}</ArticleHeader>
+                    </ArticleLeft>
+                    <CategoryName>{article.categoryId.name}</CategoryName>
+                  </ArticleFlexRow>
+                  <ArticleText>
+                    {article.leadParagraph.substring(0, 150)}
+                  </ArticleText>
+                </RightSide>
+              </Flexrow>
+            </MarginTop>
+          ))}
+        <Footer>
+          <FooterText>OrgnNr: 007 007 007</FooterText>
+          <FooterText>Ig@Igror.no</FooterText>
+          <FooterText>99 00 00 00</FooterText>
+        </Footer>
+      </SideWrapper>
+    </div>
+  );
+};
+
+export default ArticlePage;
+
+const Img = styled.img`
+  vertical-align: top;
+  max-width: 500px;
+  height: 200px;
+`;
+
+const Flexrow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const RightSide = styled.div`
+  margin: auto 0;
+`;
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -11,7 +107,7 @@ const Title = styled.h1`
 const HeaderTitle = styled.section`
   padding: 10em;
   background: lightgray;
-  margin-left: 20px;
+  margin-top: -59px;
 `;
 
 const NewArticleButton = styled.button`
@@ -33,6 +129,10 @@ const SearchButton = styled.button`
   text-align: center;
 `;
 
+const MarginTop = styled.article`
+  margin-top: 50px;
+`;
+
 const FilterButton = styled.button`
   color: black;
   background-color: lightgray;
@@ -40,6 +140,14 @@ const FilterButton = styled.button`
   width: 150px;
   font-weight: bold;
   text-align: center;
+`;
+
+const Image = styled.div`
+  margin-top: 50px;
+  margin-bottom: -30px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  text-align: right;
 `;
 
 const FlexBoxButtons = styled.div`
@@ -53,10 +161,6 @@ const SideWrapper = styled.div`
   margin-left: 500px;
   margin-right: 500px;
 `;
-
-const ArticlesWrapper = styled.div``;
-
-const Article = styled.div``;
 
 const ArticleHeader = styled.h1`
   font-size: 35px;
@@ -78,10 +182,8 @@ const ArticleText = styled.div`
   font-size: 15px;
 `;
 
-const ArticleRight = styled.div``;
-
 const ArticleLeft = styled.div`
-  flex: 0 0 50%;
+  flex: 0 0 89%;
   display: flex;
   justify-content: flex-start;
 `;
@@ -110,54 +212,3 @@ const Footer = styled.div`
 const FooterText = styled.p`
   font-size: 18px;
 `;
-
-const ArticlePage = () => (
-  <div>
-    <HeaderTitle>
-      <Title>Fagartikler</Title>
-    </HeaderTitle>
-    <SideWrapper>
-      <FlexBoxButtons>
-        <ButtonLeft>
-          <NewArticleButton>Ny Artikkel</NewArticleButton>
-        </ButtonLeft>
-        <ButtonRight>
-          <SearchButton>Søk</SearchButton>
-          <FilterButton>Filter</FilterButton>
-        </ButtonRight>
-      </FlexBoxButtons>
-      <ArticlesWrapper>
-        <Article>
-          <ArticleFlexRow>
-            <ArticleLeft>
-              <ArticleHeader>ArtikkelTittel</ArticleHeader>
-            </ArticleLeft>
-            <ArticleRight>
-              <CategoryName>Kategorinavn</CategoryName>
-            </ArticleRight>
-          </ArticleFlexRow>
-          <ArticleText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            tempor orci nec felis egestas porttitor. Aliquam ornare mauris ac
-            commodo feugiat. Quisque auctor sagittis posuere. Nunc hendrerit
-            mattis ligula, vitae viverra elit auctor id. Mauris ut pulvinar
-            erat. Proin malesuada velit at felis sodales, vitae sodales nisl
-            consequat. Cras vel dictum nisi. In sagittis turpis nec urna
-            aliquam, sed ultricies odio ultrices. Nullam sodales nec metus in
-            molestie. Pellentesque est ex, imperdiet vitae elementum eu, commodo
-            in arcu. Suspendisse finibus volutpat ligula, ut vulputate augue
-            mattis non. Nulla facilisi. Cras quis massa id tellus consectetur
-            tempus eget sit amet libero.
-          </ArticleText>
-        </Article>
-      </ArticlesWrapper>
-      <Footer>
-        <FooterText>OrgnNr: 007 007 007</FooterText>
-        <FooterText>Ig@Igror.no</FooterText>
-        <FooterText>99 00 00 00</FooterText>
-      </Footer>
-    </SideWrapper>
-  </div>
-);
-
-export default ArticlePage;

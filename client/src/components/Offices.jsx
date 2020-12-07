@@ -1,12 +1,22 @@
-import { number } from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { list } from '../utils/eventService';
+import { list } from '../utils/officeService.js';
+import OfficeGrid from './OfficeGrid';
+import OfficeList from './OfficeList.jsx';
+import ThreeLines from '../assets/images/ThreeLines.png';
+import Squares from '../assets/images/Squares.png';
 
-const Offices = () => {
-  const [offices, setOffices] = useState(null);
+const Locations = ({ setOffice }) => {
+  const [locations, setLocations] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isGrid, setisGrid] = useState(true);
+
+  const handleClick = (e) => {
+    if (e.target.name === 'Squares') setisGrid(true);
+    if (e.target.name === 'Lines') setisGrid(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,13 +25,12 @@ const Offices = () => {
       if (!data.success) {
         setError(error);
       } else {
-        setOffices(data.data);
+        setLocations(data.data);
         setError(null);
       }
       setLoading(false);
     };
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -31,26 +40,46 @@ const Offices = () => {
       </HeaderTitle>
       {error && <p>{error}</p>}
       <SideWrapper>
-        <FlexContainer>
-          <FlexItem>
-            {loading && <div>Loading...</div>}
-            {offices && offices.map((office) => <TitleCards key={office.id} />)}
-            <OfficeText>
-              <ul>
-                {offices.map((office) => (
-                  <li key={office.id}>
-                    <p>{office.name}</p>
-                    <p>{office.address}</p>
-                    {number.map((TheNumber) => (
-                      <p>{TheNumber.number}</p>
-                    ))}
-                    <p>{office.email}</p>
-                  </li>
-                ))}
-              </ul>
-            </OfficeText>
-          </FlexItem>
-        </FlexContainer>
+        {loading && <div>Loading...</div>}
+        <FilterButton>Filter</FilterButton>
+        <ButtonPlacement>
+          <ImageButton type="button" onClick={handleClick}>
+            <img name="Lines" src={ThreeLines} alt="Lines" />
+          </ImageButton>
+          <ImageButton type="button" onClick={handleClick}>
+            <img name="Squares" src={Squares} alt="Squares" />
+          </ImageButton>
+        </ButtonPlacement>
+        {locations &&
+          locations.map((location) => (
+            <div key={location._id}>
+              <TitleCards>
+                {location.name} ({location.offices.length} kontorer)
+              </TitleCards>
+              <FlexContainer>
+                {location.offices.map(
+                  (office, index) =>
+                    (isGrid && (
+                      <OfficeGrid
+                        location={location}
+                        office={office}
+                        key={office._id}
+                        setOffice={setOffice}
+                      />
+                    )) ||
+                    (!isGrid && (
+                      <OfficeList
+                        location={location}
+                        office={office}
+                        key={office._id}
+                        setOffice={setOffice}
+                        index={index}
+                      />
+                    ))
+                )}
+              </FlexContainer>
+            </div>
+          ))}
         <Footer>
           <FooterText>OrgnNr: 007 007 007</FooterText>
           <FooterText>Ig@Igror.no</FooterText>
@@ -61,17 +90,47 @@ const Offices = () => {
   );
 };
 
+Locations.propTypes = {
+  setOffice: PropTypes.func,
+};
+
+const ImageButton = styled.button`
+  width: 35px;
+  margin-left: 15px;
+`;
+
+const ButtonPlacement = styled.div`
+  position: relative;
+  top: 10.5rem;
+  left: 91rem;
+  right: 0px;
+  max-width: 10rem;
+`;
+
 const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   max-width: 500px;
-  margin-left: 200px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  margin: auto;
+  padding: 50px 0 50px 0;
+  flex-direction: row;
 `;
 
 const FooterText = styled.p`
-  font-size: 18px;
+  font-size: 15px;
+  font-weight: 600;
+`;
+
+const FilterButton = styled.button`
+  color: black;
+  background-color: lightgray;
+  padding: 2rem 4.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: 14.5rem;
+  left: 78rem;
 `;
 
 const Title = styled.h1`
@@ -82,10 +141,11 @@ const Title = styled.h1`
 `;
 
 const TitleCards = styled.h2`
-  font-size: 1rem;
+  font-size: 3rem;
   text-align: left;
   font-weight: bold;
   color: black;
+  margin: 7rem 0 3rem 0;
 `;
 
 // eslint-disable-next-line no-unused-vars
@@ -96,15 +156,10 @@ const TitleOffice = styled.h1`
   font-weight: bold;
 `;
 
-const OfficeText = styled.p`
-  font-size: 0.75rem;
-  text-align: left;
-`;
-
 const HeaderTitle = styled.section`
   padding: 10em;
   background: lightgray;
-  margin-left: 20px;
+  margin-top: -59px;
 `;
 
 const FlexContainer = styled.div`
@@ -113,18 +168,8 @@ const FlexContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const FlexItem = styled.div`
-  background-color: #f1f1f1;
-  margin-right: 100px;
-  margin-bottom: 30px;
-  padding: 20px;
-  font-size: 30px;
-  border: 1px solid black;
-  width: 300px;
-`;
-
 const SideWrapper = styled.div`
-  margin: 80px;
+  margin: 0 80px;
 `;
 
-export default Offices;
+export default Locations;
