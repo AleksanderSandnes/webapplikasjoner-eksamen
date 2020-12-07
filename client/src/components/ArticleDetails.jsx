@@ -15,13 +15,29 @@ const HeaderTitle = styled.section`
 `;
 
 const SideWrapper = styled.div`
-  margin-left: 80px;
-  margin-right: 80px;
+  margin-left: 300px;
+  margin-right: 300px;
 `;
 
 const H3Text = styled.h3`
   font-size: 15px;
   font-weight: bold;
+`;
+
+const Flexbar = styled.div`
+  display: flex;
+`;
+
+const RightAlign = styled.div`
+  flex: 0 0 50%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const LeftAlign = styled.div`
+  flex: 0 0 50%;
+  display: flex;
+  justify-content: flex-start;
 `;
 
 const ArticleDetails = () => (
@@ -30,8 +46,14 @@ const ArticleDetails = () => (
       <Title>Tittel</Title>
     </HeaderTitle>
     <SideWrapper>
-      <H3Text>Av Forfatternavn</H3Text>
-      <H3Text />
+      <Flexbar>
+        <LeftAlign>
+          <H3Text>Av Forfatternavn</H3Text>
+        </LeftAlign>
+        <RightAlign>
+          <H3Text>20.12.20</H3Text>
+        </RightAlign>
+      </Flexbar>
     </SideWrapper>
   </div>
 );

@@ -23,7 +23,7 @@ const ArticlePage = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [error]);
 
   return (
     <div>
@@ -59,9 +59,9 @@ const ArticlePage = () => {
                 <ArticleLeft>
                   <ArticleHeader>{article.title}</ArticleHeader>
                 </ArticleLeft>
-                <ArticleRight>
+                <div>
                   <CategoryName>{article.categoryId.name}</CategoryName>
-                </ArticleRight>
+                </div>
               </ArticleFlexRow>
               <ArticleText>{article.content}</ArticleText>
             </MarginTop>
@@ -162,8 +162,6 @@ const CategoryName = styled.h2`
 const ArticleText = styled.div`
   font-size: 15px;
 `;
-
-const ArticleRight = styled.div``;
 
 const ArticleLeft = styled.div`
   flex: 0 0 83%;
