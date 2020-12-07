@@ -52,6 +52,7 @@ const ArticlePage = () => {
         {articles &&
           articles.map((article) => (
             <MarginTop key={article._id}>
+              {console.log(article)}
               <Image>
                 <img name="midlertidig" src={pic} alt="midlertidig" />
               </Image>
@@ -61,7 +62,9 @@ const ArticlePage = () => {
                 </ArticleLeft>
                 <CategoryName>{article.categoryId.name}</CategoryName>
               </ArticleFlexRow>
-              <ArticleText>{article.leadParagraph}</ArticleText>
+              <ArticleText>
+                {article.leadParagraph.substring(0, 150)}...
+              </ArticleText>
             </MarginTop>
           ))}
         <Footer>

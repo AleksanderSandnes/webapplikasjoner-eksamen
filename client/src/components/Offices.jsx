@@ -103,6 +103,8 @@ const ButtonPlacement = styled.div`
   position: relative;
   top: 10.5rem;
   left: 91rem;
+  right: 0px;
+  max-width: 10rem;
 `;
 
 const Footer = styled.div`
@@ -167,8 +169,7 @@ const FlexContainer = styled.div`
 `;
 
 const SideWrapper = styled.div`
-  margin-left: 80px;
-  margin-right: 80px;
+  margin: 0 80px;
 `;
 
 export default Locations;
