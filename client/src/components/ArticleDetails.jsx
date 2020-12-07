@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 3rem;
   text-align: center;
   color: black;
   font-weight: bold;
@@ -15,8 +15,8 @@ const HeaderTitle = styled.section`
 `;
 
 const SideWrapper = styled.div`
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-left: 400px;
+  margin-right: 400px;
 `;
 
 const H3Text = styled.h3`
@@ -26,6 +26,8 @@ const H3Text = styled.h3`
 
 const Flexbar = styled.div`
   display: flex;
+  margin-top: 70px;
+  margin-bottom: 25px;
 `;
 
 const RightAlign = styled.div`
@@ -38,6 +40,17 @@ const LeftAlign = styled.div`
   flex: 0 0 50%;
   display: flex;
   justify-content: flex-start;
+`;
+
+const Text = styled.p`
+  font-size: 28px;
+`;
+
+const H2Text = styled.h2`
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 25px;
 `;
 
 const ArticleDetails = () => (
@@ -54,6 +67,16 @@ const ArticleDetails = () => (
           <H3Text>20.12.20</H3Text>
         </RightAlign>
       </Flexbar>
+      <article>
+        <Text>
+          Dette er ingressen. Vi pusser opp små og mellomstore bad for
+          privatkunder og entreprenører. Vi er opptatt av god kvalitet og bruker
+          kun de beste rørleggerne i alt vi foretar oss. Vi hjelper deg med å
+          planlegge drømmebadet ditt fra A til Å! Med hjertet for faget yter vi
+          kvalitet i alle ledd for at du skal være i trygge hender.
+        </Text>
+      </article>
+      <H2Text>Subtittel</H2Text>
     </SideWrapper>
   </div>
 );

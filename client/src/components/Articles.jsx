@@ -164,7 +164,7 @@ const ArticleText = styled.div`
 `;
 
 const ArticleLeft = styled.div`
-  flex: 0 0 83%;
+  flex: 0 0 89%;
   display: flex;
   justify-content: flex-start;
 `;
