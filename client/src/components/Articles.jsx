@@ -59,11 +59,9 @@ const ArticlePage = () => {
                 <ArticleLeft>
                   <ArticleHeader>{article.title}</ArticleHeader>
                 </ArticleLeft>
-                <div>
-                  <CategoryName>{article.categoryId.name}</CategoryName>
-                </div>
+                <CategoryName>{article.categoryId.name}</CategoryName>
               </ArticleFlexRow>
-              <ArticleText>{article.content}</ArticleText>
+              <ArticleText>{article.leadParagraph}</ArticleText>
             </MarginTop>
           ))}
         <Footer>
