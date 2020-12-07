@@ -82,7 +82,7 @@ export default ArticlePage;
 
 const Img = styled.img`
   vertical-align: top;
-  width: 800px;
+  max-width: 500px;
   height: 200px;
 `;
 
