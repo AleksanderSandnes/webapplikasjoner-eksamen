@@ -125,7 +125,6 @@ const FilterButton = styled.button`
   left: 78rem;
 `;
 
-
 const TitleCards = styled.h2`
   font-size: 3rem;
   text-align: left;

@@ -23,6 +23,7 @@ const NavMenu = styled.ul`
   align-items: center;
 
   @media only screen and (max-width: 800px) {
+}
   }
 `;
 
