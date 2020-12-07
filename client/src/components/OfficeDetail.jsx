@@ -2,19 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import pic from '../assets/images/pic.png';
-
-const Title = styled.h1`
-  font-size: 2rem;
-  text-align: center;
-  color: black;
-  font-weight: bold;
-`;
-
-const HeaderTitle = styled.section`
-  padding: 10em;
-  background: lightgray;
-  margin-top: -59px;
-`;
+import {
+  Footer,
+  FooterText,
+  Title,
+  HeaderTitle,
+} from '../styles/themeStyledComponents.js';
 
 const SideWrapper = styled.div`
   margin: 80px;
@@ -52,20 +45,6 @@ const MarginBottom = styled.p`
 const FooterTitle = styled.div`
   padding: 10em;
   background: lightgray;
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 380px;
-  margin: auto;
-  padding: 50px 0 50px 0;
-  flex-direction: row;
-`;
-
-const FooterText = styled.p`
-  font-size: 15px;
-  font-weight: 600;
 `;
 
 const OfficeDetail = ({ office }) => (

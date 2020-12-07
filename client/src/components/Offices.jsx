@@ -6,6 +6,12 @@ import OfficeGrid from './OfficeGrid';
 import OfficeList from './OfficeList.jsx';
 import ThreeLines from '../assets/images/ThreeLines.png';
 import Squares from '../assets/images/Squares.png';
+import {
+  Footer,
+  FooterText,
+  Title,
+  HeaderTitle,
+} from '../styles/themeStyledComponents.js';
 
 const Locations = ({ setOffice }) => {
   const [locations, setLocations] = useState(null);
@@ -107,20 +113,6 @@ const ButtonPlacement = styled.div`
   max-width: 10rem;
 `;
 
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 500px;
-  margin: auto;
-  padding: 50px 0 50px 0;
-  flex-direction: row;
-`;
-
-const FooterText = styled.p`
-  font-size: 15px;
-  font-weight: 600;
-`;
-
 const FilterButton = styled.button`
   color: black;
   background-color: lightgray;
@@ -133,12 +125,6 @@ const FilterButton = styled.button`
   left: 78rem;
 `;
 
-const Title = styled.h1`
-  font-size: 2rem;
-  text-align: center;
-  color: black;
-  font-weight: bold;
-`;
 
 const TitleCards = styled.h2`
   font-size: 3rem;
@@ -146,20 +132,6 @@ const TitleCards = styled.h2`
   font-weight: bold;
   color: black;
   margin: 7rem 0 3rem 0;
-`;
-
-// eslint-disable-next-line no-unused-vars
-const TitleOffice = styled.h1`
-  font-size: 2rem;
-  text-align: left;
-  color: black;
-  font-weight: bold;
-`;
-
-const HeaderTitle = styled.section`
-  padding: 10em;
-  background: lightgray;
-  margin-top: -59px;
 `;
 
 const FlexContainer = styled.div`

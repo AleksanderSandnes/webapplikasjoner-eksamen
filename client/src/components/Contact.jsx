@@ -1,23 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const Title = styled.h1`
-  font-size: 2rem;
-  text-align: center;
-  color: black;
-  font-weight: bold;
-`;
-
-const HeaderTitle = styled.section`
-  padding: 10em;
-  background: lightgray;
-  margin-top: -59px;
-`;
+import {
+  Footer,
+  FooterText,
+  Title,
+  HeaderTitle,
+} from '../styles/themeStyledComponents.js';
 
 const ContactPage = () => (
-  <HeaderTitle>
-    <Title>Kontakt oss</Title>
-  </HeaderTitle>
+  <div>
+    <HeaderTitle>
+      <Title>Kontakt oss</Title>
+    </HeaderTitle>
+    <Footer>
+      <FooterText>OrgnNr: 007 007 007</FooterText>
+      <FooterText>Ig@Igror.no</FooterText>
+      <FooterText>99 00 00 00</FooterText>
+    </Footer>
+  </div>
 );
 
 export default ContactPage;

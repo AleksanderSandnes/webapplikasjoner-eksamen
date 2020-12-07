@@ -3,6 +3,12 @@ import styled from 'styled-components';
 import { useAuthContext } from '../context/AuthProvider';
 import { list } from '../utils/articleService.js';
 import pic from '../assets/images/pic.png';
+import {
+  Footer,
+  FooterText,
+  Title,
+  HeaderTitle,
+} from '../styles/themeStyledComponents.js';
 
 const ArticlePage = () => {
   const { isAdmin, isSuperAdmin } = useAuthContext();
@@ -97,19 +103,6 @@ const RightSide = styled.div`
   margin: auto 0;
 `;
 
-const Title = styled.h1`
-  font-size: 2rem;
-  text-align: center;
-  color: black;
-  font-weight: bold;
-`;
-
-const HeaderTitle = styled.section`
-  padding: 10em;
-  background: lightgray;
-  margin-top: -59px;
-`;
-
 const NewArticleButton = styled.button`
   background-color: #2c91bd;
   color: white;
@@ -198,17 +191,4 @@ const ButtonLeft = styled.div`
   flex: 0 0 50%;
   display: flex;
   justify-content: flex-start;
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 500px;
-  margin-left: 200px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-`;
-
-const FooterText = styled.p`
-  font-size: 18px;
 `;
