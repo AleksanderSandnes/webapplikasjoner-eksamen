@@ -56,7 +56,7 @@ const StyledButton = styled.button`
 `;
 
 const Nav = () => {
-  const { isLoggedIn, isAdmin, setUser } = useAuthContext();
+  const { isLoggedIn, setUser } = useAuthContext();
   const handleLogout = async () => {
     await logout();
     setUser(null);
