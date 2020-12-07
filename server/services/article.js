@@ -8,7 +8,7 @@ export const getArticleById = async (id) => Article.findById(id);
 export const listArticles = async () => Article.find();
  */
 export const listArticles = async () => {
-  const articles = await Article.find().populate('categoryId');
+  const articles = await Article.find().populate('categoryId image');
   return articles;
 };
 
