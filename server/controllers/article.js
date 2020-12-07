@@ -22,12 +22,6 @@ export const list = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({ success: true, data: articles });
 });
 
-/* export const list = catchAsyncErrors(async (req, res, next) => {
-  const { id } = req.article.categoryId;
-  const articles = await articleService.listArticles(id, req.query);
-  res.status(200).json({ success: true, data: articles });
-}); */
-
 export const update = catchAsyncErrors(async (req, res, next) => {
   let article = await articleService.getArticleById(req.params.id);
   if (!article) {

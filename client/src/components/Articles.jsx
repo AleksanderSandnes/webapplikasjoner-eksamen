@@ -70,7 +70,7 @@ const ArticlePage = () => {
                     <CategoryName>{article.categoryId.name}</CategoryName>
                   </ArticleFlexRow>
                   <ArticleText>
-                    {article.leadParagraph.substring(0, 150)}
+                    {article.leadParagraph.substring(0, 150)}...
                   </ArticleText>
                 </RightSide>
               </Flexrow>
