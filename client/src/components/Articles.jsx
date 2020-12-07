@@ -52,18 +52,20 @@ const ArticlePage = () => {
         {articles &&
           articles.map((article) => (
             <MarginTop key={article._id}>
-              <Image>
-                <img name="midlertidig" src={pic} alt="midlertidig" />
-              </Image>
-              <ArticleFlexRow>
-                <ArticleLeft>
-                  <ArticleHeader>{article.title}</ArticleHeader>
-                </ArticleLeft>
-                <div>
-                  <CategoryName>{article.categoryId.name}</CategoryName>
-                </div>
-              </ArticleFlexRow>
-              <ArticleText>{article.content}</ArticleText>
+              <Flexrow>
+                <Image>
+                  <Img name="midlertidig" src={pic} alt="midlertidig" />
+                </Image>
+                <RightSide>
+                  <ArticleFlexRow>
+                    <ArticleLeft>
+                      <ArticleHeader>{article.title}</ArticleHeader>
+                    </ArticleLeft>
+                    <CategoryName>{article.categoryId.name}</CategoryName>
+                  </ArticleFlexRow>
+                  <ArticleText>{article.content}</ArticleText>
+                </RightSide>
+              </Flexrow>
             </MarginTop>
           ))}
         <Footer>
@@ -77,6 +79,21 @@ const ArticlePage = () => {
 };
 
 export default ArticlePage;
+
+const Img = styled.img`
+  vertical-align: top;
+  width: 800px;
+  height: 200px;
+`;
+
+const Flexrow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const RightSide = styled.div`
+  margin: auto 0;
+`;
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -124,11 +141,11 @@ const FilterButton = styled.button`
 `;
 
 const Image = styled.div`
-  margin-top: 10px;
+  margin-top: 50px;
+  margin-bottom: -30px;
   padding-right: 20px;
   padding-bottom: 20px;
-  float: left;
-  width: 190px;
+  text-align: right;
 `;
 
 const FlexBoxButtons = styled.div`
