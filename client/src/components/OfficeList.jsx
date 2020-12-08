@@ -9,6 +9,12 @@ const FlexItem = styled.div`
   padding: 15px;
   font-size: 20px;
   width: auto;
+
+  &:hover {
+    border-color: #2c91bd;
+    background: #2c91bd;
+    cursor: pointer;
+  }
 `;
 
 const Span = styled.span`
@@ -19,7 +25,7 @@ const OfficeList = ({ office, location, setOffice, index }) => {
   const history = useHistory();
   const redirectToDetailView = () => {
     setOffice(office);
-    history.push(`/offices/${office.name}`);
+    history.push(`/offices/${location.name.toLowerCase()}/${index + 1}`);
   };
   return (
     <FlexItem key={office.name} onClick={() => redirectToDetailView()}>

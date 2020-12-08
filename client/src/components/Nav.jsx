@@ -65,7 +65,7 @@ const Nav = () => {
     <StyledNav>
       <NavMenu>
         <NavMenuItem>
-          <NavLink exact to="/homepage" activeClassName="active">
+          <NavLink exact to="/" activeClassName="active">
             Hjem
           </NavLink>
         </NavMenuItem>

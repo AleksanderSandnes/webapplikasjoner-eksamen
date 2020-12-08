@@ -71,6 +71,7 @@ const Locations = ({ setOffice }) => {
                         office={office}
                         key={office._id}
                         setOffice={setOffice}
+                        index={index}
                       />
                     )) ||
                     (!isGrid && (
@@ -124,7 +125,6 @@ const FilterButton = styled.button`
   top: 14.5rem;
   left: 78rem;
 `;
-
 
 const TitleCards = styled.h2`
   font-size: 3rem;

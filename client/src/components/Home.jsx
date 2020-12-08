@@ -24,6 +24,7 @@ const Offices = styled.section`
   &:hover {
     border-color: #2c91bd;
     background: #2c91bd;
+    cursor: pointer;
   }
 `;
 
@@ -38,6 +39,7 @@ const Contact = styled.section`
   &:hover {
     border-color: #2c91bd;
     background: #2c91bd;
+    cursor: pointer;
   }
 `;
 
@@ -51,6 +53,7 @@ const Articles = styled.section`
   &:hover {
     border-color: #2c91bd;
     background: #2c91bd;
+    cursor: pointer;
   }
 `;
 
