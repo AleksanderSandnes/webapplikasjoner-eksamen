@@ -1,6 +1,6 @@
 import http from './http';
 
-const API_URL = '/articles';
+const API_URL = '/categories';
 
 export const list = async () => {
   try {
@@ -34,18 +34,9 @@ export const create = async (data) => {
   }
 };
 
-export const remove = async (id) => {
-  try {
-    return await http.delete(`${API_URL}/${id}`);
-  } catch (err) {
-    return err.response;
-  }
-};
-
 export default {
   create,
   list,
   get,
   put,
-  remove,
 };

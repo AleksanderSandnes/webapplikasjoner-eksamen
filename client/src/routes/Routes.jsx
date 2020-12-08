@@ -16,6 +16,8 @@ import Contact from '../pages/Contact';
 import Articles from '../pages/Articles';
 import OfficeDetailPage from '../pages/OfficeDetailPage';
 import ArticleDetails from '../pages/ArticleDetails';
+import ArticleEditPage from '../pages/ArticleEditPage';
+import NewArticlePage from '../pages/NewArticlePage';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
@@ -46,13 +48,15 @@ const AuthenticatedRoutes = ({ children, ...rest }) => {
 
 // eslint-disable-next-line no-unused-vars
 const AdminRoutes = ({ children, ...rest }) => {
-  const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
+  const { isLoggedIn, isAdmin, isSuperAdmin, isLoading } = useAuthContext();
 
   return (
     <Route
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      render={() => isLoggedIn && isAdmin && !isLoading && children}
+      render={() =>
+        isLoggedIn && (isAdmin || isSuperAdmin) && !isLoading && children
+      }
     />
   );
 };
@@ -71,7 +75,7 @@ const Routes = () => {
             <Route exact path="/offices">
               <OfficePage setOffice={setOffice} />
             </Route>
-            <Route exact path="/offices/:name">
+            <Route exact path="/offices/:location/:name">
               <OfficeDetailPage office={office} />
             </Route>
             <Route exact path="/contact">
@@ -83,6 +87,12 @@ const Routes = () => {
             <Route exact path="/articles/:id">
               <ArticleDetails />
             </Route>
+            <AdminRoutes exact path="/articles/:id/edit">
+              <ArticleEditPage />
+            </AdminRoutes>
+            <AdminRoutes exact path="/newarticle">
+              <NewArticlePage />
+            </AdminRoutes>
             <Route exact path="/">
               <HomePage />
             </Route>

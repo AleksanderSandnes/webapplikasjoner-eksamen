@@ -71,6 +71,7 @@ const Locations = ({ setOffice }) => {
                         office={office}
                         key={office._id}
                         setOffice={setOffice}
+                        index={index}
                       />
                     )) ||
                     (!isGrid && (

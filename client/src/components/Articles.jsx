@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
 import { list } from '../utils/articleService.js';
 import pic from '../assets/images/pic.png';
@@ -15,6 +16,15 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [articles, setArticles] = useState(null);
+  const history = useHistory();
+
+  const redirectToDetailView = (id) => {
+    history.push(`/articles/${id}`);
+  };
+
+  const handleClick = () => {
+    history.push(`/newarticle`);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,14 +50,11 @@ const ArticlePage = () => {
       <SideWrapper>
         {loading && <div>Loading...</div>}
         <FlexBoxButtons>
-          {isAdmin && (
+          {(isAdmin || isSuperAdmin) && (
             <ButtonLeft>
-              <NewArticleButton>Ny Artikkel</NewArticleButton>
-            </ButtonLeft>
-          )}
-          {isSuperAdmin && (
-            <ButtonLeft>
-              <NewArticleButton>Ny Artikkel</NewArticleButton>
+              <NewArticleButton onClick={handleClick}>
+                Ny Artikkel
+              </NewArticleButton>
             </ButtonLeft>
           )}
           <ButtonRight>
@@ -57,7 +64,11 @@ const ArticlePage = () => {
         </FlexBoxButtons>
         {articles &&
           articles.map((article) => (
-            <MarginTop key={article._id}>
+            <MarginTop
+              key={article._id}
+              onClick={() => redirectToDetailView(article._id)}
+            >
+              {console.log(article)}
               <Flexrow>
                 <Image>
                   <Img name="midlertidig" src={pic} alt="midlertidig" />
