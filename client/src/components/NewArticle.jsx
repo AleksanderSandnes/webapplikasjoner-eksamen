@@ -199,10 +199,10 @@ const Input = styled.input`
   padding: 0.5em;
   color: black;
   background: white;
-  border: none;
-  border-radius: 3px;
   width: 100%;
   margin-bottom: 0.5em;
+  border: 1px solid black;
+  border-radius: 5px;
 `;
 
 const StyledTextArea = styled.textarea`
@@ -210,9 +210,10 @@ const StyledTextArea = styled.textarea`
   color: black;
   background: white;
   border: none;
-  border-radius: 3px;
-  width: 100%;
+  width: 800px;
   margin-bottom: 0.5em;
+  border: 1px solid black;
+  border-radius: 5px;
 `;
 
 const StyledSelect = styled.select`
@@ -220,9 +221,10 @@ const StyledSelect = styled.select`
   color: black;
   background: white;
   border: none;
-  border-radius: 3px;
   width: 100%;
   margin-bottom: 0.5em;
+  border: 1px solid black;
+  border-radius: 5px;
 `;
 
 const Message = styled.label`
@@ -232,7 +234,6 @@ const Message = styled.label`
 `;
 
 const StyledForm = styled.form`
-  margin-left: 400px;
   margin-right: 400px;
 `;
 
