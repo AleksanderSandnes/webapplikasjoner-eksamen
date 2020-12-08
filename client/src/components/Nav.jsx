@@ -22,8 +22,7 @@ const NavMenu = styled.ul`
   //padding: 0 20px;
   align-items: center;
 
-  @media only screen and (max-width: 800px) {
-  }
+  /* @media only screen and (max-width: 800px) {} */
 `;
 
 const NavMenuItem = styled.li`
