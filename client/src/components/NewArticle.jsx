@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Title, HeaderTitle } from '../styles/themeStyledComponents.js';
+import NewCategory from '../modals/NewCategory';
 
 const NewArticle = () => {
   <div>
@@ -9,43 +10,56 @@ const NewArticle = () => {
     </HeaderTitle>
     <SideWrapper>
       <FormGroup>
-        <Label htmlFor="label">Label</Label>
+        <InputLabel htmlFor="label">Label</InputLabel>
         <Input id="label" />
         <Message>This is the validation message</Message>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="label">Label</Label>
+        <InputLabel htmlFor="label">Label</InputLabel>
         <Input id="label" />
         <Message>This is the validation message</Message>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="label">Label</Label>
+        <InputLabel htmlFor="label">Label</InputLabel>
         <Input id="label" />
         <Message>This is the validation message</Message>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="label">Label</Label>
+        <InputLabel htmlFor="label">Label</InputLabel>
         <Input id="label" />
         <Message>This is the validation message</Message>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="label">Label</Label>
+        <InputLabel htmlFor="label">Label</InputLabel>
         <Input id="label" />
         <Message>This is the validation message</Message>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="label">Label</Label>
-        <Input id="label" />
-        <Message>This is the validation message</Message>
+        <Flexrow>
+          <Right>
+            <NewCategoryButton />
+          </Right>
+          <Left>
+            <InputLabel htmlFor="label">Label</InputLabel>
+            <Input id="label" />
+            <Message>This is the validation message</Message>
+          </Left>
+        </Flexrow>
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="label">Label</Label>
+        <InputLabel htmlFor="label">Label</InputLabel>
         <Input id="label" />
         <Message>This is the validation message</Message>
       </FormGroup>
     </SideWrapper>
   </div>;
 };
+
+const Flexrow = styled.div``;
+
+const Right = styled.div``;
+
+const Left = styled.div``;
 
 const SideWrapper = styled.div`
   margin-left: 400px;
@@ -58,7 +72,7 @@ const FormGroup = styled.div`
   width: 300px;
   margin: 50px auto;
 `;
-const Label = styled.label`
+const InputLabel = styled.label`
   margin-bottom: 0.5em;
   color: black;
   display: block;
@@ -79,5 +93,27 @@ const Message = styled.label`
   color: red;
   display: block;
 `;
+
+const NewCategoryBtn = styled.button``;
+
+// eslint-disable-next-line react/prop-types
+const NewCategoryButton = ({ formData, setFormData }) => {
+  const [addCategoryShow, setaddCategoryShow] = useState(false);
+
+  return (
+    <div>
+      <NewCategoryBtn onClick={() => setaddCategoryShow(!addCategoryShow)}>
+        NY
+      </NewCategoryBtn>
+      {addCategoryShow && (
+        <NewCategory
+          closeForm={setaddCategoryShow}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+    </div>
+  );
+};
 
 export default NewArticle;

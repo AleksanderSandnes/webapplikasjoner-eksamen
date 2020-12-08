@@ -16,6 +16,7 @@ import Contact from '../pages/Contact';
 import Articles from '../pages/Articles';
 import OfficeDetailPage from '../pages/OfficeDetailPage';
 import ArticleDetails from '../pages/ArticleDetails';
+import Nyartikkel from '../pages/Nyartikkel';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
@@ -81,9 +82,6 @@ const Routes = () => {
               <Articles />
             </Route>
             <Route exact path="/articles/:id">
-              <ArticleDetails />
-            </Route>
-            <Route exact path="/articleDetails">
               <ArticleDetails />
             </Route>
             <Route exact path="/">
