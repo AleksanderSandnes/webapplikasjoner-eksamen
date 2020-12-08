@@ -16,7 +16,7 @@ const NewArticle = () => {
   const { user } = useAuthContext();
   const history = useHistory();
 
-  const { register, handleSubmit, formState, reset } = useForm({
+  const { register, errors, handleSubmit, formState, reset } = useForm({
     mode: 'onBlur',
   });
 
@@ -55,7 +55,7 @@ const NewArticle = () => {
         <Title>Ny artikkel</Title>
       </HeaderTitle>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <FormGroup>
+        <FormGroup isInvalid={errors.title}>
           <InputLabel htmlFor="inpName">Tittel</InputLabel>
           <Input
             type="text"
@@ -66,9 +66,9 @@ const NewArticle = () => {
               required: true,
             })}
           />
-          <Message>This is the validation message</Message>
+          <Message valid={!errors.title}>Legg inn tittel på artikkelen</Message>
         </FormGroup>
-        <FormGroup>
+        <FormGroup isInvalid={errors.leadParagraph}>
           <InputLabel htmlFor="inpLeadParagraph">Ingress</InputLabel>
           <StyledTextArea
             type="text"
@@ -79,9 +79,11 @@ const NewArticle = () => {
               required: true,
             })}
           />
-          <Message>This is the validation message</Message>
+          <Message valid={!errors.leadParagraph}>
+            Legg inn ingress på artikkelen
+          </Message>
         </FormGroup>
-        <FormGroup>
+        <FormGroup isInvalid={errors.content}>
           <InputLabel htmlFor="inpContent">Tekst</InputLabel>
           <StyledTextArea
             type="text"
@@ -92,9 +94,11 @@ const NewArticle = () => {
               required: true,
             })}
           />
-          <Message>This is the validation message</Message>
+          <Message valid={!errors.content}>
+            Legg inn innhold på artikkelen
+          </Message>
         </FormGroup>
-        <FormGroup>
+        <FormGroup isInvalid={errors.categoryId}>
           <InputLabel htmlFor="inpCategories">Kategori</InputLabel>
           <Flexrow>
             <Left>
@@ -116,14 +120,16 @@ const NewArticle = () => {
                     </option>
                   ))}
               </StyledSelect>
-              <Message>This is the validation message</Message>
+              <Message valid={!errors.categoryId}>
+                Legg inn kategori på artikkelen
+              </Message>
             </Left>
             <Right>
               <NewCategoryButton />
             </Right>
           </Flexrow>
         </FormGroup>
-        <FormGroup>
+        <FormGroup isInvalid={errors.author}>
           <InputLabel htmlFor="inpAuthor">Forfatter</InputLabel>
           <StyledSelect
             name="author"
@@ -136,7 +142,9 @@ const NewArticle = () => {
             <option value="Gunn Gundersen">Gunn Gundersen</option>
             <option value="Simen Simensen">Simen Simensen</option>
           </StyledSelect>
-          <Message>This is the validation message</Message>
+          <Message valid={!errors.author}>
+            Legg inn forfatter på artikkelen
+          </Message>
         </FormGroup>
         <input
           hidden

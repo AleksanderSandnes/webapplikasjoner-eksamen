@@ -9,14 +9,7 @@ const CategorySchema = new Schema(
       required: true,
     },
   },
-  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
+  { timestamps: true }
 );
-
-CategorySchema.virtual('articles', {
-  ref: 'Article',
-  localField: '_id',
-  foreignField: 'categoryId',
-  justOne: false,
-});
 
 export default mongoose.model('Category', CategorySchema);
