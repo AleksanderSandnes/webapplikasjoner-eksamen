@@ -68,7 +68,6 @@ const ArticlePage = () => {
               key={article._id}
               onClick={() => redirectToDetailView(article._id)}
             >
-              {console.log(article)}
               <Flexrow>
                 <Image>
                   <Img name="midlertidig" src={pic} alt="midlertidig" />
