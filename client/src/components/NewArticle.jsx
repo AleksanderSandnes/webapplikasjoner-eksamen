@@ -6,8 +6,27 @@ import PropTypes from 'prop-types';
 import { useAuthContext } from '../context/AuthProvider';
 import { list } from '../utils/categoryService';
 import { create } from '../utils/articleService';
-import { Title, HeaderTitle } from '../styles/themeStyledComponents.js';
 import NewCategory from '../modals/NewCategory';
+import {
+  Footer,
+  FooterText,
+  Title,
+  HeaderTitle,
+} from '../styles/themeStyledComponents.js';
+import {
+  Flexrow,
+  FlexrowCategory,
+  Right,
+  FormGroup,
+  InputLabel,
+  Input,
+  StyledTextArea,
+  StyledSelect,
+  StyledSelectAuthor,
+  Message,
+  StyledForm,
+  StyledButton,
+} from '../styles/ArticleStyling.js';
 
 const NewArticle = () => {
   const [error, setError] = useState(null);
@@ -56,7 +75,16 @@ const NewArticle = () => {
       </HeaderTitle>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <FormGroup isInvalid={errors.title}>
-          <InputLabel htmlFor="inpName">Tittel</InputLabel>
+          <Flexrow>
+            <div>
+              <InputLabel htmlFor="inpName">Tittel</InputLabel>
+            </div>
+            <Right>
+              <Message valid={!errors.title}>
+                Legg inn tittel på artikkelen
+              </Message>
+            </Right>
+          </Flexrow>
           <Input
             type="text"
             name="title"
@@ -66,10 +94,18 @@ const NewArticle = () => {
               required: true,
             })}
           />
-          <Message valid={!errors.title}>Legg inn tittel på artikkelen</Message>
         </FormGroup>
         <FormGroup isInvalid={errors.leadParagraph}>
-          <InputLabel htmlFor="inpLeadParagraph">Ingress</InputLabel>
+          <Flexrow>
+            <div>
+              <InputLabel htmlFor="inpLeadParagraph">Ingress</InputLabel>
+            </div>
+            <Right>
+              <Message valid={!errors.leadParagraph}>
+                Legg inn ingress på artikkelen
+              </Message>
+            </Right>
+          </Flexrow>
           <StyledTextArea
             type="text"
             name="leadParagraph"
@@ -79,12 +115,18 @@ const NewArticle = () => {
               required: true,
             })}
           />
-          <Message valid={!errors.leadParagraph}>
-            Legg inn ingress på artikkelen
-          </Message>
         </FormGroup>
         <FormGroup isInvalid={errors.content}>
-          <InputLabel htmlFor="inpContent">Tekst</InputLabel>
+          <Flexrow>
+            <div>
+              <InputLabel htmlFor="inpContent">Tekst</InputLabel>
+            </div>
+            <Right>
+              <Message valid={!errors.content}>
+                Legg inn innhold på artikkelen
+              </Message>
+            </Right>
+          </Flexrow>
           <StyledTextArea
             type="text"
             name="content"
@@ -94,14 +136,21 @@ const NewArticle = () => {
               required: true,
             })}
           />
-          <Message valid={!errors.content}>
-            Legg inn innhold på artikkelen
-          </Message>
         </FormGroup>
         <FormGroup isInvalid={errors.categoryId}>
-          <InputLabel htmlFor="inpCategories">Kategori</InputLabel>
+          <FlexrowCategory>
+            <div>
+              <InputLabel htmlFor="inpCategories">Kategori</InputLabel>
+            </div>
+            <Right>
+              <Message valid={!errors.categoryId}>
+                Legg inn kategori på artikkelen
+              </Message>
+            </Right>
+          </FlexrowCategory>
+
           <Flexrow>
-            <Left>
+            <div>
               <StyledSelect
                 name="categoryId"
                 id="inpCategories"
@@ -120,18 +169,24 @@ const NewArticle = () => {
                     </option>
                   ))}
               </StyledSelect>
-              <Message valid={!errors.categoryId}>
-                Legg inn kategori på artikkelen
-              </Message>
-            </Left>
+            </div>
             <Right>
               <NewCategoryButton />
             </Right>
           </Flexrow>
         </FormGroup>
         <FormGroup isInvalid={errors.author}>
-          <InputLabel htmlFor="inpAuthor">Forfatter</InputLabel>
-          <StyledSelect
+          <Flexrow>
+            <div>
+              <InputLabel htmlFor="inpAuthor">Forfatter</InputLabel>
+            </div>
+            <Right>
+              <Message valid={!errors.author}>
+                Legg inn forfatter på artikkelen
+              </Message>
+            </Right>
+          </Flexrow>
+          <StyledSelectAuthor
             name="author"
             id="inpAuthor"
             ref={register({
@@ -141,10 +196,7 @@ const NewArticle = () => {
             <option value="Lars Larsen">Lars Larsen</option>
             <option value="Gunn Gundersen">Gunn Gundersen</option>
             <option value="Simen Simensen">Simen Simensen</option>
-          </StyledSelect>
-          <Message valid={!errors.author}>
-            Legg inn forfatter på artikkelen
-          </Message>
+          </StyledSelectAuthor>
         </FormGroup>
         <input
           hidden
@@ -159,7 +211,7 @@ const NewArticle = () => {
         />
         <FormGroup>
           <StyledButton type="submit" isLoading={formState.isSubmitting}>
-            Opprett ny artikkel
+            CREATE
           </StyledButton>
           {error && <p>{error.message}</p>}
         </FormGroup>
@@ -176,81 +228,25 @@ const NewArticle = () => {
           </div>
         )}
       </FormGroup>
+      <Footer>
+        <FooterText>OrgnNr: 007 007 007</FooterText>
+        <FooterText>Ig@Igror.no</FooterText>
+        <FooterText>99 00 00 00</FooterText>
+      </Footer>
     </div>
   );
 };
 
 export default NewArticle;
 
-const Flexrow = styled.div`
-  display: flex;
-  flex-direction: row;
+const NewCategoryBtn = styled.button`
+  text-align: center;
+  background-color: #2c91bd;
+  color: white;
+  width: 65px;
+  height: 45px;
+  margin-left: 10px;
 `;
-
-const Right = styled.div``;
-
-const Left = styled.div``;
-
-const FormGroup = styled.div`
-  color: black;
-  display: block;
-  width: 300px;
-  margin: 50px auto;
-`;
-const InputLabel = styled.label`
-  margin-bottom: 0.5em;
-  color: black;
-  display: block;
-`;
-
-const Input = styled.input`
-  padding: 0.5em;
-  color: black;
-  background: white;
-  width: 100%;
-  margin-bottom: 0.5em;
-  border: 1px solid black;
-  border-radius: 5px;
-`;
-
-const StyledTextArea = styled.textarea`
-  padding: 0.5em;
-  color: black;
-  background: white;
-  border: none;
-  width: 800px;
-  margin-bottom: 0.5em;
-  border: 1px solid black;
-  border-radius: 5px;
-`;
-
-const StyledSelect = styled.select`
-  padding: 0.5em;
-  color: black;
-  background: white;
-  border: none;
-  width: 100%;
-  margin-bottom: 0.5em;
-  border: 1px solid black;
-  border-radius: 5px;
-`;
-
-const Message = styled.label`
-  margin-bottom: 0.5em;
-  color: red;
-  display: block;
-`;
-
-const StyledForm = styled.form`
-  margin-right: 400px;
-`;
-
-const StyledButton = styled.button`
-  text-align: left;
-  margin: 0px 0px 20px 0px;
-`;
-
-const NewCategoryBtn = styled.button``;
 
 const NewCategoryButton = ({ formData, setFormData }) => {
   const [addCategoryShow, setaddCategoryShow] = useState(false);

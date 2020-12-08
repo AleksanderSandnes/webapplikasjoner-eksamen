@@ -53,13 +53,13 @@ const ArticlePage = () => {
           {(isAdmin || isSuperAdmin) && (
             <ButtonLeft>
               <NewArticleButton onClick={handleClick}>
-                Ny Artikkel
+                NY ARTIKKEL
               </NewArticleButton>
             </ButtonLeft>
           )}
           <ButtonRight>
-            <SearchButton>Søk</SearchButton>
-            <FilterButton>Filter</FilterButton>
+            <SearchButton>SØK</SearchButton>
+            <FilterButton>FILTER</FilterButton>
           </ButtonRight>
         </FlexBoxButtons>
         {articles &&
@@ -102,11 +102,13 @@ const Img = styled.img`
   vertical-align: top;
   max-width: 500px;
   height: 200px;
+  margin-top: -50px;
 `;
 
 const Flexrow = styled.div`
   display: flex;
   flex-direction: row;
+  height: 200px;
 `;
 
 const RightSide = styled.div`
@@ -134,6 +136,10 @@ const SearchButton = styled.button`
 
 const MarginTop = styled.article`
   margin-top: 50px;
+
+  &:hover {
+    border: 1px solid black;
+  }
 `;
 
 const FilterButton = styled.button`
@@ -195,6 +201,13 @@ const ButtonRight = styled.div`
   flex: 0 0 50%;
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  right: 400px;
+  padding: 10px;
+  font-weight: bold;
+  width: 300px;
+  height: 80px;
+  text-align: center;
 `;
 
 const ButtonLeft = styled.div`

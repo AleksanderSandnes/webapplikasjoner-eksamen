@@ -1,16 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-
+import NewCategory from '../modals/NewCategory';
 import {
   Footer,
   FooterText,
   Title,
   HeaderTitle,
 } from '../styles/themeStyledComponents.js';
+import {
+  Flexrow,
+  FlexrowCategory,
+  Right,
+  FormGroup,
+  InputLabel,
+  Input,
+  StyledTextArea,
+  StyledSelect,
+  StyledSelectAuthor,
+  Message,
+  StyledForm,
+  StyledButton,
+} from '../styles/ArticleStyling.js';
 import { get, put } from '../utils/articleService';
-import { list, create } from '../utils/categoryService';
+import { list } from '../utils/categoryService';
 
 const ArticleEdit = () => {
   const [error, setError] = useState(null);
@@ -80,59 +95,145 @@ const ArticleEdit = () => {
         {loading && <div>Loading...</div>}
 
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="inpName">Tittel</label>
-          <StyledInput
-            type="text"
-            name="title"
-            id="inpNavn"
-            placeholder="Tittel"
-            ref={register({
-              required: true,
-            })}
-          />
-          <label htmlFor="inpLeadParagraph">Ingress</label>
-          <StyledTextArea
-            type="text"
-            name="leadParagraph"
-            id="inpLeadParagraph"
-            placeholder="Ingress"
-            ref={register({
-              required: true,
-            })}
-          />
-          <label htmlFor="inpLeadParagraph">Tekst</label>
-          <StyledTextArea
-            type="text"
-            name="content"
-            id="inpContent"
-            placeholder="Tekst"
-            ref={register({
-              required: true,
-            })}
-          />
-          <label htmlFor="inpCategories">Kategori</label>
-          <FlexItems>
-            <StyledSelect
-              name="categoryId"
-              id="inpCategories"
+          <FormGroup isInvalid={errors.title}>
+            <Flexrow>
+              <div>
+                <InputLabel htmlFor="inpName">Tittel</InputLabel>
+              </div>
+              <Right>
+                <Message valid={!errors.title}>
+                  Legg inn tittel på artikkelen
+                </Message>
+              </Right>
+            </Flexrow>
+            <Input
+              type="text"
+              name="title"
+              id="inpNavn"
+              placeholder="Tittel"
+              ref={register({
+                required: true,
+              })}
+            />
+          </FormGroup>
+          <FormGroup isInvalid={errors.leadParagraph}>
+            <Flexrow>
+              <div>
+                <InputLabel htmlFor="inpLeadParagraph">Ingress</InputLabel>
+              </div>
+              <Right>
+                <Message valid={!errors.leadParagraph}>
+                  Legg inn ingress på artikkelen
+                </Message>
+              </Right>
+            </Flexrow>
+            <StyledTextArea
+              type="text"
+              name="leadParagraph"
+              id="inpLeadParagraph"
+              placeholder="Ingress"
+              ref={register({
+                required: true,
+              })}
+            />
+          </FormGroup>
+          <FormGroup isInvalid={errors.content}>
+            <Flexrow>
+              <div>
+                <InputLabel htmlFor="inpContent">Tekst</InputLabel>
+              </div>
+              <Right>
+                <Message valid={!errors.content}>
+                  Legg inn innhold på artikkelen
+                </Message>
+              </Right>
+            </Flexrow>
+            <StyledTextArea
+              type="text"
+              name="content"
+              id="inpContent"
+              placeholder="Tekst"
+              ref={register({
+                required: true,
+              })}
+            />
+          </FormGroup>
+          <FormGroup isInvalid={errors.categoryId}>
+            <FlexrowCategory>
+              <div>
+                <InputLabel htmlFor="inpCategories">Kategori</InputLabel>
+              </div>
+              <Right>
+                <Message valid={!errors.categoryId}>
+                  Legg inn kategori på artikkelen
+                </Message>
+              </Right>
+            </FlexrowCategory>
+
+            <Flexrow>
+              <div>
+                <StyledSelect
+                  name="categoryId"
+                  id="inpCategories"
+                  ref={register({
+                    required: true,
+                  })}
+                >
+                  {categories &&
+                    categories.map((category) => (
+                      <option value={category._id} key={category._id}>
+                        {category.name}
+                      </option>
+                    ))}
+                </StyledSelect>
+              </div>
+              <Right>
+                <NewCategoryButton />
+              </Right>
+            </Flexrow>
+          </FormGroup>
+          <FormGroup isInvalid={errors.author}>
+            <Flexrow>
+              <div>
+                <InputLabel htmlFor="inpAuthor">Forfatter</InputLabel>
+              </div>
+              <Right>
+                <Message valid={!errors.author}>
+                  Legg inn forfatter på artikkelen
+                </Message>
+              </Right>
+            </Flexrow>
+            <StyledSelectAuthor
+              name="author"
+              id="inpAuthor"
               ref={register({
                 required: true,
               })}
             >
-              {categories &&
-                categories.map((category) => (
-                  <option value={category._id} key={category._id}>
-                    {category.name}
-                  </option>
-                ))}
-            </StyledSelect>
-            <CategoryButton>Ny</CategoryButton>
-          </FlexItems>
-          <StyledButton type="submit" isLoading={formState.isSubmitting}>
-            Oppdater artikkel
-          </StyledButton>
-          {error && <p>{error.message}</p>}
+              <option value="Lars Larsen">Lars Larsen</option>
+              <option value="Gunn Gundersen">Gunn Gundersen</option>
+              <option value="Simen Simensen">Simen Simensen</option>
+            </StyledSelectAuthor>
+          </FormGroup>
+          <FormGroup>
+            <StyledButton type="submit" isLoading={formState.isSubmitting}>
+              LAGRE
+            </StyledButton>
+            {error && <p>{error.message}</p>}
+          </FormGroup>
         </StyledForm>
+        <FormGroup>
+          {success && (
+            <div>
+              <h1>Lagrer Artikkel...</h1>
+            </div>
+          )}
+          {error && (
+            <div>
+              <h1>{error}</h1>
+            </div>
+          )}
+        </FormGroup>
         <Footer>
           <FooterText>OrgnNr: 007 007 007</FooterText>
           <FooterText>Ig@Igror.no</FooterText>
@@ -145,41 +246,35 @@ const ArticleEdit = () => {
 
 export default ArticleEdit;
 
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  max-width: 20rem;
+const NewCategoryBtn = styled.button`
+  text-align: center;
+  background-color: #2c91bd;
+  color: white;
+  width: 65px;
+  height: 45px;
+  margin-left: 10px;
 `;
 
-const StyledInput = styled.input`
-  margin: 0px 0px 20px 0px;
-  background-color: #cccccc;
-`;
+const NewCategoryButton = ({ formData, setFormData }) => {
+  const [addCategoryShow, setaddCategoryShow] = useState(false);
 
-const StyledTextArea = styled.textarea`
-  margin: 0px 0px 20px 0px;
-  background-color: #cccccc;
-`;
+  return (
+    <div>
+      <NewCategoryBtn onClick={() => setaddCategoryShow(!addCategoryShow)}>
+        NY
+      </NewCategoryBtn>
+      {addCategoryShow && (
+        <NewCategory
+          closeForm={setaddCategoryShow}
+          formData={formData}
+          setFormData={setFormData}
+        />
+      )}
+    </div>
+  );
+};
 
-const StyledButton = styled.button`
-  text-align: left;
-  margin: 0px 0px 20px 0px;
-`;
-
-const StyledSelect = styled.select`
-  text-align: left;
-  margin: 0px 0px 20px 0px;
-  border-color: black;
-  background-color: #c2c1c1;
-  width: 100%;
-`;
-
-const FlexItems = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const CategoryButton = styled.button`
-  padding: 0px 10px;
-`;
+NewCategoryButton.propTypes = {
+  formData: PropTypes.object,
+  setFormData: PropTypes.func,
+};

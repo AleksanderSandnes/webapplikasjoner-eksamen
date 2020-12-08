@@ -47,7 +47,7 @@ const Locations = ({ setOffice }) => {
       {error && <p>{error}</p>}
       <SideWrapper>
         {loading && <div>Loading...</div>}
-        <FilterButton>Filter</FilterButton>
+        <FilterButton>FILTER</FilterButton>
         <ButtonPlacement>
           <ImageButton type="button" onClick={handleClick}>
             <img name="Lines" src={ThreeLines} alt="Lines" />
