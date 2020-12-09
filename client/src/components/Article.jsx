@@ -6,6 +6,7 @@ import pic from '../assets/images/pic.png';
 const Article = ({ article }) => (
   <div>
     <Flexrow>
+      {console.log(article)}
       <Image>
         <Img name="midlertidig" src={pic} alt="midlertidig" />
       </Image>

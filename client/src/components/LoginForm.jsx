@@ -12,9 +12,25 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { login } from '../utils/authService';
 import { useAuthContext } from '../context/AuthProvider';
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: blue;
+  }
+`;
 
 const LoginForm = () => {
   const [closeBtnState, setCloseBtnState] = useState(false);
@@ -113,6 +129,11 @@ const LoginForm = () => {
           <FormErrorMessage valid={!errors.password}>
             Passord må fylles ut og bestå av 3 tall/bokstaver
           </FormErrorMessage>
+        </FormControl>
+        <FormControl>
+          <StyledLink to="register">
+            Har du ikke en bruker? Registrer deg her.
+          </StyledLink>
         </FormControl>
         <Button
           mt={4}

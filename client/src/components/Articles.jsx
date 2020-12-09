@@ -115,9 +115,10 @@ const SearchButton = styled.button`
 
 const MarginTop = styled.article`
   margin-top: 50px;
+  border: 1px solid white;
 
   &:hover {
-    border: 1px solid black;
+    border: 1px solid #2c91bd;
   }
 `;
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
+import Moment from 'react-moment';
 import { useAuthContext } from '../context/AuthProvider';
 import {
   Footer,
@@ -65,7 +66,22 @@ const ArticleDetails = () => {
                 <H3Text>Av {article.author}</H3Text>
               </LeftAlign>
               <RightAlign>
-                <H3Text>{article.createdAt}</H3Text>
+                <FlexTime>
+                  <H3Text>
+                    Publisert:{' '}
+                    <Moment
+                      date={article.createdAt}
+                      format="DD/MM/YYYY hh:mm"
+                    />
+                  </H3Text>
+                  <H3Text>
+                    Redigert:{' '}
+                    <Moment
+                      date={article.updatedAt}
+                      format="DD/MM/YYYY hh:mm"
+                    />
+                  </H3Text>
+                </FlexTime>
               </RightAlign>
             </Flexbar>
             <Text>{article.leadParagraph}</Text>
@@ -114,13 +130,22 @@ const CategoryName = styled.h3`
 
 const Flexbar = styled.div`
   display: flex;
+  flex-direction: row;
   margin-top: 70px;
   margin-bottom: 25px;
+  justify-content: space-between;
+`;
+
+const FlexTime = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: right;
 `;
 
 const RightAlign = styled.div`
   flex: 0 0 50%;
   display: flex;
+  height: 50px;
   justify-content: flex-end;
 `;
 

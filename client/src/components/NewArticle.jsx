@@ -70,7 +70,6 @@ const NewArticle = () => {
       <HeaderTitle>
         <Title>Ny artikkel</Title>
       </HeaderTitle>
-
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <FormGroup isInvalid={errors.title}>
           <Flexrow>

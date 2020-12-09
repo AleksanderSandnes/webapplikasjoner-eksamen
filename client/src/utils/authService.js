@@ -17,6 +17,14 @@ export const getUserInfo = async () => {
   }
 };
 
+export const registerUser = async (data) => {
+  try {
+    return await http.post('/register', data);
+  } catch (err) {
+    return err.response;
+  }
+};
+
 export const login = async (credentials) => {
   try {
     await getCsrfToken();

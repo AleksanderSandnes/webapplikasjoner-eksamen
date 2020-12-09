@@ -70,7 +70,7 @@ const OfficeDetail = ({ office }) => (
       <EmployeeWrapper>
         {office &&
           office.employees.map((employee) => (
-            <OneEmployee>
+            <OneEmployee key={employee._id}>
               <img name="ProfilePicture" src={pic} alt="ProfilePicture" />
               <MarginTop>{employee.name}</MarginTop>
               <MarginBottom>{employee.position}</MarginBottom>

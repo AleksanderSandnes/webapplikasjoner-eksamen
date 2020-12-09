@@ -17,7 +17,7 @@ const Nav = () => {
         <NavBar2>
           <UnorderedList>
             <ListItem>
-              <NavLink exact to="/homepage" activeClassName="active">
+              <NavLink exact to="/" activeClassName="active">
                 Hjem
               </NavLink>
             </ListItem>
@@ -84,7 +84,8 @@ const ListItem = styled.li`
     font-weight: bold;
   }
 
-  & a.active {
+  & a.active,
+  a:hover {
     color: #2c91bd;
   }
 
@@ -114,7 +115,7 @@ const ListItem = styled.li`
   @media (min-width: 801px) {
     display: inline-block;
     list-style: none;
-    padding: 0.36em 0.9375em;
+    padding: 0 0 0 1.4em;
 
     & a {
       text-decoration: none;
@@ -126,7 +127,7 @@ const StyledButton = styled.button`
   background-color: #2c91bd;
   font-size: 15px;
   font-weight: 730;
-  padding: 20px 38px;
+  padding: 30px 38px;
   color: white;
 `;
 
@@ -164,7 +165,6 @@ const Header = styled.header`
   box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.2);
 
   @media (min-width: 801px) {
-    padding: 0.35em;
     width: 100%;
     display: inline-block;
   }

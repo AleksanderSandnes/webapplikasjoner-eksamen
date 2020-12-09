@@ -19,6 +19,7 @@ import ArticleDetails from '../pages/ArticleDetails';
 import ArticleEditPage from '../pages/ArticleEditPage';
 import NewArticlePage from '../pages/NewArticlePage';
 import SupportPage from '../pages/SupportPage';
+import Register from '../components/Register';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
@@ -70,6 +71,9 @@ const Routes = () => {
       <MainLayout>
         <Suspense fallback={<div>Loading ...</div>}>
           <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
             <Route exact path="/homepage">
               <HomePage />
             </Route>
@@ -97,11 +101,11 @@ const Routes = () => {
             <AdminRoutes exact path="/support">
               <SupportPage />
             </AdminRoutes>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
             <Route path="*">
               <NoMatch />
