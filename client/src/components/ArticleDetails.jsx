@@ -46,8 +46,7 @@ const ArticleDetails = () => {
   }, [id]);
 
   useEffect(() => {
-    console.log(article);
-    if (article) {
+    if (article)
       if (article.hasOwnProperty('image')) {
         console.log(article);
         const fetchData = async () => {
@@ -61,8 +60,7 @@ const ArticleDetails = () => {
         };
         fetchData();
       }
-    }
-  }, [error, article]);
+  }, [article]);
 
   const removeArticle = async (articleId) => {
     const { data } = await remove(articleId);
@@ -98,7 +96,6 @@ const ArticleDetails = () => {
             <Title>{article.title}</Title>
           </HeaderTitle>
         )}
-        ||
         {!article.image && (
           <HeaderTitle>
             <Title>{article.title}</Title>

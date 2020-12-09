@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import xssClean from 'xss-clean';
-/* import csrf from 'csurf'; */
+import csrf from 'csurf';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 
@@ -50,12 +50,12 @@ app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
-  /* app.use(csrf({ cookie: true })); */
+  app.use(csrf({ cookie: true }));
 }
 
-/* app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
+app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
   res.status(200).json({ data: req.csrfToken() });
-}); */
+});
 
 app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/articles`, article);
