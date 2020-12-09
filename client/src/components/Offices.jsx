@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { list } from '../utils/officeService.js';
 import OfficeGrid from './OfficeGrid';
-import OfficeList from './OfficeList.jsx';
+import OfficeList from './OfficeList';
 import ThreeLines from '../assets/images/ThreeLines.png';
 import Squares from '../assets/images/Squares.png';
 import {

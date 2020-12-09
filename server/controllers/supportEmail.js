@@ -33,7 +33,7 @@ export const get = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const list = catchAsyncErrors(async (req, res, next) => {
-  const categories = await supportEmailService.listSupportEmail(req.query);
+  const categories = await supportEmailService.listSupportEmails(req.query);
   res.status(200).json({ success: true, data: categories });
 });
 

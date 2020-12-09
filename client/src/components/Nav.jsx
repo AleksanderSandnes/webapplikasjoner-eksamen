@@ -5,7 +5,7 @@ import { useAuthContext } from '../context/AuthProvider';
 import { logout } from '../utils/authService';
 
 const Nav = () => {
-  const { isLoggedIn, setUser } = useAuthContext();
+  const { isLoggedIn, setUser, isAdmin, isSuperAdmin } = useAuthContext();
   const handleLogout = async () => {
     await logout();
     setUser(null);
@@ -36,6 +36,13 @@ const Nav = () => {
                 Kontakt
               </NavLink>
             </ListItem>
+            {(isAdmin || isSuperAdmin) && (
+              <ListItem>
+                <NavLink exact to="/support" activeClassName="active">
+                  Support
+                </NavLink>
+              </ListItem>
+            )}
             <ListItem>
               {!isLoggedIn && (
                 <NavLink exact to="/login" activeClassName="active">

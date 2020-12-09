@@ -18,6 +18,7 @@ import OfficeDetailPage from '../pages/OfficeDetailPage';
 import ArticleDetails from '../pages/ArticleDetails';
 import ArticleEditPage from '../pages/ArticleEditPage';
 import NewArticlePage from '../pages/NewArticlePage';
+import SupportPage from '../pages/SupportPage';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
@@ -92,6 +93,9 @@ const Routes = () => {
             </AdminRoutes>
             <AdminRoutes exact path="/newarticle">
               <NewArticlePage />
+            </AdminRoutes>
+            <AdminRoutes exact path="/support">
+              <SupportPage />
             </AdminRoutes>
             <Route exact path="/">
               <HomePage />

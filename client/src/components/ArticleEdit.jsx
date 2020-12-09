@@ -73,10 +73,11 @@ const ArticleEdit = () => {
   }, [setCategories, reset]);
 
   const onSubmit = async (formData) => {
-    console.log(formData);
     const fetchData = async () => {
       const { data } = await put(id, formData);
       if (!data.success) {
+        /* console.log(formData); */
+        console.log(error);
         setError(data.message);
       } else {
         setError(null);
@@ -169,7 +170,6 @@ const ArticleEdit = () => {
                 </Message>
               </Right>
             </FlexrowCategory>
-
             <Flexrow>
               <div>
                 <StyledSelect
@@ -214,6 +214,26 @@ const ArticleEdit = () => {
               <option value="Gunn Gundersen">Gunn Gundersen</option>
               <option value="Simen Simensen">Simen Simensen</option>
             </StyledSelectAuthor>
+          </FormGroup>
+          <FormGroup>
+            <Flexrow>
+              <div>
+                <InputLabel htmlFor="inpIsClassified">Hemmelig</InputLabel>
+              </div>
+              <Right>
+                <Message valid={!errors.categoryId}>
+                  Legg inn classified på artikkelen
+                </Message>
+              </Right>
+            </Flexrow>
+            <Right>
+              <input
+                type="checkbox"
+                defaultChecked={article.isClassified}
+                name="isClassified"
+                ref={register}
+              />
+            </Right>
           </FormGroup>
           <FormGroup>
             <StyledButton type="submit" isLoading={formState.isSubmitting}>

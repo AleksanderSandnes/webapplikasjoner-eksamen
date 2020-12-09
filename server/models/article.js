@@ -30,6 +30,10 @@ const ArticleSchema = new Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'Image',
     },
+    isClassified: {
+      type: Boolean,
+      default: false,
+    },
     author: {
       type: String,
       enum: {

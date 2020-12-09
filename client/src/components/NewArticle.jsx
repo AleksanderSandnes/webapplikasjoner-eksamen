@@ -53,10 +53,7 @@ const NewArticle = () => {
   }, [setCategories, reset]);
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-    console.log(formState);
     const { data } = await create(formData);
-    console.log(data);
     if (!data.success) {
       setError(data.message);
     } else {
@@ -73,6 +70,7 @@ const NewArticle = () => {
       <HeaderTitle>
         <Title>Ny artikkel</Title>
       </HeaderTitle>
+
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <FormGroup isInvalid={errors.title}>
           <Flexrow>
@@ -148,7 +146,6 @@ const NewArticle = () => {
               </Message>
             </Right>
           </FlexrowCategory>
-
           <Flexrow>
             <div>
               <StyledSelect
@@ -197,6 +194,28 @@ const NewArticle = () => {
             <option value="Gunn Gundersen">Gunn Gundersen</option>
             <option value="Simen Simensen">Simen Simensen</option>
           </StyledSelectAuthor>
+        </FormGroup>
+        <FormGroup isInvalid={errors.isClassified}>
+          <Flexrow>
+            <div>
+              <InputLabel htmlFor="inpIsClassified">Hemmelig</InputLabel>
+            </div>
+            <Right>
+              <Message valid={!errors.categoryId}>
+                Legg inn classified på artikkelen
+              </Message>
+            </Right>
+          </Flexrow>
+          <Right>
+            <input
+              type="checkbox"
+              defaultChecked={false}
+              name="isClassified"
+              ref={register({
+                required: true,
+              })}
+            />
+          </Right>
         </FormGroup>
         <input
           hidden
