@@ -1,33 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import pic from '../assets/images/pic.png';
+import { getImage } from '../utils/imageService';
 
-const Article = ({ article }) => (
-  <div>
-    <Flexrow>
-      {console.log(article)}
-      <Image>
-        {(article.image && (
-          <Img
-            name="midlertidig"
-            src={article.image.file_path}
-            alt="midlertidig"
-          />
-        )) || <Img name="midlertidig" src={pic} alt="midlertidig" />}
-      </Image>
-      <RightSide>
-        <ArticleFlexRow>
-          <ArticleLeft>
-            <ArticleHeader>{article.title}</ArticleHeader>
-          </ArticleLeft>
-          <CategoryName>{article.categoryId.name}</CategoryName>
-        </ArticleFlexRow>
-        <ArticleText>{article.leadParagraph.substring(0, 150)}...</ArticleText>
-      </RightSide>
-    </Flexrow>
-  </div>
-);
+const Article = ({ article }) => {
+  const [error, setError] = useState(null);
+  const [src, setSrc] = useState(null);
+
+  function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => (binary += String.fromCharCode(b)));
+    return window.btoa(binary);
+  }
+
+  useEffect(() => {
+    if (article.image) {
+      const fetchData = async () => {
+        const { data } = await getImage(article.image._id);
+        const img = await data.arrayBuffer().then((buffer) => {
+          const base64Flag = 'data:image/jpeg;base64,';
+          const imageStr = arrayBufferToBase64(buffer);
+          return base64Flag + imageStr;
+        });
+        setSrc(img);
+      };
+      fetchData();
+    }
+  }, [error]);
+  return (
+    <div>
+      <Flexrow>
+        {console.log(article)}
+        <Image>
+          {(article.image && (
+            <Img name="midlertidig" src={src} alt="midlertidig" />
+          )) || <Img name="midlertidig" src={pic} alt="midlertidig" />}
+        </Image>
+        <RightSide>
+          <ArticleFlexRow>
+            <ArticleLeft>
+              <ArticleHeader>{article.title}</ArticleHeader>
+            </ArticleLeft>
+            <CategoryName>{article.categoryId.name}</CategoryName>
+          </ArticleFlexRow>
+          <ArticleText>
+            {article.leadParagraph.substring(0, 150)}...
+          </ArticleText>
+        </RightSide>
+      </Flexrow>
+    </div>
+  );
+};
 
 Article.propTypes = {
   article: PropTypes.object,

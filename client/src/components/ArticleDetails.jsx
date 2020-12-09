@@ -10,6 +10,7 @@ import {
   HeaderTitle,
 } from '../styles/themeStyledComponents.js';
 import { get, remove } from '../utils/articleService';
+import { getImage } from '../utils/imageService';
 
 const ArticleDetails = () => {
   const { isAdmin, isSuperAdmin } = useAuthContext();
@@ -18,6 +19,46 @@ const ArticleDetails = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const { id } = useParams();
+
+  const [src, setSrc] = useState(null);
+
+  function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => (binary += String.fromCharCode(b)));
+    return window.btoa(binary);
+  }
+
+  useEffect(() => {
+    if (id) {
+      const fetchData = async () => {
+        setLoading(true);
+        const { data } = await get(id);
+        if (!data.success) {
+          setError(data.error);
+        } else {
+          setArticle(data.data);
+        }
+        setLoading(false);
+      };
+      fetchData();
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (article) {
+      const fetchData = async () => {
+        const { data } = await getImage(article.image._id);
+        const img = await data.arrayBuffer().then((buffer) => {
+          const base64Flag = 'data:image/jpeg;base64,';
+          const imageStr = arrayBufferToBase64(buffer);
+          return base64Flag + imageStr;
+        });
+        setSrc(img);
+      };
+      fetchData();
+    }
+  }, [error, article]);
 
   const removeArticle = async (articleId) => {
     const { data } = await remove(articleId);
@@ -39,26 +80,16 @@ const ArticleDetails = () => {
     history.push(`/uploadImage/${articleId}`);
   };
 
-  useEffect(() => {
-    if (id) {
-      const fetchData = async () => {
-        setLoading(true);
-        const { data } = await get(id);
-        if (!data.success) {
-          setError(data.error);
-        } else {
-          setArticle(data.data);
-        }
-        setLoading(false);
-      };
-      fetchData();
-    }
-  }, [id]);
-
   return (
     article && (
       <div>
-        <HeaderTitle>
+        <HeaderTitle
+          style={{
+            backgroundImage: `url("${src}")`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '100% 100%',
+          }}
+        >
           <Title>{article.title}</Title>
         </HeaderTitle>
         {error && <p>{error}</p>}
