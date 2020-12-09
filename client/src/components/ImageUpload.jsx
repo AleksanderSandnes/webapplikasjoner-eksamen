@@ -37,13 +37,15 @@ const ImageUpload = () => {
       setSuccess(true);
       setError(null);
     }
-    history.push(`/articles/${id}`);
+    setTimeout(() => {
+      history.push(`/articles/${id}`);
+    }, 2000);
   };
 
   return (
     <>
       {src && <img alt="my" src={src} />}
-      {success && <p>Bilde opplastet med {imageId}</p>}
+      {success && <p>Laster opp bilde med id: {imageId}</p>}
       {error && <p>Noe gikk galt med opplastingen</p>}
       <form encType="multipart/form-data" method="post" onSubmit={handleSubmit}>
         <label htmlFor="image">Last opp bilde</label>
