@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
