@@ -8,7 +8,13 @@ const Article = ({ article }) => (
     <Flexrow>
       {console.log(article)}
       <Image>
-        <Img name="midlertidig" src={pic} alt="midlertidig" />
+        {(article.image && (
+          <Img
+            name="midlertidig"
+            src={article.image.file_path}
+            alt="midlertidig"
+          />
+        )) || <Img name="midlertidig" src={pic} alt="midlertidig" />}
       </Image>
       <RightSide>
         <ArticleFlexRow>

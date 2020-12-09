@@ -175,6 +175,7 @@ const ArticleEdit = () => {
                 <StyledSelect
                   name="categoryId"
                   id="inpCategories"
+                  defaultValue={article.categoryId}
                   ref={register({
                     required: true,
                   })}
