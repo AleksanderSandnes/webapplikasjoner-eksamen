@@ -16,6 +16,8 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [articles, setArticles] = useState(null);
+  /* const [currentPage, setCurrentPage] = useState(1);
+  const [articlesPerPage, setArticlesPerPage] = useState(4); */
   const history = useHistory();
 
   const redirectToDetailView = (id) => {
@@ -40,6 +42,13 @@ const ArticlePage = () => {
     };
     fetchData();
   }, [error]);
+
+  /* const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticle = articles.slice(
+    indexOfFirstArticle,
+    indexOfLastArticle
+  ); */
 
   return (
     <div>
