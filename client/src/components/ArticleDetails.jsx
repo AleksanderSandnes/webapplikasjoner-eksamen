@@ -46,17 +46,21 @@ const ArticleDetails = () => {
   }, [id]);
 
   useEffect(() => {
+    console.log(article);
     if (article) {
-      const fetchData = async () => {
-        const { data } = await getImage(article.image._id);
-        const img = await data.arrayBuffer().then((buffer) => {
-          const base64Flag = 'data:image/jpeg;base64,';
-          const imageStr = arrayBufferToBase64(buffer);
-          return base64Flag + imageStr;
-        });
-        setSrc(img);
-      };
-      fetchData();
+      if (article.hasOwnProperty('image')) {
+        console.log(article);
+        const fetchData = async () => {
+          const { data } = await getImage(article.image._id);
+          const img = await data.arrayBuffer().then((buffer) => {
+            const base64Flag = 'data:image/jpeg;base64,';
+            const imageStr = arrayBufferToBase64(buffer);
+            return base64Flag + imageStr;
+          });
+          setSrc(img);
+        };
+        fetchData();
+      }
     }
   }, [error, article]);
 
@@ -83,15 +87,23 @@ const ArticleDetails = () => {
   return (
     article && (
       <div>
-        <HeaderTitle
-          style={{
-            backgroundImage: `url("${src}")`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '100% 100%',
-          }}
-        >
-          <Title>{article.title}</Title>
-        </HeaderTitle>
+        {article.image && (
+          <HeaderTitle
+            style={{
+              backgroundImage: `url("${src}")`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '100% 100%',
+            }}
+          >
+            <Title>{article.title}</Title>
+          </HeaderTitle>
+        )}
+        ||
+        {!article.image && (
+          <HeaderTitle>
+            <Title>{article.title}</Title>
+          </HeaderTitle>
+        )}
         {error && <p>{error}</p>}
         <SideWrapper>
           {loading && <div>Loading...</div>}
@@ -150,7 +162,15 @@ const ArticleDetails = () => {
 
 export default ArticleDetails;
 
-const UploadImageButton = styled.button``;
+const UploadImageButton = styled.button`
+  padding: 10px;
+  width: 150px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  background-color: #2c82df;
+  margin: 0 20px 0 20px;
+`;
 
 const SideWrapper = styled.div`
   margin-left: 400px;

@@ -208,7 +208,7 @@ const NewArticle = () => {
           <Right>
             <input
               type="checkbox"
-              defaultChecked={false}
+              defaultChecked
               name="isClassified"
               ref={register({
                 required: true,

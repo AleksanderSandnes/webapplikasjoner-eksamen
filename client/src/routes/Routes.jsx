@@ -21,6 +21,7 @@ import NewArticlePage from '../pages/NewArticlePage';
 import SupportPage from '../pages/SupportPage';
 import Register from '../components/Register';
 import ImagePage from '../pages/ImagePage';
+import UserDataPage from '../pages/UserDataPage';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
@@ -60,6 +61,18 @@ const AdminRoutes = ({ children, ...rest }) => {
       render={() =>
         isLoggedIn && (isAdmin || isSuperAdmin) && !isLoading && children
       }
+    />
+  );
+};
+
+const SuperAdminRoutes = ({ children, ...rest }) => {
+  const { isLoggedIn, isSuperAdmin, isLoading } = useAuthContext();
+
+  return (
+    <Route
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      render={() => isLoggedIn && isSuperAdmin && !isLoading && children}
     />
   );
 };
@@ -105,6 +118,9 @@ const Routes = () => {
             <AdminRoutes exact path="/support">
               <SupportPage />
             </AdminRoutes>
+            <SuperAdminRoutes exact path="/userdata">
+              <UserDataPage />
+            </SuperAdminRoutes>
             <Route path="/login">
               <Login />
             </Route>

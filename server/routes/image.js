@@ -5,6 +5,6 @@ import { upload } from '../middleware/image.js';
 const router = express.Router();
 
 router.post('/upload', upload, imageController.create);
-router.get('/download/:id', imageController.get);
+router.get('/image/:id', imageController.get);
 
 export default router;
