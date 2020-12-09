@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
-import { useAuthContext } from '../context/AuthProvider';
 import { list } from '../utils/supportEmailService.js';
 import {
   Footer,
@@ -11,15 +9,9 @@ import {
 } from '../styles/themeStyledComponents.js';
 
 const ArticlePage = () => {
-  const { isAdmin, isSuperAdmin } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [emails, setEmails] = useState(null);
-  const history = useHistory();
-
-  const redirectToDetailView = (id) => {
-    history.push(`/emails/${id}`);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
