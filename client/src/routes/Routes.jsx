@@ -19,6 +19,7 @@ import ArticleDetails from '../pages/ArticleDetails';
 import ArticleEditPage from '../pages/ArticleEditPage';
 import NewArticlePage from '../pages/NewArticlePage';
 import SupportPage from '../pages/SupportPage';
+import ImagePage from '../pages/ImagePage';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
@@ -87,6 +88,9 @@ const Routes = () => {
             </Route>
             <Route exact path="/articles/:id">
               <ArticleDetails />
+            </Route>
+            <Route exact path="/uploadImage/:id">
+              <ImagePage />
             </Route>
             <AdminRoutes exact path="/articles/:id/edit">
               <ArticleEditPage />

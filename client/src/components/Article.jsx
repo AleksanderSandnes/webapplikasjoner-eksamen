@@ -7,7 +7,7 @@ const Article = ({ article }) => (
   <div>
     <Flexrow>
       <Image>
-        <Img name="midlertidig" src={pic} alt="midlertidig" />
+        <Img name="midlertidig" src={article.image} alt="midlertidig" />
       </Image>
       <RightSide>
         <ArticleFlexRow>

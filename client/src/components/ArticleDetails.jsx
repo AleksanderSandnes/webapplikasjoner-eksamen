@@ -34,6 +34,10 @@ const ArticleDetails = () => {
     history.push(`/articles/${articleId}/edit`);
   };
 
+  const uploadImage = async (articleId) => {
+    history.push(`/uploadImage/${articleId}`);
+  };
+
   useEffect(() => {
     if (id) {
       const fetchData = async () => {
@@ -81,6 +85,9 @@ const ArticleDetails = () => {
               <EditButton onClick={() => editArticle(article._id)}>
                 REDIGER
               </EditButton>
+              <UploadImageButton onClick={() => uploadImage(article._id)}>
+                LAST OPP BILDE
+              </UploadImageButton>
             </>
           )}
           <Footer>
@@ -95,6 +102,8 @@ const ArticleDetails = () => {
 };
 
 export default ArticleDetails;
+
+const UploadImageButton = styled.button``;
 
 const SideWrapper = styled.div`
   margin-left: 400px;
