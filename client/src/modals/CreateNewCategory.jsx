@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { createCategory } from '../utils/categoryService';
@@ -70,3 +71,8 @@ const CreateNewCategory = ({ setIsOpen, modalIsOpen }) => {
 };
 
 export default CreateNewCategory;
+
+CreateNewCategory.propTypes = {
+  setIsOpen: PropTypes.bool,
+  modalIsOpen: PropTypes.bool,
+};
