@@ -18,6 +18,19 @@ I MongoDB Compass:
 koble deg på Hostname: localhost og Port: 27017. Refresh Compass og se at databasen har kommet opp.
 Gå til "localhost:3000" i nettleseren. Alle variablene du trenger ligger i .env filen i mappen server.
 
+# Brukere
+
+User:
+epost: user@noe.no
+
+Admin:
+epost: admin@noe.no
+
+Superadmin:
+epost: superadmin@noe.no
+
+Alle har passordet: Noe123
+
 # Linker
 
 Trello
