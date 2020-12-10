@@ -8,7 +8,6 @@ Modal.setAppElement('body');
 
 function NewCategory({
   state,
-  close,
   handleCategoryChange,
   handleSubmit,
   setModalOpen,
