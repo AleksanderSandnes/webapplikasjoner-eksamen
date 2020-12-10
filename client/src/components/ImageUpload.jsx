@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import { upload } from '../utils/imageService';
 import { put } from '../utils/articleService';
 
@@ -48,8 +49,8 @@ const ImageUpload = () => {
       {success && <p>Laster opp bilde med id: {imageId}</p>}
       {error && <p>Noe gikk galt med opplastingen</p>}
       <form encType="multipart/form-data" method="post" onSubmit={handleSubmit}>
-        <label htmlFor="image">Last opp bilde</label>
-        <input
+        <Label htmlFor="image">Last opp bilde</Label>
+        <Input
           type="file"
           id="image"
           name="image"
@@ -60,10 +61,34 @@ const ImageUpload = () => {
             setFile(imageFile);
           }}
         />
-        <button type="submit">Lagre</button>
+        <Button type="submit">Lagre</Button>
       </form>
     </>
   );
 };
 
 export default ImageUpload;
+
+const Button = styled.button`
+  padding: 10px;
+  width: 180px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  background-color: #2c82df;
+  margin: 0 20px 0 20px;
+  margin-top: 50px;
+  margin-left: 800px;
+  display: block;
+`;
+
+const Label = styled.label`
+  margin-left: 800px;
+  font-size: 32px;
+`;
+
+const Input = styled.input`
+  display: block;
+  font-size: 25px;
+  margin-left: 800px;
+`;

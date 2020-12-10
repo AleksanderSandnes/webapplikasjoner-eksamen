@@ -93,6 +93,7 @@ const ArticleHeader = styled.h1`
 
 const ArticleFlexRow = styled.div`
   display: flex;
+  width: 670px;
 `;
 
 const CategoryName = styled.h2`
