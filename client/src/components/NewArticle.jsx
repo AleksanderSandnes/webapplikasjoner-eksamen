@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
-import { list } from '../utils/categoryService';
+import { list, createCategory } from '../utils/categoryService';
 import { create } from '../utils/articleService';
 import Modall from '../modals/NewCategory';
 import NewCategoryButton from './NewCategoryButton';
@@ -32,6 +32,7 @@ import {
 const NewArticle = () => {
   const { user, isLoggedIn } = useAuthContext();
   const [error, setError] = useState(null);
+  const [category, setCategory] = useState({ name: '' });
   const [success, setSuccess] = useState(false);
   const [state, setState] = useState(false);
   const [categories, setCategories] = useState(null);
@@ -42,7 +43,7 @@ const NewArticle = () => {
   });
 
   const handleCategoryChange = (e) => {
-    setCategories(e.target.value);
+    setCategory({ name: e.target.value });
   };
 
   const showModal = () => {
@@ -53,10 +54,14 @@ const NewArticle = () => {
     setState(false);
   };
 
-  const handleModal = (e) => {
+  const handleModal = async (e) => {
     e.preventDefault();
-    setCategories([{ categories: categories }, ...categories]);
-    setState(false);
+    const { data } = await createCategory(category);
+    if (!data.success) {
+      setError(data.error);
+    } else {
+      setState(false);
+    }
   };
 
   useEffect(() => {
@@ -195,8 +200,9 @@ const NewArticle = () => {
                     handleCategoryChange={handleCategoryChange}
                     handleModal={handleModal}
                     setModalOpen={closeModal}
+                    category={category}
+                    setCategory={setCategory}
                   />
-
                   <NewCategoryButton modalHandler={showModal} />
                 </div>
               </Right>

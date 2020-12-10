@@ -23,7 +23,6 @@ class Dropdown extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <Select value={this.state.value} onChange={this.handleChange}>
-          <option value="filter">FILTER</option>
           <option value="all">Alle</option>
           <option value="fredrikstad">Fredrikstad</option>
           <option value="sarpsborg">Sarpsborg</option>
@@ -39,7 +38,7 @@ export default Dropdown;
 
 const Select = styled.select`
   background-color: lightgray;
-  width: 150px;
+  max-width: 200px;
   font-size: 20px;
   padding: 20px 20px 20px 20px;
   font-weight: bold;

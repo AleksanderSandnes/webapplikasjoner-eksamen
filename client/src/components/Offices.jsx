@@ -127,6 +127,7 @@ const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 100rem;
 `;
 
 const SideWrapper = styled.div`

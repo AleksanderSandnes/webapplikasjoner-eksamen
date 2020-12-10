@@ -26,7 +26,7 @@ export const put = async (id, data) => {
   }
 };
 
-export const create = async (data) => {
+export const createCategory = async (data) => {
   try {
     return await http.post(`${API_URL}`, data);
   } catch (err) {
@@ -35,7 +35,7 @@ export const create = async (data) => {
 };
 
 export default {
-  create,
+  createCategory,
   list,
   get,
   put,
