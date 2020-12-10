@@ -1,5 +1,5 @@
 import Article from '../models/article.js';
-/* import { ApiFilters } from '../utils/apiFilters.js'; */
+import { ApiFilters } from '../utils/apiFilters.js';
 
 export const createArticle = async (data) => Article.create(data);
 
@@ -15,7 +15,7 @@ export const listArticles = async () => {
   return articles;
 };
 
-/* export const listArticles = async (queryStr) => {
+export const listArticles2 = async (queryStr) => {
   const { limit, page } = queryStr;
   const filters = new ApiFilters(Article.find(), queryStr)
     .filter()
@@ -32,7 +32,7 @@ export const listArticles = async () => {
     currentPage: page && page > 0 ? parseInt(page) : 1,
     data: paginated,
   };
-}; */
+};
 
 export const updateArticle = async (id, data) =>
   Article.findByIdAndUpdate(id, data, {

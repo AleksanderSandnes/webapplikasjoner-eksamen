@@ -16,8 +16,7 @@ const ArticlePage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [articles, setArticles] = useState(null);
-  /* const [currentPage, setCurrentPage] = useState(1);
-  const [articlesPerPage, setArticlesPerPage] = useState(4); */
+  const [categories, setCategories] = useState(null);
   const history = useHistory();
 
   const redirectToDetailView = (id) => {
@@ -43,12 +42,17 @@ const ArticlePage = () => {
     fetchData();
   }, [error]);
 
-  /* const indexOfLastArticle = currentPage * articlesPerPage;
-  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  const currentArticle = articles.slice(
-    indexOfFirstArticle,
-    indexOfLastArticle
-  ); */
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await list();
+      if (!data.success) {
+        setError(data.error);
+      } else {
+        setCategories(data.data);
+      }
+    };
+    fetchData();
+  }, [setCategories]);
 
   return (
     <div>
@@ -68,7 +72,20 @@ const ArticlePage = () => {
           )}
           <ButtonRight>
             <SearchButton>SØK</SearchButton>
-            <FilterButton>FILTER</FilterButton>
+            <div>
+              <Select>
+                {categories &&
+                  categories.map((category) => (
+                    <option
+                      name={category._id}
+                      value={category._id}
+                      key={category._id}
+                    >
+                      {category.name}
+                    </option>
+                  ))}
+              </Select>
+            </div>
           </ButtonRight>
         </FlexBoxButtons>
         {articles &&
@@ -102,6 +119,16 @@ const ArticlePage = () => {
 };
 
 export default ArticlePage;
+
+const Select = styled.select`
+  color: black;
+  background-color: lightgray;
+  padding: 10px;
+  width: 150px;
+  height: 60px;
+  font-weight: bold;
+  text-align: center;
+`;
 
 const NewArticleButton = styled.button`
   background-color: #2c91bd;
