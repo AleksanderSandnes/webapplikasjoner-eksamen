@@ -20,7 +20,6 @@ import {
   StyledTextArea,
   StyledSelect,
   StyledSelectAuthor,
-  Message,
   StyledForm,
   StyledButton,
 } from '../styles/ArticleStyling.js';
@@ -36,7 +35,7 @@ const ArticleEdit = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  const { register, handleSubmit, errors, formState, reset } = useForm({
+  const { register, handleSubmit, formState, reset } = useForm({
     mode: 'onBlur',
   });
 
@@ -55,7 +54,7 @@ const ArticleEdit = () => {
       };
       fetchData();
     }
-  }, [id]);
+  }, [id, reset]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,16 +95,11 @@ const ArticleEdit = () => {
         {loading && <div>Loading...</div>}
 
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
-          <FormGroup isInvalid={errors.title}>
+          <FormGroup>
             <Flexrow>
               <div>
                 <InputLabel htmlFor="inpName">Tittel</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.title}>
-                  Legg inn tittel på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <Input
               type="text"
@@ -117,16 +111,11 @@ const ArticleEdit = () => {
               })}
             />
           </FormGroup>
-          <FormGroup isInvalid={errors.leadParagraph}>
+          <FormGroup>
             <Flexrow>
               <div>
                 <InputLabel htmlFor="inpLeadParagraph">Ingress</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.leadParagraph}>
-                  Legg inn ingress på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <StyledTextArea
               type="text"
@@ -138,16 +127,11 @@ const ArticleEdit = () => {
               })}
             />
           </FormGroup>
-          <FormGroup isInvalid={errors.content}>
+          <FormGroup>
             <Flexrow>
               <div>
                 <InputLabel htmlFor="inpContent">Tekst</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.content}>
-                  Legg inn innhold på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <StyledTextArea
               type="text"
@@ -159,16 +143,11 @@ const ArticleEdit = () => {
               })}
             />
           </FormGroup>
-          <FormGroup isInvalid={errors.categoryId}>
+          <FormGroup>
             <FlexrowCategory>
               <div>
                 <InputLabel htmlFor="inpCategories">Kategori</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.categoryId}>
-                  Legg inn kategori på artikkelen
-                </Message>
-              </Right>
             </FlexrowCategory>
             <Flexrow>
               <div>
@@ -193,16 +172,11 @@ const ArticleEdit = () => {
               </Right>
             </Flexrow>
           </FormGroup>
-          <FormGroup isInvalid={errors.author}>
+          <FormGroup>
             <Flexrow>
               <div>
                 <InputLabel htmlFor="inpAuthor">Forfatter</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.author}>
-                  Legg inn forfatter på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <StyledSelectAuthor
               name="author"
@@ -221,11 +195,6 @@ const ArticleEdit = () => {
               <div>
                 <InputLabel htmlFor="inpIsClassified">Hemmelig</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.categoryId}>
-                  Legg inn classified på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <Right>
               <input

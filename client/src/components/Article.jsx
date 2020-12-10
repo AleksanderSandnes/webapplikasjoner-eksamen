@@ -5,7 +5,7 @@ import pic from '../assets/images/pic.png';
 import { getImage } from '../utils/imageService';
 
 const Article = ({ article }) => {
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
   const [src, setSrc] = useState(null);
 
   function arrayBufferToBase64(buffer) {

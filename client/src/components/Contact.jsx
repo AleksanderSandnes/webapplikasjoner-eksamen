@@ -3,12 +3,10 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import {
   Flexrow,
-  Right,
   FormGroup,
   InputLabel,
   Input,
   StyledTextArea,
-  Message,
   StyledForm,
   StyledButton,
 } from '../styles/ArticleStyling.js';
@@ -27,7 +25,7 @@ const ContactPage = () => {
   const [success, setSuccess] = useState(false);
   const history = useHistory();
 
-  const { register, errors, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     mode: 'onBlur',
   });
 
@@ -56,9 +54,6 @@ const ContactPage = () => {
               <div>
                 <InputLabel htmlFor="inpName">Navn</InputLabel>
               </div>
-              <Right>
-                <Message>Legg inn Navn</Message>
-              </Right>
             </Flexrow>
             <Input
               type="text"
@@ -75,9 +70,6 @@ const ContactPage = () => {
               <div>
                 <InputLabel htmlFor="inpEmail">Epost</InputLabel>
               </div>
-              <Right>
-                <Message>Legg inn epost</Message>
-              </Right>
             </Flexrow>
             <Input
               type="text"
@@ -95,9 +87,6 @@ const ContactPage = () => {
               <div>
                 <InputLabel htmlFor="inpSubject">Emne</InputLabel>
               </div>
-              <Right>
-                <Message>Legg inn Emne</Message>
-              </Right>
             </Flexrow>
             <Input
               type="text"
@@ -114,9 +103,6 @@ const ContactPage = () => {
               <div>
                 <InputLabel htmlFor="inpContent">Innhold</InputLabel>
               </div>
-              <Right>
-                <Message>Legg inn innhold</Message>
-              </Right>
             </Flexrow>
             <StyledTextArea
               type="text"

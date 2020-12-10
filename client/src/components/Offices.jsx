@@ -58,7 +58,7 @@ const Locations = ({ setOffice }) => {
             <img name="Squares" src={Squares} alt="Squares" />
           </ImageButton>
         </ButtonPlacement>
-         {locations &&
+        {locations &&
           locations.map((location) => (
             <div key={location._id}>
               <TitleCards>

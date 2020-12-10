@@ -24,7 +24,6 @@ import {
   StyledTextArea,
   StyledSelect,
   StyledSelectAuthor,
-  Message,
   StyledForm,
   StyledButton,
 } from '../styles/ArticleStyling.js';
@@ -38,7 +37,7 @@ const NewArticle = () => {
   const [categories, setCategories] = useState(null);
   const history = useHistory();
 
-  const { register, errors, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     mode: 'onBlur',
   });
 
@@ -88,20 +87,15 @@ const NewArticle = () => {
               <div>
                 <InputLabel htmlFor="inpName">Tittel</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.title}>
-                  Legg inn tittel på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <Input
               type="text"
               name="title"
               id="inpNavn"
               placeholder="Tittel"
-              /* ref={register({
+              ref={register({
                 required: true,
-              })} */
+              })}
             />
           </FormGroup>
           <FormGroup>
@@ -109,11 +103,6 @@ const NewArticle = () => {
               <div>
                 <InputLabel htmlFor="inpLeadParagraph">Ingress</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.leadParagraph}>
-                  Legg inn ingress på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <StyledTextArea
               type="text"
@@ -125,16 +114,11 @@ const NewArticle = () => {
               })}
             />
           </FormGroup>
-          <FormGroup isInvalid={errors.content}>
+          <FormGroup>
             <Flexrow>
               <div>
                 <InputLabel htmlFor="inpContent">Tekst</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.content}>
-                  Legg inn innhold på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <StyledTextArea
               type="text"
@@ -146,16 +130,11 @@ const NewArticle = () => {
               })}
             />
           </FormGroup>
-          <FormGroup isInvalid={errors.categoryId}>
+          <FormGroup>
             <FlexrowCategory>
               <div>
                 <InputLabel htmlFor="inpCategories">Kategori</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.categoryId}>
-                  Legg inn kategori på artikkelen
-                </Message>
-              </Right>
             </FlexrowCategory>
             <Flexrow>
               <div>
@@ -163,7 +142,7 @@ const NewArticle = () => {
                   name="categoryId"
                   id="inpCategories"
                   ref={register({
-                    /* required: true, */
+                    required: true,
                   })}
                 >
                   {categories &&
@@ -193,16 +172,11 @@ const NewArticle = () => {
               </Right>
             </Flexrow>
           </FormGroup>
-          <FormGroup isInvalid={errors.author}>
+          <FormGroup>
             <Flexrow>
               <div>
                 <InputLabel htmlFor="inpAuthor">Forfatter</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.author}>
-                  Legg inn forfatter på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <StyledSelectAuthor
               name="author"
@@ -216,16 +190,11 @@ const NewArticle = () => {
               <option value="Simen Simensen">Simen Simensen</option>
             </StyledSelectAuthor>
           </FormGroup>
-          <FormGroup isInvalid={errors.isClassified}>
+          <FormGroup>
             <Flexrow>
               <div>
                 <InputLabel htmlFor="inpIsClassified">Hemmelig</InputLabel>
               </div>
-              <Right>
-                <Message valid={!errors.isClassified}>
-                  Legg inn classified på artikkelen
-                </Message>
-              </Right>
             </Flexrow>
             <Right>
               <input
