@@ -22,7 +22,7 @@ import SupportPage from '../pages/SupportPage';
 import Register from '../components/Register';
 import ImagePage from '../pages/ImagePage';
 import UserDataPage from '../pages/UserDataPage';
-import NewCategory from '../modals/NewCategory';
+import CreateNewCategory from '../modals/CreateNewCategory';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
@@ -107,8 +107,8 @@ const Routes = () => {
             <Route exact path="/articles/:id">
               <ArticleDetails />
             </Route>
-            <Route exact path="/articles/newCategory">
-              <NewCategory />
+            <Route exact path="/articles/createNewCategory">
+              <CreateNewCategory />
             </Route>
             <Route exact path="/uploadImage/:id">
               <ImagePage />

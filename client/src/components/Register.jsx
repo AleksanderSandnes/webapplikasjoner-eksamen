@@ -4,11 +4,9 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   Flexrow,
-  Right,
   FormGroup,
   InputLabel,
   Input,
-  Message,
   StyledForm,
   StyledButton,
 } from '../styles/ArticleStyling.js';
@@ -27,7 +25,7 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
   const history = useHistory();
 
-  const { register, errors, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     mode: 'onBlur',
   });
 
@@ -56,9 +54,6 @@ const Register = () => {
             <div>
               <InputLabel htmlFor="inpName">Navn</InputLabel>
             </div>
-            <Right>
-              <Message>Legg inn Navn</Message>
-            </Right>
           </Flexrow>
           <Input
             type="text"
@@ -75,9 +70,6 @@ const Register = () => {
             <div>
               <InputLabel htmlFor="inpEmail">Epost</InputLabel>
             </div>
-            <Right>
-              <Message>Legg inn epost</Message>
-            </Right>
           </Flexrow>
           <Input
             type="text"
@@ -94,9 +86,6 @@ const Register = () => {
             <div>
               <InputLabel htmlFor="inpPassword">Passord</InputLabel>
             </div>
-            <Right>
-              <Message>Legg inn Emne</Message>
-            </Right>
           </Flexrow>
           <Input
             type="password"
