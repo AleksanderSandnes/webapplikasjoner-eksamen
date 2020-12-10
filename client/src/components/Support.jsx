@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { list } from '../utils/supportEmailService.js';
 import {
-  Footer,
   FooterText,
   Title,
   HeaderTitle,
@@ -46,10 +45,10 @@ const ArticlePage = () => {
         {emails &&
           emails.map((email) => (
             <Flexrow>
-              <p>Fra: {email.email}</p>
-              <p>Navn: {email.name}</p>
-              <p>Emne: {email.subject}</p>
-              <p>Innhold: {email.content}</p>
+              <Text>Fra: {email.email}</Text>
+              <Text>Navn: {email.name}</Text>
+              <Text>Emne: {email.subject}</Text>
+              <Text>Innhold: {email.content}</Text>
             </Flexrow>
           ))}
         <Footer>
@@ -64,10 +63,24 @@ const ArticlePage = () => {
 
 export default ArticlePage;
 
+export const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 380px;
+  margin: auto;
+  padding: 50px 0 50px 0;
+  flex-direction: row;
+  margin-top: 600px;
+`;
+
 const Flexrow = styled.div`
   display: flex;
   flex-direction: column;
   height: 200px;
+`;
+
+const Text = styled.p`
+  margin-top: 10px;
 `;
 
 const SearchButton = styled.button`
