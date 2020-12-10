@@ -168,7 +168,7 @@ const MarginTop = styled.article`
 
   &:hover {
     border: 1px solid #2c91bd;
-    width: 1000px;
+   /*  width: 1000px; */
   }
 `;
 
