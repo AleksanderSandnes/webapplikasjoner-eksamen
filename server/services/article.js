@@ -9,25 +9,15 @@ export const getArticleById = async (id) => {
 };
 
 export const listArticles = async (queryStr) => {
-  console.log(queryStr);
-  const filters = new ApiFilters(Article.find(), queryStr)
-    .sort()
-    .searchByQuery();
-  const articles = await filters.query.populate('categoryId image');
-  return articles;
-};
-
-export const listArticles2 = async (queryStr) => {
   const { limit, page } = queryStr;
   const filters = new ApiFilters(Article.find(), queryStr)
-    .filter()
     .sort()
-    .limitFields()
+    .filter()
     .searchByQuery();
 
+  console.log(filters);
   const articles = await filters.query;
-  const paginated = await filters.pagination().query.populate('user', 'email');
-
+  const paginated = await filters.query.populate('categoryId image');
   return {
     results: articles.length,
     totalPages: Math.ceil(articles.length / limit) || 1,

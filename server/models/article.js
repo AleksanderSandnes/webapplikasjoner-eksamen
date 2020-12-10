@@ -47,6 +47,7 @@ const ArticleSchema = new Schema(
 );
 
 ArticleSchema.index({
+  title: 'text',
   categoryId: 'text',
 });
 

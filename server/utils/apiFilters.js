@@ -35,9 +35,13 @@ export class ApiFilters {
 
   // events?q=string
   searchByQuery() {
+    console.log('QUERYSTRING', this.queryStr);
+    console.log('this.query', this.query);
     if (this.queryStr.q) {
       const term = this.queryStr.q.split('-').join(' ');
-      this.query = this.query.find({ $text: { $search: `"${term}"` } });
+      this.query = this.query.find({
+        $text: { $search: `"${term}"`, $caseSensitive: false },
+      });
     }
     return this;
   }

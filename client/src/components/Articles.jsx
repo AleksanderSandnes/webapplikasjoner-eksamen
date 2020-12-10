@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import Article from './Article';
 import { useAuthContext } from '../context/AuthProvider';
 import { list } from '../utils/articleService.js';
@@ -19,6 +19,7 @@ const ArticlePage = () => {
   const [error, setError] = useState(null);
   const [articles, setArticles] = useState(null);
   const [categories, setCategories] = useState(null);
+  const location = useLocation();
   const history = useHistory();
 
   const redirectToDetailView = (id) => {
@@ -29,20 +30,29 @@ const ArticlePage = () => {
     history.push(`/newarticle`);
   };
 
+  const handleSelectChange = (event) => {
+    history.push({
+      path: '/newarticle',
+      search: `?q=${event.target.value}`,
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { data } = await list();
+      console.log(location.search);
+      const { data } = await list(location.search);
       if (!data.success) {
         setError(error);
       } else {
-        setArticles(data.data);
+        setArticles(data.data.data);
+        console.log(data);
         setError(null);
       }
       setLoading(false);
     };
     fetchData();
-  }, [error]);
+  }, [error, location]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +64,7 @@ const ArticlePage = () => {
       }
     };
     fetchData();
-  }, [setCategories]);
+  }, [setCategories, location]);
 
   return (
     <div>
@@ -75,8 +85,8 @@ const ArticlePage = () => {
           <ButtonRight>
             <SearchButton>SØK</SearchButton>
             <div>
-              <Select>
-                <option value="alle">Alle</option>
+              <Select onChange={handleSelectChange}>
+                <option value="">Alle</option>
                 {categories &&
                   categories.map((category) => (
                     <option
@@ -159,15 +169,6 @@ const MarginTop = styled.article`
   &:hover {
     border: 1px solid #2c91bd;
   }
-`;
-
-const FilterButton = styled.button`
-  color: black;
-  background-color: lightgray;
-  padding: 10px;
-  width: 150px;
-  font-weight: bold;
-  text-align: center;
 `;
 
 const FlexBoxButtons = styled.div`

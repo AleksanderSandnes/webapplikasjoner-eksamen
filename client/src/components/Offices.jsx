@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useHistory, useLocation } from 'react-router-dom';
 import { list } from '../utils/officeService.js';
 import OfficeGrid from './OfficeGrid';
 import OfficeList from './OfficeList';
@@ -19,16 +20,25 @@ const Locations = ({ setOffice }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isGrid, setisGrid] = useState(true);
+  const history = useHistory();
+  const urllocation = useLocation();
 
   const handleClick = (e) => {
     if (e.target.name === 'Squares') setisGrid(true);
     if (e.target.name === 'Lines') setisGrid(false);
   };
 
+  const handleSelectChange = (event) => {
+    history.push({
+      path: '/offices',
+      search: `?q=${event.target.value}`,
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { data } = await list();
+      const { data } = await list(urllocation.search);
       if (!data.success) {
         setError(error);
       } else {
@@ -39,7 +49,7 @@ const Locations = ({ setOffice }) => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [urllocation, error]);
 
   return (
     <div>
@@ -50,7 +60,13 @@ const Locations = ({ setOffice }) => {
       <SideWrapper>
         {loading && <div>Loading...</div>}
         <ButtonPlacement>
-          <Dropdown />
+          <Select onChange={handleSelectChange}>
+            <option value="">Alle</option>
+            <option value="Fredrikstad">Fredrikstad</option>
+            <option value="Sarpsborg">Sarpsborg</option>
+            <option value="Moss">Moss</option>
+            <option value="Oslo">Oslo</option>
+          </Select>
           <ImageButton type="button" onClick={handleClick}>
             <img name="Lines" src={ThreeLines} alt="Lines" />
           </ImageButton>
@@ -58,7 +74,7 @@ const Locations = ({ setOffice }) => {
             <img name="Squares" src={Squares} alt="Squares" />
           </ImageButton>
         </ButtonPlacement>
-         {locations &&
+        {locations &&
           locations.map((location) => (
             <div key={location._id}>
               <TitleCards>
@@ -133,6 +149,19 @@ const FlexContainer = styled.div`
 
 const SideWrapper = styled.div`
   margin: 0 80px;
+`;
+
+const Select = styled.select`
+  background-color: lightgray;
+  max-width: 200px;
+  font-size: 20px;
+  padding: 20px 20px 20px 20px;
+  font-weight: bold;
+  margin-top: 250px;
+  margin-left: -100px;
+  position: relative;
+  top: 3rem;
+  right: 5rem;
 `;
 
 export default Locations;

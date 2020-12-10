@@ -2,9 +2,9 @@ import http from './http';
 
 const API_URL = '/articles';
 
-export const list = async () => {
+export const list = async (query) => {
   try {
-    return await http.get(`${API_URL}`);
+    return await http.get(`${API_URL}${query}`);
   } catch (err) {
     return err.response;
   }
