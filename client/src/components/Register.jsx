@@ -21,7 +21,7 @@ import {
 import { useAuthContext } from '../context/AuthProvider';
 import { registerUser } from '../utils/authService';
 
-const ContactPage = () => {
+const Register = () => {
   const { user } = useAuthContext();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -47,7 +47,7 @@ const ContactPage = () => {
   return (
     <div>
       <HeaderTitle>
-        <Title>Registrer ny bruker</Title>
+        <Title>Register ny bruker</Title>
       </HeaderTitle>
       {console.log(user)}
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -136,7 +136,7 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+export default Register;
 
 const H1 = styled.h1`
   font-size: 32px;

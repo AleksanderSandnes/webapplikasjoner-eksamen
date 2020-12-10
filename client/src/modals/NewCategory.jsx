@@ -9,9 +9,9 @@ Modal.setAppElement('body');
 function NewCategory({
   state,
   handleCategoryChange,
-  handleSubmit,
+  handleModal,
   setModalOpen,
-  category,
+  newCategory,
 }) {
   return state ? (
     <Modal
@@ -39,13 +39,14 @@ function NewCategory({
           <Label>Ny kategori</Label>
           <Input
             type="text"
-            name="category"
+            name="name"
             placeholder="Placeholder for inputfelt"
             onChange={handleCategoryChange}
-            value={category.name}
+            value={newCategory.name}
           />
-
-          <SubmitButton onClick={handleSubmit}>SUBMIT</SubmitButton>
+          <SubmitButton type="submit" onClick={handleModal}>
+            SUBMIT
+          </SubmitButton>
         </Form>
       </ModalWrapper>
     </Modal>

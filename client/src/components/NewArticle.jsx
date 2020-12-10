@@ -32,7 +32,7 @@ import {
 const NewArticle = () => {
   const { user, isLoggedIn } = useAuthContext();
   const [error, setError] = useState(null);
-  const [category, setCategory] = useState({ name: '' });
+  const [newCategory, setNewCategory] = useState({ name: '' });
   const [success, setSuccess] = useState(false);
   const [state, setState] = useState(false);
   const [categories, setCategories] = useState(null);
@@ -43,7 +43,7 @@ const NewArticle = () => {
   });
 
   const handleCategoryChange = (e) => {
-    setCategory({ name: e.target.value });
+    setNewCategory({ name: e.target.value });
   };
 
   const showModal = () => {
@@ -56,7 +56,7 @@ const NewArticle = () => {
 
   const handleModal = async (e) => {
     e.preventDefault();
-    const { data } = await createCategory(category);
+    const { data } = await createCategory(newCategory);
     if (!data.success) {
       setError(data.error);
     } else {
@@ -200,8 +200,7 @@ const NewArticle = () => {
                     handleCategoryChange={handleCategoryChange}
                     handleModal={handleModal}
                     setModalOpen={closeModal}
-                    category={category}
-                    setCategory={setCategory}
+                    newCategory={setNewCategory}
                   />
                   <NewCategoryButton modalHandler={showModal} />
                 </div>

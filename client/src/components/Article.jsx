@@ -28,7 +28,7 @@ const Article = ({ article }) => {
       };
       fetchData();
     }
-  }, [error]);
+  }, [error, article]);
   return (
     <div>
       <Flexrow>
