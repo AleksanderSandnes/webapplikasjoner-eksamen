@@ -161,7 +161,7 @@ export default ArticleDetails;
 
 const UploadImageButton = styled.button`
   padding: 10px;
-  width: 150px;
+  width: 180px;
   height: 50px;
   color: white;
   font-weight: bold;
