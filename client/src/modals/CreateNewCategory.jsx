@@ -12,14 +12,12 @@ import {
   StyledButton,
 } from '../styles/ArticleStyling.js';
 
-
-
 const CreateNewCategory = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const history = useHistory();
 
-  const { register, errors, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     mode: 'onBlur',
   });
 

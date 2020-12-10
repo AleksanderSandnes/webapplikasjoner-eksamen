@@ -7,11 +7,13 @@ export const getArticleById = async (id) => {
   const article = Article.findById(id).populate('categoryId image');
   return article;
 };
-/* 
-export const listArticles = async () => Article.find();
- */
-export const listArticles = async () => {
-  const articles = await Article.find().populate('categoryId image');
+
+export const listArticles = async (queryStr) => {
+  console.log(queryStr);
+  const filters = new ApiFilters(Article.find(), queryStr)
+    .sort()
+    .searchByQuery();
+  const articles = await filters.query.populate('categoryId image');
   return articles;
 };
 
@@ -45,3 +47,11 @@ export const removeArticle = async (id) => {
   const article = await Article.findById(id);
   article.remove();
 };
+
+/* export const totalArticleViews = async (query) => {
+  const articles = await Article.aggregate([
+    {
+      $match: 
+    }
+  ])
+}; */

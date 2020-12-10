@@ -22,6 +22,8 @@ export class ApiFilters {
   // Sort QueryObject (Event.find()) [{...}, {...}, {...}]
   // events?sort=-createdAt
   sort() {
+    console.log('QUERYSTRING', this.queryStr);
+    console.log('this.query', this.query);
     if (this.queryStr.sort) {
       const sortBy = this.queryStr.sort.split(',').join(' ');
       this.query.sort(sortBy);

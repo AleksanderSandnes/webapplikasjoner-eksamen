@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
-import { list, createCategory } from '../utils/categoryService';
+import { listCategories } from '../utils/categoryService';
 import { create } from '../utils/articleService';
 import CreateNewCategory from '../modals/CreateNewCategory';
 import NewCategoryButton from './NewCategoryButton';
@@ -32,7 +32,7 @@ import {
 const NewArticle = () => {
   const { user, isLoggedIn } = useAuthContext();
   const [error, setError] = useState(null);
-  const [category, setCategory] = useState({ name: '' });
+  const [newCategory, setNewCategory] = useState({ name: '' });
   const [success, setSuccess] = useState(false);
   const [state, setState] = useState(false);
   const [categories, setCategories] = useState(null);
@@ -52,7 +52,7 @@ const NewArticle = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await list();
+      const { data } = await listCategories();
       if (!data.success) {
         setError(data.error);
       } else {

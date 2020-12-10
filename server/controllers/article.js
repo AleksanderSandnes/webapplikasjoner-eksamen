@@ -43,3 +43,8 @@ export const remove = catchAsyncErrors(async (req, res, next) => {
   article = await articleService.removeArticle(req.params.id);
   res.status(204).json({});
 });
+
+export const totalArticleViews = catchAsyncErrors(async (req, res, next) => {
+  const article = await articleService.totalArticleViews(req.query);
+  res.status(200).json({ success: true, data: article });
+});

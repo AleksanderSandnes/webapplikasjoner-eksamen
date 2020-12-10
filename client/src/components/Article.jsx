@@ -28,11 +28,10 @@ const Article = ({ article }) => {
       };
       fetchData();
     }
-  }, [error]);
+  }, [error, article]);
   return (
     <div>
       <Flexrow>
-        {console.log(article)}
         <Image>
           {(article.image && (
             <Img name="midlertidig" src={src} alt="midlertidig" />

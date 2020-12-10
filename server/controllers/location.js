@@ -18,6 +18,7 @@ export const get = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const list = catchAsyncErrors(async (req, res, next) => {
+  console.log(req.query);
   const locations = await locationService.listLocations(req.query);
   res.status(200).json({ success: true, data: locations });
 });

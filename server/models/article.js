@@ -46,4 +46,8 @@ const ArticleSchema = new Schema(
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
+ArticleSchema.index({
+  categoryId: 'text',
+});
+
 export default mongoose.model('Article', ArticleSchema);

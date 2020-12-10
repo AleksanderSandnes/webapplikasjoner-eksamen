@@ -32,7 +32,8 @@ const Locations = ({ setOffice }) => {
       if (!data.success) {
         setError(error);
       } else {
-        setLocations(data.data);
+        console.log(data);
+        setLocations(data.data.data);
         setError(null);
       }
       setLoading(false);
@@ -57,7 +58,7 @@ const Locations = ({ setOffice }) => {
             <img name="Squares" src={Squares} alt="Squares" />
           </ImageButton>
         </ButtonPlacement>
-        {locations &&
+         {locations &&
           locations.map((location) => (
             <div key={location._id}>
               <TitleCards>

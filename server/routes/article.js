@@ -17,5 +17,6 @@ router.post('/articles/:id/edit', validateFields(editArticleSchema));
 router.post('/newarticle', validateFields(newArticleSchema));
 router.put('/:id', articleController.update);
 router.delete('/:id', articleController.remove);
+router.get('/totalviews', articleController.totalArticleViews);
 
 export default router;

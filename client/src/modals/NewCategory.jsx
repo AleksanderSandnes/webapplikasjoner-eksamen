@@ -11,7 +11,7 @@ function NewCategory({
   handleCategoryChange,
   handleModal,
   setModalOpen,
-  category,
+  newCategory,
 }) {
   return state ? (
     <Modal className="modal" isOpen={state} onRequestClose={setModalOpen}>
@@ -20,10 +20,10 @@ function NewCategory({
           <Label>Ny kategori</Label>
           <Input
             type="text"
-            name="category"
+            name="name"
             placeholder="Placeholder for inputfelt"
             onChange={handleCategoryChange}
-            value={category.name}
+            value={newCategory.name}
           />
 
           <SubmitButton onClick={handleModal}>SUBMIT</SubmitButton>
