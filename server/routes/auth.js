@@ -11,6 +11,7 @@ router.post(
   validateFields(registerSchema),
   authController.register
 );
+
 router.post('/login', validateFields(loginSchema), authController.login);
 router.post('/logout', authController.logout);
 router.get('/me', isAuthenticated, authController.currentUser);

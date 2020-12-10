@@ -28,3 +28,9 @@ export const editArticleSchema = Joi.object()
     ...ArticleValues,
   })
   .options({ abortEarly: false });
+
+export const newArticleSchema = Joi.object()
+  .keys({
+    ...ArticleValues,
+  })
+  .options({ abortEarly: false });
