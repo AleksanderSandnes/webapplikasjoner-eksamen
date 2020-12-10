@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
 import { list, createCategory } from '../utils/categoryService';
 import { create } from '../utils/articleService';
-import Modall from '../modals/NewCategory';
+import NewCategory from '../modals/NewCategory';
 import NewCategoryButton from './NewCategoryButton';
 import {
   Footer,
@@ -113,9 +113,9 @@ const NewArticle = () => {
               name="title"
               id="inpNavn"
               placeholder="Tittel"
-              ref={register({
+              /* ref={register({
                 required: true,
-              })}
+              })} */
             />
           </FormGroup>
           <FormGroup>
@@ -194,7 +194,7 @@ const NewArticle = () => {
               </div>
               <Right>
                 <div>
-                  <Modall
+                  <NewCategory
                     state={state}
                     close={closeModal}
                     handleCategoryChange={handleCategoryChange}
