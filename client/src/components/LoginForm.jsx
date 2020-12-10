@@ -60,7 +60,9 @@ const LoginForm = () => {
       const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
       setUser({ ...user, expire });
       setSuccess(true);
-      history.push('/');
+      setTimeout(() => {
+        history.push('/');
+      }, 5000);
     }
   };
 
@@ -72,12 +74,6 @@ const LoginForm = () => {
         as="form"
         onSubmit={handleSubmit(onSubmit)}
       >
-        {success && (
-          <Alert status="success">
-            <AlertIcon />
-            Du er logget inn. Omdirigerer til forsiden ...
-          </Alert>
-        )}
         {error && closeBtnState && (
           <Alert mb={4} status="error">
             <AlertIcon />
@@ -143,9 +139,37 @@ const LoginForm = () => {
         >
           Login
         </Button>
+
+        <FormGroup>
+          {success && (
+            <div>
+              <H1>
+                Du er nå logget inn. Sender deg til hovedsiden om 5 sekunder.
+              </H1>
+            </div>
+          )}
+          {error && (
+            <div>
+              <h1>{error}</h1>
+            </div>
+          )}
+        </FormGroup>
       </Box>
     </>
   );
 };
 
 export default LoginForm;
+
+export const FormGroup = styled.div`
+  color: black;
+  display: block;
+  width: 300px;
+  margin: 30px auto;
+`;
+
+const H1 = styled.h1`
+  font-size: 32px;
+  width: 500px;
+  color: green;
+`;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
@@ -61,7 +61,7 @@ const NewArticle = () => {
       setError(null);
       setTimeout(() => {
         history.push(`/articles/${data.data.id}`);
-      }, 2000);
+      }, 5000);
     }
   };
 
@@ -237,7 +237,10 @@ const NewArticle = () => {
       <FormGroup>
         {success && (
           <div>
-            <h1>Oppretter artikkel...</h1>
+            <H1>
+              Artikkel ble opprettet. Sender deg til redigeringssiden om 5
+              sekunder.
+            </H1>
           </div>
         )}
         {error && (
@@ -256,6 +259,12 @@ const NewArticle = () => {
 };
 
 export default NewArticle;
+
+const H1 = styled.h1`
+  font-size: 32px;
+  width: 500px;
+  color: green;
+`;
 
 const NewCategoryBtn = styled.button`
   text-align: center;

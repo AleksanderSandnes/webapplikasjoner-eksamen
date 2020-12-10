@@ -12,6 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
@@ -50,6 +51,7 @@
     "@emotion/styled": "^10.0.27",
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/react-fontawesome": "^0.1.13",
+    "babel-plugin-syntax-class-properties": "^6.13.0",
     "emotion-theming": "^10.0.27",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",

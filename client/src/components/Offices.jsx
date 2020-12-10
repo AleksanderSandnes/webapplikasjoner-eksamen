@@ -6,6 +6,7 @@ import OfficeGrid from './OfficeGrid';
 import OfficeList from './OfficeList';
 import ThreeLines from '../assets/images/ThreeLines.png';
 import Squares from '../assets/images/Squares.png';
+import Dropdown from './Dropdown';
 import {
   Footer,
   FooterText,
@@ -47,8 +48,8 @@ const Locations = ({ setOffice }) => {
       {error && <p>{error}</p>}
       <SideWrapper>
         {loading && <div>Loading...</div>}
-        <FilterButton>FILTER</FilterButton>
         <ButtonPlacement>
+          <Dropdown />
           <ImageButton type="button" onClick={handleClick}>
             <img name="Lines" src={ThreeLines} alt="Lines" />
           </ImageButton>
@@ -107,23 +108,11 @@ const ImageButton = styled.button`
 `;
 
 const ButtonPlacement = styled.div`
-  position: relative;
   top: 10.5rem;
-  left: 91rem;
+  margin-left: 91rem;
   right: 0px;
-  max-width: 10rem;
-`;
-
-const FilterButton = styled.button`
-  color: black;
-  background-color: lightgray;
-  padding: 2rem 4.5rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  position: relative;
-  top: 14.5rem;
-  left: 78rem;
+  height: 200px;
+  max-width: 450px;
 `;
 
 const TitleCards = styled.h2`

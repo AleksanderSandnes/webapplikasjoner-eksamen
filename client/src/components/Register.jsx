@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import {
   Flexrow,
   Right,
@@ -39,7 +40,7 @@ const ContactPage = () => {
       setError(null);
       setTimeout(() => {
         history.push(`/login`);
-      }, 2000);
+      }, 5000);
     }
   };
 
@@ -117,7 +118,7 @@ const ContactPage = () => {
       <FormGroup>
         {success && (
           <div>
-            <h1>Bruker er registert. Omdirigerer til inlogging...</h1>
+            <H1>Bruker er registert. Omdirigerer til inlogging...</H1>
           </div>
         )}
         {error && (
@@ -136,3 +137,9 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
+
+const H1 = styled.h1`
+  font-size: 32px;
+  width: 500px;
+  color: green;
+`;
