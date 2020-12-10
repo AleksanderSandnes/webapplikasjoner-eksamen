@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
 import { list, createCategory } from '../utils/categoryService';
 import { create } from '../utils/articleService';
-import NewCategory from '../modals/NewCategory';
+import CreateNewCategory from '../modals/CreateNewCategory';
 import NewCategoryButton from './NewCategoryButton';
 import {
   Footer,
@@ -194,7 +194,7 @@ const NewArticle = () => {
               </div>
               <Right>
                 <div>
-                  <NewCategory
+                  <CreateNewCategory
                     state={state}
                     close={closeModal}
                     handleCategoryChange={handleCategoryChange}

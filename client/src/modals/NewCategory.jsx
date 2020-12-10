@@ -9,31 +9,12 @@ Modal.setAppElement('body');
 function NewCategory({
   state,
   handleCategoryChange,
-  handleSubmit,
+  handleModal,
   setModalOpen,
   category,
 }) {
   return state ? (
-    <Modal
-      className="modal"
-      isOpen={state}
-      onRequestClose={setModalOpen}
-      style={{
-        overlay: {
-          backgroundColor: 'rgba(52, 52, 52, 0.5)',
-        },
-        content: {
-          display: 'flex',
-          flexDirection: 'column',
-          alignSelf: 'center',
-          width: '350px',
-          height: '400px',
-          margin: '0 auto ',
-          marginTop: '25vh',
-          outline: 'none',
-        },
-      }}
-    >
+    <Modal className="modal" isOpen={state} onRequestClose={setModalOpen}>
       <ModalWrapper>
         <Form>
           <Label>Ny kategori</Label>
@@ -45,7 +26,7 @@ function NewCategory({
             value={category.name}
           />
 
-          <SubmitButton onClick={handleSubmit}>SUBMIT</SubmitButton>
+          <SubmitButton onClick={handleModal}>SUBMIT</SubmitButton>
         </Form>
       </ModalWrapper>
     </Modal>
