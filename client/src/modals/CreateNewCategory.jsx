@@ -17,7 +17,6 @@ Modal.setAppElement('#app');
 
 const CreateNewCategory = ({ setIsOpen, modalIsOpen }) => {
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
   const history = useHistory();
 
   const { register, handleSubmit, formState } = useForm({
@@ -36,7 +35,6 @@ const CreateNewCategory = ({ setIsOpen, modalIsOpen }) => {
       setError(data.message);
     } else {
       setIsOpen(false);
-      setSuccess(true);
       setError(null);
     }
   };
@@ -73,6 +71,6 @@ const CreateNewCategory = ({ setIsOpen, modalIsOpen }) => {
 export default CreateNewCategory;
 
 CreateNewCategory.propTypes = {
-  setIsOpen: PropTypes.bool,
+  setIsOpen: PropTypes.func,
   modalIsOpen: PropTypes.bool,
 };

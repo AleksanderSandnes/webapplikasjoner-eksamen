@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import NewCategory from '../modals/CreateNewCategory';
+import CreateNewCategory from '../modals/CreateNewCategory';
+import NewCategoryButton from './NewCategoryButton';
 import {
   Footer,
   FooterText,
@@ -32,6 +31,7 @@ const ArticleEdit = () => {
   const [categories, setCategories] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
   const history = useHistory();
   const { id } = useParams();
 
@@ -168,7 +168,11 @@ const ArticleEdit = () => {
                 </StyledSelect>
               </div>
               <Right>
-                <NewCategoryButton />
+                <CreateNewCategory
+                  setIsOpen={setIsOpen}
+                  modalIsOpen={modalIsOpen}
+                />
+                <NewCategoryButton setIsOpen={setIsOpen} />
               </Right>
             </Flexrow>
           </FormGroup>
@@ -236,7 +240,7 @@ const ArticleEdit = () => {
 
 export default ArticleEdit;
 
-const NewCategoryBtn = styled.button`
+/* const NewCategoryBtn = styled.button`
   text-align: center;
   background-color: #2c91bd;
   color: white;
@@ -245,7 +249,7 @@ const NewCategoryBtn = styled.button`
   margin-left: 10px;
 `;
 
-const NewCategoryButton = ({ formData, setFormData }) => {
+/* const NewCategoryButton = ({ formData, setFormData }) => {
   const [addCategoryShow, setaddCategoryShow] = useState(false);
 
   return (
@@ -267,4 +271,4 @@ const NewCategoryButton = ({ formData, setFormData }) => {
 NewCategoryButton.propTypes = {
   formData: PropTypes.object,
   setFormData: PropTypes.func,
-};
+}; */
