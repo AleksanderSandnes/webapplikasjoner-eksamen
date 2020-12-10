@@ -42,26 +42,12 @@ const NewArticle = () => {
     mode: 'onBlur',
   });
 
-  const handleCategoryChange = (e) => {
-    setCategory({ name: e.target.value });
-  };
-
   const showModal = () => {
     setState(true);
   };
 
   const closeModal = () => {
     setState(false);
-  };
-
-  const handleModal = async (e) => {
-    e.preventDefault();
-    const { data } = await createCategory(category);
-    if (!data.success) {
-      setError(data.error);
-    } else {
-      setState(false);
-    }
   };
 
   useEffect(() => {
@@ -194,15 +180,14 @@ const NewArticle = () => {
               </div>
               <Right>
                 <div>
-                  <CreateNewCategory
-                    state={state}
-                    close={closeModal}
-                    handleCategoryChange={handleCategoryChange}
-                    handleModal={handleModal}
-                    setModalOpen={closeModal}
-                    category={category}
-                    setCategory={setCategory}
-                  />
+                  {state && (
+                    <CreateNewCategory
+                      modal={state}
+                      close={closeModal}
+                      setModalOpen={closeModal}
+                    />
+                  )}
+
                   <NewCategoryButton modalHandler={showModal} />
                 </div>
               </Right>
