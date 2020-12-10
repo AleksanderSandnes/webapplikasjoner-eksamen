@@ -13,7 +13,7 @@ const Nav = () => {
   return (
     <Wrapper>
       <Header>
-        <H1Text>FG</H1Text>
+        <H1Text>LG</H1Text>
         <NavBar2>
           <UnorderedList>
             <ListItem>
