@@ -1,5 +1,23 @@
 # Eksamen Webapp
 
+## Hvordan starte appen
+
+## Client
+1. Åpne en terminal
+1. Skriv 'cd EksamenWebapp/client'
+1. Skriv 'npm i'
+1. Skriv 'npm run dev'
+
+## Server
+1. Åpne en terminal
+1. Skriv 'cd EksamenWebapp/server'
+1. Skriv 'npm i'
+1. Skriv 'npm run dev'
+
+I MongoDB Compass:
+koble deg på Hostname: localhost og Port: 27017. Refresh Compass og se at databasen har kommet opp.
+Gå til "localhost:3000" i nettleseren.
+
 # Linker
 
 Trello
