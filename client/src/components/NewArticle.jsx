@@ -80,7 +80,7 @@ const NewArticle = () => {
       setError(null);
       setTimeout(() => {
         history.push(`/articles/${data.data.id}`);
-      }, 5000);
+      }, 3000);
     }
   };
 
@@ -266,14 +266,14 @@ const NewArticle = () => {
           {success && (
             <div>
               <H1>
-                Artikkel ble nå opprettet. Sender deg til redigeringssiden om 5
+                Artikkel ble nå opprettet. Sender deg til redigeringssiden om 3
                 sekunder.
               </H1>
             </div>
           )}
           {error && (
             <div>
-              <h1>{error}</h1>
+              <ErrorMessage>{error}</ErrorMessage>
             </div>
           )}
         </FormGroup>
@@ -293,4 +293,10 @@ const H1 = styled.h1`
   font-size: 32px;
   width: 500px;
   color: green;
+`;
+
+const ErrorMessage = styled.h1`
+  font-size: 32px;
+  width: 500px;
+  color: red;
 `;

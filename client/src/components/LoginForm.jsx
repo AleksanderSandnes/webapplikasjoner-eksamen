@@ -62,7 +62,7 @@ const LoginForm = () => {
       setSuccess(true);
       setTimeout(() => {
         history.push('/');
-      }, 5000);
+      }, 3000);
     }
   };
 
@@ -144,7 +144,7 @@ const LoginForm = () => {
           {success && (
             <div>
               <H1>
-                Du er nå logget inn. Sender deg til hovedsiden om 5 sekunder.
+                Du er nå logget inn. Sender deg til hovedsiden om 3 sekunder.
               </H1>
             </div>
           )}
