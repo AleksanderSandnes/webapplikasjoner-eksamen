@@ -1,84 +1,90 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/prop-types */
 import React from 'react';
+import Modal from 'react-modal';
 import styled from 'styled-components';
 
-// eslint-disable-next-line react/prop-types
-const NewCategory = ({ closeForm, formData, setFormData }) => {
-  const handleSubmit = (eventHandleSubmit) => {
-    eventHandleSubmit.preventDefault();
-    setFormData({ category: '' });
-    closeForm(false);
-  };
+Modal.setAppElement('body');
 
-  const updateFormData = (eventFormData, name) => {
-    setFormData({ ...formData, [name]: eventFormData.target.value });
-  };
+function NewCategory({
+  state,
+  close,
+  handleCategoryChange,
+  handleSubmit,
+  setModalOpen,
+}) {
+  return state ? (
+    <Modal
+      className="modal"
+      isOpen={state}
+      onRequestClose={setModalOpen}
+      style={{
+        overlay: {
+          backgroundColor: 'rgba(52, 52, 52, 0.5)',
+        },
+        content: {
+          display: 'flex',
+          flexDirection: 'column',
+          alignSelf: 'center',
+          width: '350px',
+          height: '400px',
+          margin: '0 auto ',
+          marginTop: '25vh',
+          outline: 'none',
+        },
+      }}
+    >
+      <ModalWrapper>
+        <Form>
+          <Label>Ny kategori</Label>
+          <Input
+            type="text"
+            placeholder="Placeholder for inputfelt"
+            onChange={handleCategoryChange}
+          />
 
-  return (
-    <BeforeCreateCategory>
-      <CreateCategory>
-        <NotExitable>
-          <ErrorMessage />
-          <Form onSubmit={handleSubmit}>
-            <label htmlFor="NewCategory">Ny kategori</label>
-            <InputNewCategory
-              // eslint-disable-next-line react/prop-types
-              value={formData.NewCategory}
-              onChange={(e) => updateFormData(e, 'NewCategory')}
-              type="text"
-              required
-            />
-            <InputSubmit type="submit" value="Create" />
-          </Form>
-        </NotExitable>
-      </CreateCategory>
-    </BeforeCreateCategory>
-  );
-};
+          <SubmitButton type="submit" onClick={handleSubmit}>
+            SUBMIT
+          </SubmitButton>
+        </Form>
+      </ModalWrapper>
+    </Modal>
+  ) : null;
+}
 
 export default NewCategory;
 
-const BeforeCreateCategory = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.65);
-`;
-
-const CreateCategory = styled.section`
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const NotExitable = styled.div`
+const ModalWrapper = styled.div`
   background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 25%;
-  z-index: 10;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  padding-top: 20px;
-  display: none;
-`;
-
-const Form = styled.form`
-  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-self: center;
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 25vh;
+  outline: none;
+  padding: 40px;
 `;
 
-const InputNewCategory = styled.input`
+const Label = styled.label`
+  font-weight: bold;
+`;
+
+const Input = styled.input`
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 500px;
   padding: 10px;
 `;
 
-const InputSubmit = styled.input`
-  border: none;
-  background-color: cadetblue;
+const SubmitButton = styled.button`
+  padding: 12px 10px;
+  width: 125px;
+  background-color: #2c91bd;
+  color: white;
+  margin-top: 15px;
+  margin-left: 373px;
 `;
+
+const Form = styled.form``;

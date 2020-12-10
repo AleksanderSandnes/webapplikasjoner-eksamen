@@ -43,6 +43,13 @@ const Nav = () => {
                 </NavLink>
               </ListItem>
             )}
+            {isSuperAdmin && (
+              <ListItem>
+                <NavLink exact to="/userdata" activeClassName="active">
+                  Statistikk
+                </NavLink>
+              </ListItem>
+            )}
             <ListItem>
               {!isLoggedIn && (
                 <NavLink exact to="/login" activeClassName="active">
