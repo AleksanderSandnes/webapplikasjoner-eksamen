@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import NewCategory from '../modals/NewCategory';
+import NewCategory from '../modals/CreateNewCategory';
 import {
   Footer,
   FooterText,

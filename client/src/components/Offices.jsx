@@ -7,7 +7,6 @@ import OfficeGrid from './OfficeGrid';
 import OfficeList from './OfficeList';
 import ThreeLines from '../assets/images/ThreeLines.png';
 import Squares from '../assets/images/Squares.png';
-import Dropdown from './Dropdown';
 import {
   Footer,
   FooterText,

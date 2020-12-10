@@ -143,9 +143,7 @@ const LoginForm = () => {
         <FormGroup>
           {success && (
             <div>
-              <H1>
-                Du er nå logget inn. Sender deg til hovedsiden om 3 sekunder.
-              </H1>
+              <H1>Du er nå logget inn. Sender deg til hovedsiden.</H1>
             </div>
           )}
           {error && (

@@ -2,16 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 // eslint-disable-next-line react/prop-types
-function NewCategoryButton({ modalHandler }) {
+const NewCategoryButton = ({ setIsOpen }) => {
+  const handleClick = () => {
+    setIsOpen(true);
+  };
+
   return (
     <div>
-      <NewCategoryBtn type="button" onClick={modalHandler}>
+      <NewCategoryBtn type="button" onClick={handleClick}>
         NY
       </NewCategoryBtn>
     </div>
   );
-}
-
+};
 export default NewCategoryButton;
 
 const NewCategoryBtn = styled.button`

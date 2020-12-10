@@ -31,23 +31,14 @@ import {
 const NewArticle = () => {
   const { user, isLoggedIn } = useAuthContext();
   const [error, setError] = useState(null);
-  const [newCategory, setNewCategory] = useState({ name: '' });
   const [success, setSuccess] = useState(false);
-  const [state, setState] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState(null);
   const history = useHistory();
 
   const { register, handleSubmit, formState } = useForm({
     mode: 'onBlur',
   });
-
-  const showModal = () => {
-    setState(true);
-  };
-
-  const closeModal = () => {
-    setState(false);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +50,7 @@ const NewArticle = () => {
       }
     };
     fetchData();
-  }, [setCategories]);
+  }, [setCategories, modalIsOpen]);
 
   const onSubmit = async (formData) => {
     const { data } = await create(formData);
@@ -70,7 +61,7 @@ const NewArticle = () => {
       setError(null);
       setTimeout(() => {
         history.push(`/articles/${data.data.id}`);
-      }, 3000);
+      }, 2000);
     }
   };
 
@@ -159,15 +150,12 @@ const NewArticle = () => {
               </div>
               <Right>
                 <div>
-                  {state && (
-                    <CreateNewCategory
-                      modal={state}
-                      close={closeModal}
-                      setModalOpen={closeModal}
-                    />
-                  )}
+                  <CreateNewCategory
+                    setIsOpen={setIsOpen}
+                    modalIsOpen={modalIsOpen}
+                  />
 
-                  <NewCategoryButton modalHandler={showModal} />
+                  <NewCategoryButton setIsOpen={setIsOpen} />
                 </div>
               </Right>
             </Flexrow>

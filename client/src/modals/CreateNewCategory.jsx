@@ -12,7 +12,9 @@ import {
   StyledButton,
 } from '../styles/ArticleStyling.js';
 
-const CreateNewCategory = () => {
+Modal.setAppElement('#app');
+
+const CreateNewCategory = ({ setIsOpen, modalIsOpen }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const history = useHistory();
@@ -21,20 +23,24 @@ const CreateNewCategory = () => {
     mode: 'onBlur',
   });
 
+  const closeModal = () => {
+    setTimeout(() => {
+      history.push(`/NewArticle`);
+    }, 2000);
+  };
+
   const onSubmit = async (formData) => {
     const { data } = await createCategory(formData);
     if (!data.success) {
       setError(data.message);
     } else {
+      setIsOpen(false);
       setSuccess(true);
       setError(null);
-      setTimeout(() => {
-        history.push(`/NewArticle`);
-      }, 2000);
     }
   };
   return (
-    <Modal>
+    <Modal shouldCloseOnEsc onAfterClose={closeModal} isOpen={modalIsOpen}>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
           <Flexrow>
@@ -44,7 +50,7 @@ const CreateNewCategory = () => {
           </Flexrow>
           <Input
             type="text"
-            name="category"
+            name="name"
             id="inpNewCategory"
             placeholder="Placeholder for inputfelt"
             ref={register({
