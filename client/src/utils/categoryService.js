@@ -2,7 +2,7 @@ import http from './http';
 
 const API_URL = '/categories';
 
-export const list = async () => {
+export const listCategories = async () => {
   try {
     return await http.get(`${API_URL}`);
   } catch (err) {
@@ -36,7 +36,7 @@ export const createCategory = async (data) => {
 
 export default {
   createCategory,
-  list,
+  listCategories,
   get,
   put,
 };

@@ -25,7 +25,7 @@ import {
   StyledButton,
 } from '../styles/ArticleStyling.js';
 import { get, put } from '../utils/articleService';
-import { list } from '../utils/categoryService';
+import { listCategories } from '../utils/categoryService';
 
 const ArticleEdit = () => {
   const [error, setError] = useState(null);
@@ -59,7 +59,7 @@ const ArticleEdit = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await list();
+      const { data } = await listCategories();
       setLoading(true);
       reset(data.data);
       if (!data.success) {

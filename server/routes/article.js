@@ -15,5 +15,6 @@ router.post(
 );
 router.put('/:id', articleController.update);
 router.delete('/:id', articleController.remove);
+router.get('/totalviews', articleController.totalArticleViews);
 
 export default router;

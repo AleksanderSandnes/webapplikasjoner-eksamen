@@ -6,8 +6,13 @@ export const createLocation = async (data) => Location.create(data);
 export const getLocationById = async (id) => Location.findById(id);
 
 export const listLocations = async (queryStr) => {
-  const filters = ApiFilters(Location.find(), queryStr).sort();
-  const locations = await filters.query.populate();
+  const filters = new ApiFilters(Location.find(), queryStr).sort();
+  console.log(filters);
+  const locations = await filters.query.populate('location');
+  return {
+    results: locations.length,
+    data: locations,
+  }
 };
 
 export const updateLocation = async (id, data) =>

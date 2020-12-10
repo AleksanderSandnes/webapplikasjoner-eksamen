@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import Article from './Article';
 import { useAuthContext } from '../context/AuthProvider';
 import { list } from '../utils/articleService.js';
+import { listCategories } from '../utils/categoryService.js';
 import {
   Footer,
   FooterText,
@@ -44,7 +46,7 @@ const ArticlePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await list();
+      const { data } = await listCategories();
       if (!data.success) {
         setError(data.error);
       } else {
@@ -74,6 +76,7 @@ const ArticlePage = () => {
             <SearchButton>SØK</SearchButton>
             <div>
               <Select>
+                <option value="alle">Alle</option>
                 {categories &&
                   categories.map((category) => (
                     <option

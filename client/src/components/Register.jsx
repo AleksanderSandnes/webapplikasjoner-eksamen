@@ -40,7 +40,7 @@ const Register = () => {
       setError(null);
       setTimeout(() => {
         history.push(`/login`);
-      }, 5000);
+      }, 3000);
     }
   };
 
