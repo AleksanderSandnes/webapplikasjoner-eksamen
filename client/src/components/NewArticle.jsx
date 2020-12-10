@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
-import { listCategories, createCategory } from '../utils/categoryService';
+import { listCategories } from '../utils/categoryService';
 import { create } from '../utils/articleService';
 import CreateNewCategory from '../modals/CreateNewCategory';
 import NewCategoryButton from './NewCategoryButton';
@@ -42,26 +42,12 @@ const NewArticle = () => {
     mode: 'onBlur',
   });
 
-  const handleCategoryChange = (e) => {
-    setNewCategory({ name: e.target.value });
-  };
-
   const showModal = () => {
     setState(true);
   };
 
   const closeModal = () => {
     setState(false);
-  };
-
-  const handleModal = async (e) => {
-    e.preventDefault();
-    const { data } = await createCategory(newCategory);
-    if (!data.success) {
-      setError(data.error);
-    } else {
-      setState(false);
-    }
   };
 
   useEffect(() => {
@@ -196,14 +182,12 @@ const NewArticle = () => {
                 <div>
                   {state && (
                     <CreateNewCategory
-                      state={state}
+                      modal={state}
                       close={closeModal}
-                      handleCategoryChange={handleCategoryChange}
-                      handleModal={handleModal}
                       setModalOpen={closeModal}
-                      newCategory={setNewCategory}
                     />
                   )}
+
                   <NewCategoryButton modalHandler={showModal} />
                 </div>
               </Right>

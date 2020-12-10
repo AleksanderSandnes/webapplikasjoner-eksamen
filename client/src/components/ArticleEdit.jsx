@@ -36,7 +36,7 @@ const ArticleEdit = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  const { register, errors, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, errors, formState, reset } = useForm({
     mode: 'onBlur',
   });
 

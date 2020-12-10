@@ -17,7 +17,7 @@ const CreateNewCategory = () => {
   const [success, setSuccess] = useState(false);
   const history = useHistory();
 
-  const { register, errors, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     mode: 'onBlur',
   });
 
@@ -30,12 +30,11 @@ const CreateNewCategory = () => {
       setError(null);
       setTimeout(() => {
         history.push(`/NewArticle`);
-      }, 3000);
+      }, 2000);
     }
   };
-
   return (
-    <Modal className="modal">
+    <Modal>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
           <Flexrow>
