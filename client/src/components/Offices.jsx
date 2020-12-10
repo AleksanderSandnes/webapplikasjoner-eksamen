@@ -66,12 +66,14 @@ const Locations = ({ setOffice }) => {
             <option value="Moss">Moss</option>
             <option value="Oslo">Oslo</option>
           </Select>
-          <ImageButton type="button" onClick={handleClick}>
-            <img name="Lines" src={ThreeLines} alt="Lines" />
-          </ImageButton>
-          <ImageButton type="button" onClick={handleClick}>
-            <img name="Squares" src={Squares} alt="Squares" />
-          </ImageButton>
+          <div>
+            <ImageButton type="button" onClick={handleClick}>
+              <img name="Lines" src={ThreeLines} alt="Lines" />
+            </ImageButton>
+            <ImageButton type="button" onClick={handleClick}>
+              <img name="Squares" src={Squares} alt="Squares" />
+            </ImageButton>
+          </div>
         </ButtonPlacement>
         {locations &&
           locations.map((location) => (
