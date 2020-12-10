@@ -30,7 +30,7 @@ Eksempelkode fra Leksjon 14
 
 useForm select
 [Get started](https://react-hook-form.com/get-started/)
-components/ArticleEdit.jsx Linje: 115 
+components/ArticleEdit.jsx Linje: 154 
 
 StyledLink
 [How to get rid of underline for Link component of React Router](https://stackoverflow.com/questions/37669391/how-to-get-rid-of-underline-for-link-component-of-react-router)
@@ -38,11 +38,11 @@ LoginForm.jsx Linje: 20-33
 
 Moment
 [react-moment](https://www.npmjs.com/package/react-moment)
-ArticleDetails.jsx Linje: 4, 72 - 81
+ArticleDetails.jsx Linje: 4, 116 - 119, 123 - 126
 
 Background Image
 [How To Set Background Image In React](https://www.nicesnippets.com/blog/how-to-set-background-image-in-react)
-ArticleDetails.jsx Linje: 107-114
+ArticleDetails.jsx Linje: 91 - 93
 
 useEffect hasOwnProperty
 [useEffect hasOwnProperty](https://stackoverflow.com/questions/3476255/in-javascript-how-can-i-tell-if-a-field-exists-inside-an-object)
@@ -50,11 +50,11 @@ ArticleDetails.jsx Linje: 50
 
 useLocation
 [useLocation](https://stackoverflow.com/questions/35352638/react-how-to-get-parameter-value-from-query-string)
-Articles.jsx
+Articles.jsx Linje: 36
 
 Programmatically update query params
 [query params](https://stackoverflow.com/questions/40161516/how-do-you-programmatically-update-query-params-in-react-router)
-queryParams
+Offices.jsx Linje: 33
 
 Support for the experimental syntax 'classProperties'
 [classProperties](https://stackoverflow.com/questions/52237855/support-for-the-experimental-syntax-classproperties-isnt-currently-enabled)
@@ -62,8 +62,4 @@ Support for the experimental syntax 'classProperties'
 
 Responsive navbar
 [Responsive nav bar with @media queries](https://codepen.io/mike316/pen/eNvOGN)
-Nav.jsx
-
-Joi dokumentasjon
-[Joi dokumentasjon](https://joi.dev/api/?v=17.3.0)
-article.js
+Nav.jsx - Brukte koden fra codepen og skrev om slik at den passet til vår use case
