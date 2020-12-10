@@ -12,9 +12,25 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { login } from '../utils/authService';
 import { useAuthContext } from '../context/AuthProvider';
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: blue;
+  }
+`;
 
 const LoginForm = () => {
   const [closeBtnState, setCloseBtnState] = useState(false);
@@ -44,7 +60,9 @@ const LoginForm = () => {
       const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
       setUser({ ...user, expire });
       setSuccess(true);
-      history.push('/');
+      setTimeout(() => {
+        history.push('/');
+      }, 3000);
     }
   };
 
@@ -56,12 +74,6 @@ const LoginForm = () => {
         as="form"
         onSubmit={handleSubmit(onSubmit)}
       >
-        {success && (
-          <Alert status="success">
-            <AlertIcon />
-            Du er logget inn. Omdirigerer til forsiden ...
-          </Alert>
-        )}
         {error && closeBtnState && (
           <Alert mb={4} status="error">
             <AlertIcon />
@@ -114,6 +126,11 @@ const LoginForm = () => {
             Passord må fylles ut og bestå av 3 tall/bokstaver
           </FormErrorMessage>
         </FormControl>
+        <FormControl>
+          <StyledLink to="register">
+            Har du ikke en bruker? Registrer deg her.
+          </StyledLink>
+        </FormControl>
         <Button
           mt={4}
           variantColor="teal"
@@ -122,9 +139,35 @@ const LoginForm = () => {
         >
           Login
         </Button>
+
+        <FormGroup>
+          {success && (
+            <div>
+              <H1>Du er nå logget inn. Sender deg til hovedsiden.</H1>
+            </div>
+          )}
+          {error && (
+            <div>
+              <h1>{error}</h1>
+            </div>
+          )}
+        </FormGroup>
       </Box>
     </>
   );
 };
 
 export default LoginForm;
+
+export const FormGroup = styled.div`
+  color: black;
+  display: block;
+  width: 300px;
+  margin: 30px auto;
+`;
+
+const H1 = styled.h1`
+  font-size: 32px;
+  width: 500px;
+  color: green;
+`;

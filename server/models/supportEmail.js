@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const SupportEmailSchema = new Schema(
   {
-    username: {
+    name: {
       type: String,
       required: true,
     },

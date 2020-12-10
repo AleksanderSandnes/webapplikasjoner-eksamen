@@ -16,6 +16,13 @@ import Contact from '../pages/Contact';
 import Articles from '../pages/Articles';
 import OfficeDetailPage from '../pages/OfficeDetailPage';
 import ArticleDetails from '../pages/ArticleDetails';
+import ArticleEditPage from '../pages/ArticleEditPage';
+import NewArticlePage from '../pages/NewArticlePage';
+import SupportPage from '../pages/SupportPage';
+import Register from '../components/Register';
+import ImagePage from '../pages/ImagePage';
+import UserDataPage from '../pages/UserDataPage';
+import CreateNewCategory from '../modals/CreateNewCategory';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
@@ -46,13 +53,27 @@ const AuthenticatedRoutes = ({ children, ...rest }) => {
 
 // eslint-disable-next-line no-unused-vars
 const AdminRoutes = ({ children, ...rest }) => {
-  const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
+  const { isLoggedIn, isAdmin, isSuperAdmin, isLoading } = useAuthContext();
 
   return (
     <Route
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
-      render={() => isLoggedIn && isAdmin && !isLoading && children}
+      render={() =>
+        isLoggedIn && (isAdmin || isSuperAdmin) && !isLoading && children
+      }
+    />
+  );
+};
+
+const SuperAdminRoutes = ({ children, ...rest }) => {
+  const { isLoggedIn, isSuperAdmin, isLoading } = useAuthContext();
+
+  return (
+    <Route
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...rest}
+      render={() => isLoggedIn && isSuperAdmin && !isLoading && children}
     />
   );
 };
@@ -65,13 +86,16 @@ const Routes = () => {
       <MainLayout>
         <Suspense fallback={<div>Loading ...</div>}>
           <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
             <Route exact path="/homepage">
               <HomePage />
             </Route>
             <Route exact path="/offices">
               <OfficePage setOffice={setOffice} />
             </Route>
-            <Route exact path="/offices/:name">
+            <Route exact path="/offices/:location/:name">
               <OfficeDetailPage office={office} />
             </Route>
             <Route exact path="/contact">
@@ -83,14 +107,29 @@ const Routes = () => {
             <Route exact path="/articles/:id">
               <ArticleDetails />
             </Route>
-            <Route exact path="/articleDetails">
-              <ArticleDetails />
+            <Route exact path="/articles/createNewCategory">
+              <CreateNewCategory />
             </Route>
-            <Route exact path="/">
-              <HomePage />
+            <Route exact path="/uploadImage/:id">
+              <ImagePage />
             </Route>
+            <AdminRoutes exact path="/articles/:id/edit">
+              <ArticleEditPage />
+            </AdminRoutes>
+            <AdminRoutes exact path="/newarticle">
+              <NewArticlePage />
+            </AdminRoutes>
+            <AdminRoutes exact path="/support">
+              <SupportPage />
+            </AdminRoutes>
+            <SuperAdminRoutes exact path="/userdata">
+              <UserDataPage />
+            </SuperAdminRoutes>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
             <Route path="*">
               <NoMatch />

@@ -11,13 +11,19 @@ const FlexItem = styled.div`
   font-size: 30px;
   border: 1px solid black;
   width: 350px;
+
+  &:hover {
+    border-color: #2c91bd;
+    background: #2c91bd;
+    cursor: pointer;
+  }
 `;
 
-const OfficeGrid = ({ office, location, setOffice }) => {
+const OfficeGrid = ({ office, location, setOffice, index }) => {
   const history = useHistory();
   const redirectToDetailView = () => {
     setOffice(office);
-    history.push(`/offices/${office.name}`);
+    history.push(`/offices/${location.name.toLowerCase()}/${index + 1}`);
   };
   return (
     <FlexItem key={office.name} onClick={() => redirectToDetailView()}>
@@ -33,6 +39,7 @@ OfficeGrid.propTypes = {
   office: PropTypes.object,
   location: PropTypes.object,
   setOffice: PropTypes.func,
+  index: PropTypes.number,
 };
 
 export default OfficeGrid;

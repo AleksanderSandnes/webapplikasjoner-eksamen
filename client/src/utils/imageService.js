@@ -16,3 +16,14 @@ export const upload = async (image) => {
     return err.response;
   }
 };
+
+export const getImage = async (id) => {
+  try {
+    return await http.get(`image/${id}`, {
+      responseType: 'blob',
+    });
+    // return await http.get(`${API_DOWNLOAD_URL}/${id}`);
+  } catch (err) {
+    return err.response;
+  }
+};

@@ -1,21 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-
-const Title = styled.h1`
-  font-size: 2rem;
-  text-align: center;
-  color: black;
-  font-weight: bold;
-`;
-
-const PageWrapper = styled.section``;
-
-const WelcomeBox = styled.section`
-  padding: 10em;
-  background: lightgray;
-  margin-top: -59px;
-`;
+import {
+  Footer,
+  FooterText,
+  Title,
+  HeaderTitle,
+} from '../styles/themeStyledComponents.js';
 
 const OfficeAndContactWrapper = styled.section`
   margin-top: 40px;
@@ -33,6 +24,7 @@ const Offices = styled.section`
   &:hover {
     border-color: #2c91bd;
     background: #2c91bd;
+    cursor: pointer;
   }
 `;
 
@@ -47,6 +39,7 @@ const Contact = styled.section`
   &:hover {
     border-color: #2c91bd;
     background: #2c91bd;
+    cursor: pointer;
   }
 `;
 
@@ -60,21 +53,8 @@ const Articles = styled.section`
   &:hover {
     border-color: #2c91bd;
     background: #2c91bd;
+    cursor: pointer;
   }
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 380px;
-  margin: auto;
-  padding: 50px 0 50px 0;
-  flex-direction: row;
-`;
-
-const FooterText = styled.p`
-  font-size: 15px;
-  font-weight: 600;
 `;
 
 const Home = () => {
@@ -84,10 +64,10 @@ const Home = () => {
   };
 
   return (
-    <PageWrapper>
-      <WelcomeBox>
+    <section>
+      <HeaderTitle>
         <Title>Velkommen til FG Rørleggerservice AS</Title>
-      </WelcomeBox>
+      </HeaderTitle>
       <OfficeAndContactWrapper>
         <Offices onClick={() => onHandleClick('/offices')}>
           <Title>Kontorer</Title>
@@ -104,7 +84,7 @@ const Home = () => {
         <FooterText>Ig@Igror.no</FooterText>
         <FooterText>99 00 00 00</FooterText>
       </Footer>
-    </PageWrapper>
+    </section>
   );
 };
 

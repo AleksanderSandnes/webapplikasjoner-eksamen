@@ -29,4 +29,8 @@ const LocationSchema = new Schema(
   { timestamps: true }
 );
 
+LocationSchema.index({
+  name: 'text',
+});
+
 export default mongoose.model('Location', LocationSchema);

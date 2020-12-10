@@ -1,37 +1,54 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useHistory, useLocation } from 'react-router-dom';
 import { list } from '../utils/officeService.js';
 import OfficeGrid from './OfficeGrid';
-import OfficeList from './OfficeList.jsx';
+import OfficeList from './OfficeList';
 import ThreeLines from '../assets/images/ThreeLines.png';
 import Squares from '../assets/images/Squares.png';
+import {
+  Footer,
+  FooterText,
+  Title,
+  HeaderTitle,
+} from '../styles/themeStyledComponents.js';
 
 const Locations = ({ setOffice }) => {
   const [locations, setLocations] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isGrid, setisGrid] = useState(true);
+  const history = useHistory();
+  const urllocation = useLocation();
 
   const handleClick = (e) => {
     if (e.target.name === 'Squares') setisGrid(true);
     if (e.target.name === 'Lines') setisGrid(false);
   };
 
+  const handleSelectChange = (event) => {
+    history.push({
+      path: '/offices',
+      search: `?q=${event.target.value}`,
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { data } = await list();
+      const { data } = await list(urllocation.search);
       if (!data.success) {
         setError(error);
       } else {
-        setLocations(data.data);
+        console.log(data);
+        setLocations(data.data.data);
         setError(null);
       }
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [urllocation, error]);
 
   return (
     <div>
@@ -41,8 +58,14 @@ const Locations = ({ setOffice }) => {
       {error && <p>{error}</p>}
       <SideWrapper>
         {loading && <div>Loading...</div>}
-        <FilterButton>Filter</FilterButton>
         <ButtonPlacement>
+          <Select onChange={handleSelectChange}>
+            <option value="">Alle</option>
+            <option value="Fredrikstad">Fredrikstad</option>
+            <option value="Sarpsborg">Sarpsborg</option>
+            <option value="Moss">Moss</option>
+            <option value="Oslo">Oslo</option>
+          </Select>
           <ImageButton type="button" onClick={handleClick}>
             <img name="Lines" src={ThreeLines} alt="Lines" />
           </ImageButton>
@@ -65,6 +88,7 @@ const Locations = ({ setOffice }) => {
                         office={office}
                         key={office._id}
                         setOffice={setOffice}
+                        index={index}
                       />
                     )) ||
                     (!isGrid && (
@@ -100,44 +124,11 @@ const ImageButton = styled.button`
 `;
 
 const ButtonPlacement = styled.div`
-  position: relative;
   top: 10.5rem;
-  left: 91rem;
+  margin-left: 91rem;
   right: 0px;
-  max-width: 10rem;
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 500px;
-  margin: auto;
-  padding: 50px 0 50px 0;
-  flex-direction: row;
-`;
-
-const FooterText = styled.p`
-  font-size: 15px;
-  font-weight: 600;
-`;
-
-const FilterButton = styled.button`
-  color: black;
-  background-color: lightgray;
-  padding: 2rem 4.5rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  position: relative;
-  top: 14.5rem;
-  left: 78rem;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  text-align: center;
-  color: black;
-  font-weight: bold;
+  height: 200px;
+  max-width: 450px;
 `;
 
 const TitleCards = styled.h2`
@@ -148,28 +139,28 @@ const TitleCards = styled.h2`
   margin: 7rem 0 3rem 0;
 `;
 
-// eslint-disable-next-line no-unused-vars
-const TitleOffice = styled.h1`
-  font-size: 2rem;
-  text-align: left;
-  color: black;
-  font-weight: bold;
-`;
-
-const HeaderTitle = styled.section`
-  padding: 10em;
-  background: lightgray;
-  margin-top: -59px;
-`;
-
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 100rem;
 `;
 
 const SideWrapper = styled.div`
   margin: 0 80px;
+`;
+
+const Select = styled.select`
+  background-color: lightgray;
+  max-width: 200px;
+  font-size: 20px;
+  padding: 20px 20px 20px 20px;
+  font-weight: bold;
+  margin-top: 250px;
+  margin-left: -100px;
+  position: relative;
+  top: 3rem;
+  right: 5rem;
 `;
 
 export default Locations;

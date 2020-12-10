@@ -22,12 +22,6 @@ export const list = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({ success: true, data: articles });
 });
 
-/* export const list = catchAsyncErrors(async (req, res, next) => {
-  const { id } = req.article.categoryId;
-  const articles = await articleService.listArticles(id, req.query);
-  res.status(200).json({ success: true, data: articles });
-}); */
-
 export const update = catchAsyncErrors(async (req, res, next) => {
   let article = await articleService.getArticleById(req.params.id);
   if (!article) {
@@ -48,4 +42,9 @@ export const remove = catchAsyncErrors(async (req, res, next) => {
   }
   article = await articleService.removeArticle(req.params.id);
   res.status(204).json({});
+});
+
+export const totalArticleViews = catchAsyncErrors(async (req, res, next) => {
+  const article = await articleService.totalArticleViews(req.query);
+  res.status(200).json({ success: true, data: article });
 });

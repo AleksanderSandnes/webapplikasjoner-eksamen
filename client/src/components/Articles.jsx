@@ -1,29 +1,70 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useHistory, useLocation } from 'react-router-dom';
+import Article from './Article';
 import { useAuthContext } from '../context/AuthProvider';
 import { list } from '../utils/articleService.js';
-import pic from '../assets/images/pic.png';
+import { listCategories } from '../utils/categoryService.js';
+import {
+  Footer,
+  FooterText,
+  Title,
+  HeaderTitle,
+} from '../styles/themeStyledComponents.js';
 
 const ArticlePage = () => {
-  const { isAdmin, isSuperAdmin } = useAuthContext();
+  const { isAdmin, isSuperAdmin, isLoggedIn } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [articles, setArticles] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const location = useLocation();
+  const history = useHistory();
+
+  const redirectToDetailView = (id) => {
+    history.push(`/articles/${id}`);
+  };
+
+  const handleClick = () => {
+    history.push(`/newarticle`);
+  };
+
+  const handleSelectChange = (event) => {
+    history.push({
+      path: '/newarticle',
+      search: `?q=${event.target.value}`,
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { data } = await list();
+      console.log(location.search);
+      const { data } = await list(location.search);
       if (!data.success) {
         setError(error);
       } else {
-        setArticles(data.data);
+        setArticles(data.data.data);
+        console.log(data);
         setError(null);
       }
       setLoading(false);
     };
     fetchData();
-  }, [error]);
+  }, [error, location]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await listCategories();
+      if (!data.success) {
+        setError(data.error);
+      } else {
+        setCategories(data.data);
+      }
+    };
+    fetchData();
+  }, [setCategories, location]);
 
   return (
     <div>
@@ -34,42 +75,52 @@ const ArticlePage = () => {
       <SideWrapper>
         {loading && <div>Loading...</div>}
         <FlexBoxButtons>
-          {isAdmin && (
+          {(isAdmin || isSuperAdmin) && (
             <ButtonLeft>
-              <NewArticleButton>Ny Artikkel</NewArticleButton>
-            </ButtonLeft>
-          )}
-          {isSuperAdmin && (
-            <ButtonLeft>
-              <NewArticleButton>Ny Artikkel</NewArticleButton>
+              <NewArticleButton onClick={handleClick}>
+                NY ARTIKKEL
+              </NewArticleButton>
             </ButtonLeft>
           )}
           <ButtonRight>
-            <SearchButton>Søk</SearchButton>
-            <FilterButton>Filter</FilterButton>
+            <SearchButton>SØK</SearchButton>
+            <div>
+              <Select onChange={handleSelectChange}>
+                <option value="">Alle</option>
+                {categories &&
+                  categories.map((category) => (
+                    <option
+                      name={category._id}
+                      value={category._id}
+                      key={category._id}
+                    >
+                      {category.name}
+                    </option>
+                  ))}
+              </Select>
+            </div>
           </ButtonRight>
         </FlexBoxButtons>
         {articles &&
-          articles.map((article) => (
-            <MarginTop key={article._id}>
-              <Flexrow>
-                <Image>
-                  <Img name="midlertidig" src={pic} alt="midlertidig" />
-                </Image>
-                <RightSide>
-                  <ArticleFlexRow>
-                    <ArticleLeft>
-                      <ArticleHeader>{article.title}</ArticleHeader>
-                    </ArticleLeft>
-                    <CategoryName>{article.categoryId.name}</CategoryName>
-                  </ArticleFlexRow>
-                  <ArticleText>
-                    {article.leadParagraph.substring(0, 150)}
-                  </ArticleText>
-                </RightSide>
-              </Flexrow>
-            </MarginTop>
-          ))}
+          articles.map(
+            (article) =>
+              (isLoggedIn && (
+                <MarginTop
+                  key={article._id}
+                  onClick={() => redirectToDetailView(article._id)}
+                >
+                  <Article article={article} />
+                </MarginTop>
+              )) ||
+              (!isLoggedIn && !article.isClassified && (
+                <MarginTop
+                  key={article._id}
+                  onClick={() => redirectToDetailView(article._id)}
+                >
+                  <Article article={article} />
+                </MarginTop>
+              ))
+          )}
         <Footer>
           <FooterText>OrgnNr: 007 007 007</FooterText>
           <FooterText>Ig@Igror.no</FooterText>
@@ -82,32 +133,14 @@ const ArticlePage = () => {
 
 export default ArticlePage;
 
-const Img = styled.img`
-  vertical-align: top;
-  max-width: 500px;
-  height: 200px;
-`;
-
-const Flexrow = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const RightSide = styled.div`
-  margin: auto 0;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  text-align: center;
+const Select = styled.select`
   color: black;
+  background-color: lightgray;
+  padding: 10px;
+  width: 150px;
+  height: 60px;
   font-weight: bold;
-`;
-
-const HeaderTitle = styled.section`
-  padding: 10em;
-  background: lightgray;
-  margin-top: -59px;
+  text-align: center;
 `;
 
 const NewArticleButton = styled.button`
@@ -131,23 +164,11 @@ const SearchButton = styled.button`
 
 const MarginTop = styled.article`
   margin-top: 50px;
-`;
+  border: 1px solid white;
 
-const FilterButton = styled.button`
-  color: black;
-  background-color: lightgray;
-  padding: 10px;
-  width: 150px;
-  font-weight: bold;
-  text-align: center;
-`;
-
-const Image = styled.div`
-  margin-top: 50px;
-  margin-bottom: -30px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  text-align: right;
+  &:hover {
+    border: 1px solid #2c91bd;
+  }
 `;
 
 const FlexBoxButtons = styled.div`
@@ -162,53 +183,21 @@ const SideWrapper = styled.div`
   margin-right: 500px;
 `;
 
-const ArticleHeader = styled.h1`
-  font-size: 35px;
-  font-weight: bold;
-  padding-bottom: 10px;
-  padding-right: 10px;
-`;
-
-const ArticleFlexRow = styled.div`
-  display: flex;
-`;
-
-const CategoryName = styled.h2`
-  font-size: 20px;
-  font-weight: bold;
-`;
-
-const ArticleText = styled.div`
-  font-size: 15px;
-`;
-
-const ArticleLeft = styled.div`
-  flex: 0 0 89%;
-  display: flex;
-  justify-content: flex-start;
-`;
-
 const ButtonRight = styled.div`
   flex: 0 0 50%;
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  right: 400px;
+  padding: 10px;
+  font-weight: bold;
+  width: 300px;
+  height: 80px;
+  text-align: center;
 `;
 
 const ButtonLeft = styled.div`
   flex: 0 0 50%;
   display: flex;
   justify-content: flex-start;
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  max-width: 500px;
-  margin-left: 200px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-`;
-
-const FooterText = styled.p`
-  font-size: 18px;
 `;

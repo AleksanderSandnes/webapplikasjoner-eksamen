@@ -30,6 +30,10 @@ const ArticleSchema = new Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'Image',
     },
+    isClassified: {
+      type: Boolean,
+      default: false,
+    },
     author: {
       type: String,
       enum: {
@@ -41,5 +45,10 @@ const ArticleSchema = new Schema(
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+
+ArticleSchema.index({
+  title: 'text',
+  categoryId: 'text',
+});
 
 export default mongoose.model('Article', ArticleSchema);

@@ -22,6 +22,7 @@ export const sendToken = (user, res) => {
       user: {
         email: user.email,
         role: user.role,
+        _id: user._id,
       },
     });
 };

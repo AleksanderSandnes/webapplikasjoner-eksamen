@@ -30,14 +30,10 @@ app.use(hpp());
 
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000,
-  max: 100,
+  max: 5000,
 });
 
 app.use(limiter);
-
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-}
 
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
@@ -51,7 +47,11 @@ app.use(
 );
 
 app.use(cookieParser());
-app.use(csrf({ cookie: true }));
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+  app.use(csrf({ cookie: true }));
+}
 
 app.get(`${process.env.BASEURL}/csrf-token`, (req, res) => {
   res.status(200).json({ data: req.csrfToken() });
@@ -62,6 +62,7 @@ app.use(`${process.env.BASEURL}/articles`, article);
 app.use(`${process.env.BASEURL}/categories`, category);
 app.use(`${process.env.BASEURL}/contact`, supportEmail);
 app.use(`${process.env.BASEURL}/locations`, location);
+app.use(`${process.env.BASEURL}/supportemail`, supportEmail);
 app.use(`${process.env.BASEURL}/`, auth);
 app.use(`${process.env.BASEURL}/`, image);
 
